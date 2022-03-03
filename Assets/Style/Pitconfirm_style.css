@@ -229,7 +229,7 @@ li.another-row-background-color {
 
         padding-top: 10px;
         padding-left: 20px;
-        transition: 0.1s ease-in-out;
+        transition: 0.2s ease-out;
     }
 
     div.situation-collasped {
