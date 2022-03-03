@@ -1,0 +1,400 @@
+/*  "/'*#region*'/" and "/'*#endregion*'/"  is for VS Code  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "F1-Regular";
+}
+
+:root {
+    /*HTML*/
+        --normal-background-color: rgba(35, 35, 35, 1);
+
+
+    /*Team Colours*/
+        --Mercedes: #00D2BE;
+        --Ferrari: #DC0000;
+        --RedBullRacing: #0600EF;
+        --Alpine: #0090FF;
+        --Haas: #FFFFFF;
+        --AstonMartin: #006F62;
+        --AlphaTauri: #2B4562;
+        --McLaren: #FF8700;
+        --AlfaRomeoRacing: #900000;
+        --Williams: #005AFF;
+
+
+    /*Classification*/
+        --Gain-place: rgb(65, 214, 69);
+        --Lose-place: rgb(234, 55, 57);
+        --Did-Not-Finish: rgb(20, 20, 20);
+
+
+    /*Accident*/
+        --Yellow-Flag: rgb(253, 211, 0);
+        --Red-Flag: rgb(204, 25, 25);
+        --Green-Flag: rgb(0, 210, 0);
+
+
+
+
+
+    /*Inside some elements*/
+        --Situation-Background-Color: transparent;
+  }
+
+
+
+
+
+body{
+    background-color: var(--normal-background-color);
+    font-variant-ligatures: none;
+    user-select: none;
+
+}
+
+ol {
+    list-style-type: none;
+    padding: 4px 0 0 4px;
+    overflow-x: hidden;
+    width: 100%;
+    height: fit-content;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+
+    background-color: var(--normal-background-color);
+
+    padding-left: 20px;
+}
+
+
+li.row-background-color {
+    background-color: var(--normal-background-color);
+}
+
+li.another-row-background-color {
+    background-color: rgba(50, 50, 50, 1);
+}
+
+
+
+
+
+
+/*Drivers*/
+/*#region*/
+
+    div.flex-container {
+        display: grid;
+        flex-direction: row;
+    }
+
+    div.drivers-standing-column-wrapper {
+        display: flex;
+        height: calc(28px + 6px);
+        transition: 0.2s ease-out;
+    }
+
+    div.drivers-standing-column-wrapper:hover {
+        transform: translateX(16px);
+        cursor: pointer;
+        transition: 0.2s ease-out;
+        height: 200px;
+    }
+
+    .position-order {
+        width: 28px;
+        height: 28px;
+
+        border-bottom-right-radius: 6px;
+        line-height: 1em;
+
+        background: white;
+        font-family: "F1-Regular";
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .driver-name {
+        display: flex;
+        align-items: center;
+
+        position: relative;
+        top: 6px;
+
+        font-family: "F1-Bold";
+        color: white;
+        font-size: 1.1rem;
+        line-height: 1em;
+        height: 1.1rem;
+
+        border-left: 6px solid;
+        border-color: white;
+        padding-left: 10px;
+        margin-left: 10px;
+
+    }
+
+
+/*#endregion*/
+
+
+
+
+/*Lap counter*/
+/*#region*/
+
+    .lap-count-container {
+
+        height: 60px;
+        background-color: #000;
+        
+        text-align: right;
+        color: white;
+
+        padding-right: 16px;
+    }
+
+    p.lap-text {
+        display: inline-block;
+        position: relative;
+        top: calc((60px - 22px) / 2);
+
+        font-family: "F1-Wide";
+        font-size: 20px;
+
+        margin-left: 20px;
+        margin-right: 15px;
+        padding-right: 15px;
+
+        border-right: 1px solid rgb(152, 152, 152);
+        border-bottom-right-radius: 2px 6px;
+        border-top-right-radius: 2px 6px;
+
+    }
+
+    p.lap-count {
+        display: inline-block;
+        position: relative;
+        top: calc((60px - 22px) / 2);
+
+        font-family: "F1-Regular";
+        font-size: 20px;
+
+    }
+
+    span.dash {
+        margin: 0 10px;
+    }
+
+    span.lap-completed {
+        font-weight: bold;
+    }
+
+
+    p.Accident-text-in-lap-counter{
+        font-family: "F1-Bold";
+        font-size: 1.5rem;
+
+        float: left;
+        position: relative;
+        top: calc(60px / 4);
+
+        padding-left: 20px;
+    }
+
+/*#endregion*/
+
+
+
+
+/*Yellow Flag / VSC / SC / Red flag*/
+/*#region*/
+
+    div.situation {
+        position: relative;
+        height: 100px;
+        background-color: var(--Yellow-Flag);
+
+        font-family: "F1-Bold";
+        font-size: 1.5rem;
+        opacity: 1;
+
+        padding-top: 10px;
+        padding-left: 20px;
+        transition: 0.1s ease-in-out;
+    }
+
+    div.situation-collasped {
+        height: 0;
+        opacity: 0;
+
+    }
+
+
+
+    .accident-flag-symbol {
+        width: 43px;
+        height: 20px;
+        fill: black;
+        margin-right: 8px;
+    }
+
+    .accident-safety-car-symbol {
+        width: 78px;
+        height: 21px;
+        fill: var(--Yellow-Flag);
+    }
+
+    .accident-text {
+        font-size: 1.5rem;
+        font-family: "F1-Bold";
+        position: absolute;
+        bottom: 10px;
+    }
+
+
+    .accident-ending-text {
+        color: var(--Yellow-Flag);
+        font-family: "F1-Regular";
+        font-size: 2.2rem;
+
+    }
+
+
+/*#endregion*/
+
+
+
+
+/*#Colours*/
+/*#region*/
+
+
+/*Team Colours*/
+    .Mercedes-color  { 
+        border-color: var(--Mercedes); 
+    }
+
+    .Ferrari-color {
+        border-color: var(--Ferrari); 
+    }
+
+    .RedBullRacing-color {
+        border-color: var(--RedBullRacing); 
+    }
+
+    .Alpine-color {
+        border-color: var(--Alpine); 
+    }
+
+    .Haas-color {
+        border-color: var(--Haas); 
+    }
+
+    .AstonMartin-color {
+        border-color: var(--AstonMartin); 
+    }
+
+    .AlphaTauri-color {
+        border-color: var(--AlphaTauri); 
+    }
+
+    .McLaren-color {
+        border-color: var(--McLaren); 
+    }
+
+    .AlfaRomeoRacing-color {
+        border-color: var(--AlfaRomeoRacing); 
+    }
+
+    .Williams-color {
+        border-color: var(--Williams); 
+    }
+
+
+
+
+
+/*Classification*/
+    .Gain-place {
+        background-color: var(--Gain-place);
+    }
+
+    .Lose-place {
+        background-color: var(--Lose-place);
+    }
+
+    .Did-Not-Finish {
+        opacity: 0.4;
+        border-left: 0;
+        margin-left: 44px;
+    }
+
+    .Did-Not-Finish-background-color {
+        background-color: var(--Did-Not-Finish);
+    }
+
+
+
+
+/*Accident*/
+    .Yellow-Flag {
+        color: var(--Yellow-Flag);
+        
+    }
+
+    .Yellow-Flag-Background-Color {
+        background-color: var(--Yellow-Flag);
+    }
+
+
+    .Red-Flag {
+        color: var(--Red-Flag);
+    }
+
+    .Red-Flag-Background-Color {
+        background-color: var(--Red-Flag);
+    }
+
+    
+    .Green-Flag {
+        color: var(--Green-Flag);
+    }
+    .Green-Flag-Background-Color {
+        background-color: var(--Green-Flag);
+    }
+/*#endregion*/
+
+
+
+
+/*Fonts*/
+/*#region*/
+
+    @font-face {
+        /*Formula 1 Regular*/
+            font-family: "F1-Regular";
+            src: url("../Fonts/Formula1-Regular.ttf");
+        }
+
+    @font-face {
+    /*Formula 1 Bold*/
+        font-family: "F1-Bold";
+        src: url("../Fonts/Formula1-Bold.ttf");
+        }
+        
+    @font-face {
+    /*Formula 1 Bold*/
+        font-family: "F1-Wide";
+        src: url("../Fonts/Formula1-Wide.ttf");
+        }
+
+/*#endregion*/
