@@ -29,7 +29,7 @@ function GetPositionValue() {
     const Position_Loss = document.getElementById("Position_Loss");
 
     let PositionGain = Position_Gain.value;
-    
+
 }
 
 function Position_Gain() {
@@ -102,11 +102,17 @@ function ChangeToSC() {
         Accident_situation.classList.remove("situation-box-collasped");
     }
 
+
+    if (Accident_Situation_text.classList.contains("accident-ending-text")) {
+        Accident_Situation_text.classList.remove("accident-ending-text");
+    }
     if (Accident_Situation_text.classList.contains("safety-car-in-text")) {
         Accident_Situation_text.classList.remove("safety-car-in-text");
     }
+    Accident_Situation_text.style.color = "black";
 
 
+    
     Accident_Flag_Symbol.style.fill = "black";
 
     Accident_Situation_text.textContent = "INCIDENT";
@@ -132,7 +138,7 @@ function ChangeToSC() {
 
 
 
-function ChangeToEnding() {
+function ChangeToSCEnding() {
     Wrapper.style.borderTop = "10px solid rgb(253, 211, 0)"
     Wrapper.style.borderLeft = "10px solid rgb(253, 211, 0)"
     Wrapper.style.borderRight = "10px solid rgb(253, 211, 0)"
@@ -163,7 +169,7 @@ function ChangeToEnding() {
         Accident_Situation_text.classList.remove("safety-car-in-text");
     }
 
-
+    Accident_Situation_text.style.color = "rgb(253, 211, 0)";
     Accident_Flag_Symbol.style.fill = "rgb(253, 211, 0)";
 
     AstonMartinSafetyCar.style.opacity = "0";
@@ -185,6 +191,71 @@ function ChangeToEnding() {
 }
 
 
+
+
+
+
+
+
+
+function ChangeToRedFlag() {
+    Wrapper.style.borderTop = "10px solid rgb(204, 25, 25)"
+    Wrapper.style.borderLeft = "10px solid rgb(204, 25, 25)"
+    Wrapper.style.borderRight = "10px solid rgb(204, 25, 25)"
+
+    Lap_Counter_wrapper.style.transform = "translateX(calc(100vw - 246px))";
+
+    Accident_Text_in_Lap_Counter.style.opacity = "1";
+    Accident_Text_in_Lap_Counter.style.width = "fit-content";
+    Accident_Text_in_Lap_Counter.textContent = "RED FLAG"
+    Accident_Text_in_Lap_Counter.style.color = "rgb(204, 25, 25)";
+    Lap_Text.style.color = "rgb(204, 25, 25)";
+    Lap_Count.style.color = "rgb(204, 25, 25)";
+
+    Accident_situation.style.height = "100px";
+    Accident_situation.style.opacity = "1";
+    Accident_situation.style.backgroundColor = "rgb(204, 25, 25)";
+    Accident_situation.classList.add("situation-box-expaned");
+
+    if (Accident_situation.classList.contains("situation-box-collasped")) {
+        Accident_situation.classList.remove("situation-box-collasped");
+    }
+    
+
+
+
+    if (Accident_Situation_text.classList.contains("safety-car-in-text")) {
+        Accident_Situation_text.classList.remove("safety-car-in-text");
+    }
+    
+    if (Accident_Situation_text.classList.contains("accident-ending-text")) {
+        Accident_Situation_text.classList.remove("accident-ending-text");
+    }
+    Accident_Situation_text.classList.add("accident-text");
+    Accident_Situation_text.textContent = "SESSION STOPPED";
+    Accident_Situation_text.style.color = "white";
+
+
+
+    Accident_Flag_Symbol.style.fill = "white";
+
+    AstonMartinSafetyCar.style.opacity = "0";
+    AstonMartinSafetyCar.classList.remove("Symbol_Animation");
+
+    AstonMartinSafetyCarEnding.style.opacity = "0";
+    AstonMartinSafetyCarEnding.classList.remove("Symbol_Animation");
+
+
+    Accident_Flag_Symbol.classList.add("Symbol_Animation");
+    Accident_Situation_text.classList.add("Text_Animation");
+
+        setTimeout(function() {
+            AstonMartinSafetyCar.classList.remove("Symbol_Animation");
+            Accident_Flag_Symbol.classList.remove("Symbol_Animation");
+            Accident_Situation_text.classList.remove("Text_Animation");}, 300);
+
+    Button.addEventListener("click", ChangeState);   
+}
 
 
 
@@ -214,6 +285,7 @@ function ChangeToGreenFlag() {
         Accident_situation.classList.remove("situation-box-expaned");
     }
 
+    Accident_Situation_text.style.color = "black";
     Accident_Flag_Symbol.style.fill = "black";
 
     AstonMartinSafetyCarEnding.style.opacity = "0";
