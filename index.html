@@ -14,7 +14,7 @@
 </head>
 <body>
     
-        <div class="flex-container">
+        <div id="wrapper" class="flex-container">
 
             <ol>
                 <li class="row-background-color">
@@ -173,23 +173,37 @@
                     <path fill-rule="evenodd" d="M38.000,17.699 C38.000,17.699 32.800,16.521 32.000,14.755 C31.200,12.988 27.200,10.436 25.000,9.847 L30.000,1.012 C30.000,1.012 31.800,0.816 34.000,2.975 C36.200,5.135 39.800,9.650 43.000,8.865 L38.000,17.699 ZM27.003,19.091 C27.073,19.210 26.941,19.415 26.710,19.549 C26.478,19.683 26.233,19.695 26.163,19.576 L21.774,12.107 L17.142,19.912 C17.070,20.033 16.819,20.021 16.580,19.884 C16.341,19.748 16.206,19.539 16.278,19.418 L21.198,11.127 L15.016,0.609 C14.946,0.490 15.077,0.285 15.309,0.151 C15.541,0.017 15.786,0.005 15.856,0.124 L21.763,10.175 L27.744,0.095 C27.816,-0.026 28.068,-0.014 28.307,0.122 C28.545,0.259 28.680,0.468 28.608,0.589 L22.339,11.155 L27.003,19.091 ZM11.000,14.755 C10.200,16.521 5.000,17.699 5.000,17.699 L-0.000,8.865 C3.200,9.650 6.800,5.135 9.000,2.975 C11.200,0.816 14.000,1.012 14.000,1.012 L19.000,9.847 C16.800,10.436 11.800,12.988 11.000,14.755 Z"/>
                 </svg>
 
-                <svg class="accident-safety-car-symbol" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!--
+                    MERC
+
+                    <svg class="accident-safety-car-symbol" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <image  x="0px" y="0px" width="78px" height="21px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAAAVCAQAAABC6hCiAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmAwMFOBK7MYhZAAADDUlEQVRIx73WT2hcVRTH8c+byT/SSBOTkIJJY7QUbS0UNQi6ECkoIlqQ1kUMtUXRhUurguBC8L80FBQFF5p2U7ALRdtitNpIEUuDWhWbLCJIo03ANLFJJknz77rIyzSTzNT8mfaczXvvd+6533vOve89wWLPYZEKexxzwaTpjAHThhx1vTxZmmNJcGVOL8CZ9UsuuiiVvp9Ufm3hbsyQnlGMA4Lf3DcvqsKbccQb1lwbuBofZgh9NhDDvbIoZ4XxOG7j1Yfbtki4KVYOCJ7PkrVAR9z+7fmAS0D0ZNQfhShEIXou1m91xPEFYw4ajK+KyHpupjR63Sg+EzyFpOIlezIHpSa9gsdsdchw1nIGj2pQr95axwSvKlJn/QKvVe3tnBn+3z/P0lZdK06Xb59xKANO91WcrNcPegTBiNPOLmlMRxrOs4auEDjpvIFVwO3FXkHwNe7IEjHi/KKN0DUHN5gz8QkUukUtqv29ArQPsNMlQYdK6/Ut0B9HiXVK8fSC9nYnoqTsNuYlu4ya0KlH8J46Z5b9VjiLekXod0G5mgy1TqUBY3qlBEU26E5rkZtzV26/zfEKxowJgj4lOpZVty5b3e5XQY+d1jqSodY4bEYw4R8jguCdzLYn0G5y0Yo/9oU2/CihQplCKTUe1qp3GXVr12m7LQgSNntonval62wSaVakQZkX8IR7NaXfcbNbID5N8/019wiOqzAoGNdkh2EpNziRp1Ncq13wvgd8LwiaNAtabYz1IbclINTpXLDmhCRmFChHsY8cNarURJYqr8z6VWGfXe4GVcaQVBjr035PxDXc5NuMoTOm590F59RJYo2CPMFVSqDKQHqOWaSp9KQhPVXYFr2rWZEpBUrNiNBot2o/+cYeP6vUplePv4yLVolWImW3T52yxSktXtTuIGYkMGzSV9Kfr0bfOadbtz906dGCBwUT2tzpfqOCy38l+bJfBMHLGrwlJTiMR/wbU+zLulfTtiPj8bo8o8HJeflb012c47giHFVanHFS7aobmcsi+/3pE3ddfjTH8R+4ZhWWxTGd9AAAAABJRU5ErkJggg==" />
-               </svg>
+               </svg> -->
+
+               <img id="AstonMartinSafetyCar" class="accident-safety-car-image" src="Assets/Images/AM_SC.png" alt="AstonMartinSafetyCar"/>
+               <img id="AstonMartinSafetyCarEnding" class="accident-safety-car-ending-image" src="Assets/Images/AM_SC_Ending.png" alt="AstonMartinSafetyCar"/>
+
+
+               
 
                 <p id="accident-situation-text" class="accident-text">INCIDENT</p>
             </div>
 
-            <label for="button">
-                <button id="button" onclick="ChangeToEnding()">SC Ending</button>
-            </label>
-            <br/>
-            <label for="button">
-                <button id="button" onclick="ChangeToSC()">SC</button>
-            </label>
-
     </div>
     
+
+    <br/>
+    <label for="button">
+        <button id="button" onclick="ChangeToSC()">SC</button>
+    </label>
+
+    <label for="button">
+        <button id="button" onclick="ChangeToEnding()">SC Ending</button>
+    </label>
+
+
+
+
     <script src="Assets/Javascript/main.js"></script>
 </body>
 </html>
