@@ -81,7 +81,12 @@ li.another-row-background-color {
     background-color: rgba(50, 50, 50, 1);
 }
 
-
+div.flex-container {
+    display: grid;
+    flex-direction: row;
+    border: 0px solid transparent;
+    transition: border 0.3s ease-out;
+}
 
 
 
@@ -89,12 +94,7 @@ li.another-row-background-color {
 /*Drivers*/
 /*#region*/
 
-    div.flex-container {
-        display: grid;
-        flex-direction: row;
-        border: 0px solid transparent;
-        transition: border 0.3s ease-out;
-    }
+
 
     div.drivers-standing-column-wrapper {
         display: flex;
@@ -155,9 +155,10 @@ li.another-row-background-color {
 
     .lap-count-container {
         height: 60px;
+        position: relative;
         background-color: #000;
         
-        text-align: right;
+        
         color: white;
 
         padding-right: 16px;
@@ -217,27 +218,34 @@ li.another-row-background-color {
 
 
 
-/*Yellow Flag / VSC / SC / Red flag*/
+/*Green Flag / Yellow Flag / VSC / SC / Red flag*/
 /*#region*/
 
-    div.situation {
+    .situation {
         position: relative;
-        height: 100px;
-        background-color: var(--Yellow-Flag);
-
         font-family: "F1-Bold";
         font-size: 1.5rem;
-        opacity: 1;
+        opacity: 0;
 
         padding-top: 10px;
         padding-left: 20px;
         transition: 0.2s ease-out;
     }
 
-    div.situation-collasped {
-        height: 0;
-        opacity: 0;
+    .situation-box-expaned {
+        /*For SC / VSC / Red Flag */
+        height: 100px;
+        background-color: var(--Yellow-Flag);
+        opacity: 1;
+        transition: 0.2s ease-out;
+    }
 
+    .situation-box-collasped {
+        height: 40px;
+        background-color: var(--Green-Flag) !important;
+        padding-top: 5px;
+        opacity: 1;
+        transition: 0.2s ease-out;
     }
 
 
@@ -287,9 +295,10 @@ li.another-row-background-color {
     .accident-text {
         font-size: 1.5rem;
         font-family: "F1-Bold";
+        color: black;
+
         position: absolute;
         bottom: 10px;
-
     }
 
 
@@ -297,6 +306,14 @@ li.another-row-background-color {
         color: var(--Yellow-Flag);
         font-family: "F1-Regular";
         font-size: 2.2rem;
+    }
+
+    .safety-car-in-text {
+        color: black;
+
+        top: calc(6px);
+        left: 76px;
+        bottom: 0;
     }
 
 
