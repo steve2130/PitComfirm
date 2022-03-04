@@ -92,6 +92,8 @@ li.another-row-background-color {
     div.flex-container {
         display: grid;
         flex-direction: row;
+        border: 0px solid transparent;
+        transition: border 0.3s ease-out;
     }
 
     div.drivers-standing-column-wrapper {
@@ -152,7 +154,6 @@ li.another-row-background-color {
 /*#region*/
 
     .lap-count-container {
-
         height: 60px;
         background-color: #000;
         
@@ -160,6 +161,7 @@ li.another-row-background-color {
         color: white;
 
         padding-right: 16px;
+        transition: text-align 0.4s ease-out;
     }
 
     p.lap-text {
@@ -240,24 +242,54 @@ li.another-row-background-color {
 
 
 
+
+
+    /*Upper portion*/
     .accident-flag-symbol {
         width: 43px;
         height: 20px;
         fill: black;
         margin-right: 8px;
+
     }
 
     .accident-safety-car-symbol {
         width: 78px;
         height: 21px;
         fill: var(--Yellow-Flag);
+        
     }
+
+    .accident-safety-car-image {
+        height: 25px;
+        width: 76px;
+        
+        opacity: 1;
+        image-rendering: high-quality;
+
+
+    }
+
+    .accident-safety-car-ending-image {
+        height: 25px;
+        width: 76px;
+        position: relative;
+        left: -82px;
+        
+        opacity: 0;
+        image-rendering: high-quality;
+    }
+
+
+
+    /*Lower portion*/
 
     .accident-text {
         font-size: 1.5rem;
         font-family: "F1-Bold";
         position: absolute;
         bottom: 10px;
+
     }
 
 
@@ -265,7 +297,32 @@ li.another-row-background-color {
         color: var(--Yellow-Flag);
         font-family: "F1-Regular";
         font-size: 2.2rem;
+    }
 
+
+
+    /*Animation*/
+    .Symbol_Animation {
+        animation-name: Symbol;
+        animation-duration: .4s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes Symbol {
+        0% {transform: translateY(50px); opacity: 0;}
+        100% {transform: translateY(0px); opacity: 1;}
+    }
+
+
+    .Text_Animation {
+        animation-name: Text;
+        animation-duration: .4s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes Text {
+        0% {transform: translateY(-25px); opacity: 0;}
+        100% {transform: translateY(0px); opacity: 1;}
     }
 
 
