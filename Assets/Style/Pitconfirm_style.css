@@ -47,17 +47,49 @@
 
 
 
+/*Scroll bar*/
+/*#region*/
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #444444;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666666;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #575757;
+}
+
+
+/*#endregion*/
+
+
+
+
+
+
+
+
+
+
 
 body{
     background-color: var(--normal-background-color);
     font-variant-ligatures: none;
     user-select: none;
+    overflow-x: hidden;
 
 }
 
 ol {
     list-style-type: none;
-    padding: 4px 0 0 4px;
+    padding: 4px 0 0 0px;
     overflow-x: hidden;
     width: 100%;
     height: fit-content;
@@ -70,6 +102,7 @@ li {
     background-color: var(--normal-background-color);
 
     padding-left: 20px;
+
 }
 
 
@@ -82,10 +115,11 @@ li.another-row-background-color {
 }
 
 div.flex-container {
-    display: grid;
+    display: flex;
     flex-direction: row;
     border: 0px solid transparent;
     transition: border 0.3s ease-out;
+
 }
 
 
@@ -298,6 +332,21 @@ div.flex-container {
         image-rendering: high-quality;
     }
 
+    .VSC-symbol {
+        position: absolute;
+        top: 12px; 
+        left: 80px;
+        
+        opacity: 0;
+
+        font-family: "F1-Bold";
+        border: 2px solid black;
+        font-size: 1.2rem;
+        padding: 0px 4px;
+        line-height: 1em;
+
+    }
+
 
 
     /*Lower portion*/
@@ -318,9 +367,12 @@ div.flex-container {
         font-size: 2.2rem;
     }
 
-    .safety-car-in-text {
+
+
+    .green-flag-description-text {
         color: black;
-        animation-name: SafetyCarInText;
+
+        animation-name: GreenFlagDescriptionText;
         animation-duration: .5s;
         animation-iteration-count: 1;
 
@@ -355,12 +407,7 @@ div.flex-container {
         100% {transform: translateY(0px); opacity: 1;}
     }
 
-
-    .SafetyCarInText {
-
-    }
-
-    @keyframes SafetyCarInText {
+    @keyframes GreenFlagDescriptionText {
         0% {opacity: 0;}
         100% {opacity: 1;}
     }
