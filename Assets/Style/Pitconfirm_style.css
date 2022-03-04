@@ -279,14 +279,12 @@ div.flex-container {
     .situation-box-expaned {
         /*For SC / VSC / Red Flag */
         /* height: 100px; */
-        background-color: var(--Yellow-Flag);
 
         transition: 0.2s ease-out;
     }
 
     .situation-box-collasped {
         /* height: 40px; */
-        background-color: var(--Green-Flag) !important;
         padding-top: 5px;
 
         transition: 0.2s ease-out;
@@ -372,10 +370,6 @@ div.flex-container {
     .green-flag-description-text {
         color: black;
 
-        animation-name: GreenFlagDescriptionText;
-        animation-duration: .5s;
-        animation-iteration-count: 1;
-
         top: 6px;
         left: 76px;
         bottom: 0;
@@ -407,7 +401,13 @@ div.flex-container {
         100% {transform: translateY(0px); opacity: 1;}
     }
 
-    @keyframes GreenFlagDescriptionText {
+    .Fade-In {
+        animation-name: Fade-in;
+        animation-duration: .5s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes Fade-in {
         0% {opacity: 0;}
         100% {opacity: 1;}
     }
