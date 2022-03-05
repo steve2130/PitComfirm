@@ -180,6 +180,40 @@ div.flex-container {
     }
 
 
+
+
+    /*Driver's position*/
+    .Gain-place {
+        background-color: var(--Gain-place);
+        background-position: 0% 0%;
+
+    }
+    
+    .Gain-place-Animation {
+        background: linear-gradient(135deg, var(--Gain-place) 50%, white 50%);
+        background-size: 400% 400%;
+        background-position: left bottom;
+
+        transition: 0.4s linear;
+
+        background-position: 100% 100%;
+    }
+
+
+    .Lose-place {
+        background-color: var(--Lose-place);
+    }    
+
+    .Lose-place-Animation {
+        background: linear-gradient(135deg, var(--Lose-place) 50%, white 50%);
+        background-size: 400% 400%;
+        background-position: left bottom;
+
+        transition: 0.4s linear;
+
+        background-position: 100% 100%;
+    }
+
 /*#endregion*/
 
 
@@ -255,6 +289,7 @@ div.flex-container {
 
         padding-left: 20px;
     }
+
 
 /*#endregion*/
 
@@ -340,7 +375,7 @@ div.flex-container {
         font-family: "F1-Bold";
         border: 2px solid black;
         font-size: 1.2rem;
-        padding: 0px 4px;
+        padding: 2px 4px 0px 4px;
         line-height: 1em;
 
     }
@@ -468,15 +503,6 @@ div.flex-container {
 
 
 /*Classification*/
-
-    .Gain-place {
-        background-color: var(--Gain-place);
-    }
-
-    .Lose-place {
-        background-color: var(--Lose-place);
-    }
-
 
     .Did-Not-Finish {
         opacity: 0.4;

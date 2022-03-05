@@ -207,35 +207,35 @@
     <br/>
 
     <label for="button">
-        <button id="button" onclick="SituationNormal()">Normal</button>
+        <button id="button" type="button" onclick="SituationNormal()">Normal</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToYellowFlag()">Yellow Flag</button>
+        <button id="button" type="button" onclick="ChangeToYellowFlag()">Yellow Flag</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToGreenFlag()">Green Flag</button>
+        <button id="button" type="button" onclick="ChangeToGreenFlag()">Green Flag</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToVSC()">VSC</button>
+        <button id="button" type="button" onclick="ChangeToVSC()">VSC</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToSC()">SC</button>
+        <button id="button" type="button" onclick="ChangeToSC()">SC</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToSCEnding()">SC Ending</button>
+        <button id="button" type="button" onclick="ChangeToSCEnding()">SC Ending</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToRedFlag()">Red Flag</button>
+        <button id="button" type="button" onclick="ChangeToRedFlag()">Red Flag</button>
     </label>
 
     <label for="button">
-        <button id="button" onclick="ChangeToSafetyCarIN()">SC IN</button>
+        <button id="button" type="button" onclick="ChangeToSafetyCarIN()">SC IN</button>
     </label>
 
 
@@ -244,15 +244,27 @@
 
     <br/>
     <br/>
-    <label for="Position Gain">
-        <input id="Position_Gain_Input" type="number" name="Position Gain" min="01" max="20" placeholder="Gain">
-    </label>
     <br/>
-    <label for="Position Loss">
-        <input id="Position_Loss_Input" type="number" name="Position Loss" min="01" max="20" placeholder="Loss">
-    </label>
+    <br/>
+    <form>
+        <label for="number">
+            <input id="Position_Gain_Input" type="number" name="Position Gain" min="01" max="20" placeholder="Gain"/>
+        </label>
+        <button id="submitButton1" type="button">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
 
+    <br/>
+    <form>
+        <label for="number">
+            <input id="Position_Loss_Input" type="number" name="Position Loss" min="01" max="20" placeholder="Loss"/>
+        </label>
 
+        <button id="submitButton2" type="button">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    
 
     <script src="Assets/Javascript/accident.js"></script>
     <script src="Assets/Javascript/position_change.js"></script>
