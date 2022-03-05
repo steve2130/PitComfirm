@@ -2,7 +2,7 @@ const Position_Gain_Input = document.getElementById("Position_Gain_Input");
 const Position_Loss_Input = document.getElementById("Position_Loss_Input");
 const SubmitButton01 = document.getElementById("submitButton1");
 const SubmitButton02 = document.getElementById("submitButton2");
-
+const SubmitButton03 = document.getElementById("submitButton3");
 
 
 function Position_Gain() {
@@ -61,5 +61,18 @@ function Position_Loss() {
 
 }
 
+Position_Gain_Input.addEventListener('change', function() {
+    Position_Loss_Input.value = parseInt(Position_Gain_Input.value) + 1;
+
+});
+
 SubmitButton01.addEventListener("click", Position_Gain);
 SubmitButton02.addEventListener("click", Position_Loss);
+
+SubmitButton03.addEventListener("click", function() {
+    Position_Gain();
+    Position_Loss();
+});
+    
+    
+    
