@@ -366,18 +366,22 @@ div.flex-container {
     }
 
     .VSC-symbol {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 27px;
+        padding: 0px 4px 0px 4px;
+
         position: absolute;
-        top: 12px; 
+        top: 13px; 
         left: 80px;
         
         opacity: 0;
 
         font-family: "F1-Bold";
         border: 2px solid black;
-        font-size: 1.2rem;
-        padding: 1px 4px 0px 4px;
-        line-height: 1em;
-
+        font-size: 19px;
     }
 
 
