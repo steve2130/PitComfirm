@@ -17,16 +17,21 @@ function Position_Gain() {
         PositionGain = RawPositionGain;
     }
 
+    document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place");
     document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place");
     document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place");
 
     /*To do the Background-color disappearing animation;*/
+
+
+
+    /*```Please make it work when 1 car DNF and everyone overtake it``` */
     setTimeout(function() {
         document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place-Animation");
         document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place");}, 2600);
 
     setTimeout(function() {
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place-Animation");}, 3200);
+        document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place-Animation");}, 3000);
 
 
 }
@@ -41,10 +46,12 @@ function Position_Loss() {
     if (RawPositionLoss < 10 && RawPositionLoss > 0) {
         PositionLoss = "0" + RawPositionLoss;
     }
-    else {
+    else if (RawPositionLoss > 10 && RawPositionLoss < 21) {
         PositionLoss = RawPositionLoss;
     }
 
+
+    document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place");
     document.getElementById("Position_Box" + PositionLoss).classList.remove("Gain-place");
     document.getElementById("Position_Box" + PositionLoss).classList.add("Lose-place");
 
@@ -56,7 +63,7 @@ function Position_Loss() {
 
     setTimeout(function() {
         document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place");
-        document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place-Animation");}, 3200);
+        document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place-Animation");}, 3000);
 
 
 }
