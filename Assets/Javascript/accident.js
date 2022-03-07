@@ -76,7 +76,7 @@ function SituationNormal() {
 
     Accident_situation.style.height = "0";
     Accident_situation.style.opacity = "0";
-    VSC_symbol.style.opacity = "0";
+    VSC_symbol.style.display = "none";
 }
 
 
@@ -106,8 +106,8 @@ function ChangeToYellowFlag() {
 
 
 
-    VSC_symbol.style.opacity = "0";
 
+    VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "black";
 
 
@@ -188,7 +188,7 @@ function ChangeToGreenFlag() {
         Accident_situation.classList.remove("situation-box-expaned");
     }
 
-    VSC_symbol.style.opacity = "0";
+    VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "black";
     Accident_Situation_text.style.color = "black";
 
@@ -252,7 +252,7 @@ function ChangeToVSC() {
         Accident_situation.classList.remove("situation-box-collasped");
     }
 
-    VSC_symbol.style.opacity = "1";
+    VSC_symbol.style.display = "block";
     Accident_Flag_Symbol.style.fill = "black";
 
 
@@ -317,7 +317,6 @@ function ChangeToSC() {
     Accident_situation.style.backgroundColor = "rgb(253, 211, 0)";
     Accident_situation.classList.add("situation-box-expaned");
 
-    VSC_symbol.style.opacity = "0";
 
     if (Accident_situation.classList.contains("situation-box-collasped")) {
         Accident_situation.classList.remove("situation-box-collasped");
@@ -333,7 +332,7 @@ function ChangeToSC() {
     Accident_Situation_text.style.color = "black";
 
 
-
+    VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "black";
 
     Accident_Situation_text.textContent = "INCIDENT";
@@ -376,7 +375,7 @@ function ChangeToSCEnding() {
     Accident_situation.style.backgroundColor = "black";
     Accident_situation.classList.add("situation-box-expaned");
 
-    VSC_symbol.style.opacity = "0";
+    VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "rgb(253, 211, 0)";
 
     if (Accident_situation.classList.contains("situation-box-collasped")) {
@@ -438,7 +437,6 @@ function ChangeToRedFlag() {
     Accident_situation.style.backgroundColor = "rgb(204, 25, 25)";
     Accident_situation.classList.add("situation-box-expaned");
 
-    VSC_symbol.style.opacity = "0";
 
     if (Accident_situation.classList.contains("situation-box-collasped")) {
         Accident_situation.classList.remove("situation-box-collasped");
@@ -459,7 +457,7 @@ function ChangeToRedFlag() {
     Accident_Situation_text.style.color = "white";
 
 
-
+    VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "white";
 
     AstonMartinSafetyCar.style.opacity = "0";
@@ -519,7 +517,7 @@ function ChangeToSafetyCarIN() {
         Accident_situation.classList.remove("situation-box-expaned");
     }
 
-    VSC_symbol.style.opacity = "0";
+    VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "black";
     Accident_Situation_text.style.color = "black";
 

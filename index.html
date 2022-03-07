@@ -13,6 +13,34 @@
     <title>Should I Box Now?</title>
 </head>
 <body>
+    <nav class="nav-bar">
+        <div>
+            <label class="theme-switch" for="checkbox">
+                <input class="nav-button" type="checkbox"/>
+            </label>
+        </div>
+
+
+
+        <div id="Time_Counter" class="time-counter"></div>
+
+        <script>
+            function GETDateandTime() {
+                let date = new Date();
+                let LocalDate = date.toLocaleTimeString();
+                let UserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                const Time_Counter = document.getElementById("Time_Counter");
+                Time_Counter.innerHTML = LocalDate;
+            }
+
+            setInterval (GETDateandTime, 1000);
+
+
+        </script>
+    </nav>
+
+
     
         <div id="wrapper" class="flex-container">
 
@@ -259,6 +287,9 @@
     </form>
     <br/>
     <button id="submitButton3" type="button">Submit Both</button>
+
+
+    <button type="button" onclick="Position_Gain()">TEST</button>
     
 
     <script src="Assets/Javascript/accident.js"></script>

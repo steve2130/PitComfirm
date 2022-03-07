@@ -77,8 +77,6 @@
 
 
 
-
-
 body{
     background-color: var(--normal-background-color);
     font-variant-ligatures: none;
@@ -121,6 +119,69 @@ div.flex-container {
     transition: border 0.3s ease-out;
 
 }
+
+
+
+
+/* NAV */
+/*#region*/
+
+nav.nav-bar {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    grid-template-columns: 40px auto;
+
+    background-color: rgb(20, 20, 20);
+    height: 38px;
+    width: 100%;
+
+}
+
+.nav-button {
+    height: 100%;
+    width: 40px;
+    border: none;
+    background-color: #fff;
+    transition: background-color 0.2s ease-out;
+}
+
+
+.nav-button:hover {
+    background-color: #006F62;
+    transition: background-color 0.2s ease-out;
+}
+
+.nav-button input {
+    display:none;
+}
+
+.nav-button:checked {
+    background-color: #006F62;
+    transition: background-color 0.2s ease-out;
+}
+
+
+
+
+div.time-counter{
+    color: white;
+    height: 40px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*#endregion*/
+
+
+
+
+
 
 
 
@@ -193,7 +254,7 @@ div.flex-container {
         background: linear-gradient(135deg, var(--Gain-place) 50%, white 50%);
         background-size: 400% 400%;
         background-position: left bottom;
-
+        transition-delay: 2.6s;
         transition: 0.4s linear;
 
         background-position: 100% 100%;
@@ -210,7 +271,7 @@ div.flex-container {
         background-position: left bottom;
 
         transition: 0.4s linear;
-
+        transition-delay: 2.6s;
         background-position: 100% 100%;
     }
 
@@ -377,7 +438,7 @@ div.flex-container {
         top: 13px; 
         left: 80px;
         
-        opacity: 0;
+        display: none;
 
         font-family: "F1-Bold";
         border: 2px solid black;
