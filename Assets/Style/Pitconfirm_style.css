@@ -245,33 +245,35 @@ div.time-counter{
 
     /*Driver's position*/
     .Gain-place {
-        background-color: var(--Gain-place);
+        background-color: var(--Gain-place) !important;
         background-position: 0% 0%;
 
     }
     
     .Gain-place-Animation {
         background: linear-gradient(135deg, var(--Gain-place) 50%, white 50%);
-        background-size: 400% 400%;
+        background-size: 200% 200%;
         background-position: left bottom;
-        transition-delay: 2.6s;
-        transition: 0.4s linear;
+        
+        transition: 0.1s linear;
+        transition-delay: 2.9s;
 
         background-position: 100% 100%;
     }
 
 
     .Lose-place {
-        background-color: var(--Lose-place);
+        background-color: var(--Lose-place) !important;
+        background-position: 0% 0%;
     }    
 
     .Lose-place-Animation {
         background: linear-gradient(135deg, var(--Lose-place) 50%, white 50%);
-        background-size: 400% 400%;
+        background-size: 200% 200%;
         background-position: left bottom;
 
-        transition: 0.4s linear;
-        transition-delay: 2.6s;
+        transition: 0.1s linear;
+        transition-delay: 2.9s;
         background-position: 100% 100%;
     }
 

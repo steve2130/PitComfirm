@@ -29,60 +29,49 @@ let BOT = new Driver({Three_letter_code: "BOT",
 
 
 
-
-
-
-
-
-
-
-
-
 function Position_Gain() {
     let RawPositionGain = Position_Gain_Input.value;
-    let PositionGain = 0;
+    let PositionGain = ""; //It is a fucking string, stop changing it!
 
 
-    if (RawPositionGain < 10 && RawPositionGain > 0) {
+    if (RawPositionGain <= 9 && RawPositionGain >= 1) {
         PositionGain = "0" + RawPositionGain;
     }
-    else if (RawPositionGain > 10 && RawPositionGain < 21) {
+    else if (RawPositionGain >= 10 && RawPositionGain <= 20) {
         PositionGain = RawPositionGain;
     }
 
 
+    const classNames = ["Gain-place", "Lose-place"];
+    let CHECKSUM = 0;
+    
+    while (CHECKSUM === 0) {    // Don't know any other way. This is slow.
 
+        if (!classNames.some(classNames => document.getElementById("Position_Box" + PositionGain).classList.contains(classNames))) {
+        
+            document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place");
+            document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place-Animation");
+    
+            
 
-    if (document.getElementById("Position_Box" + PositionGain).classList.contains("Lose-place")) {
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place");
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place-Animation");
-    } 
+            // setTimeout(function() {
+            //     document.getElementById("Position_Box" + PositionLoss).classList.add("Gain-place-Animation");}, 2600);
+        
+            setTimeout(function() {
+                document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place");
+                document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place-Animation");}, 3000);
 
-    if (document.getElementById("Position_Box" + PositionGain).classList.contains("Lose-place-Animation")) {
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place");
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place-Animation");
-    } 
+            break;  // Is it better than CHECKSUM = 1; ?
+                
+        } 
 
+        else if (classNames.some(classNames => document.getElementById("Position_Box" + PositionGain).classList.contains(classNames))) {
+            document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place");
+            document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place-Animation");
 
-
-
-    document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place");
-    document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place");
-    document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place");
-
-    /*To do the Background-color disappearing animation;*/
-
-
-
-    /*```Please make it work when 1 car DNF and everyone overtake it``` */
-    setTimeout(function() {
-        document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place-Animation");
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place");}, 2600);
-
-    setTimeout(function() {
-        document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place-Animation");}, 3000);
-
-
+            CHECKSUM = 0;
+        }
+    }
 }
 
 
@@ -90,12 +79,12 @@ function Position_Gain() {
 function Position_Loss() {
 
     let RawPositionLoss = Position_Loss_Input.value;
-    let PositionLoss = "";
+    let PositionLoss = "";   //It is a fucking string, stop changing it!
 
-    if (RawPositionLoss < 10 && RawPositionLoss > 0) {
+    if (RawPositionLoss <= 9 && RawPositionLoss >= 1) {
         PositionLoss = "0" + RawPositionLoss;
     }
-    else if (RawPositionLoss > 10 && RawPositionLoss < 21) {
+    else if (RawPositionLoss >= 10 && RawPositionLoss <= 20) {
         PositionLoss = RawPositionLoss;
     }
 
@@ -119,7 +108,8 @@ function Position_Loss() {
             setTimeout(function() {
                 document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place");
                 document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place-Animation");}, 3000);
-
+            
+            break;
         } 
 
         else if (classNames.some(classNames => document.getElementById("Position_Box" + PositionLoss).classList.contains(classNames))) {
