@@ -124,6 +124,18 @@ function Position_Loss() {
 
 
 
+function Failed_To_Finish() {
+    /*DNF / DNS / Driver is out of the race / session */
+    
+
+
+
+
+
+
+}
+
+
 
 
 Position_Gain_Input.addEventListener('change', function() {

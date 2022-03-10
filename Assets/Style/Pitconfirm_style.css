@@ -13,16 +13,16 @@
 
 
     /*Team Colours*/
-        --Mercedes: #00D2BE;
-        --Ferrari: #DC0000;
-        --RedBullRacing: #0600EF;
-        --Alpine: #0090FF;
-        --Haas: #FFFFFF;
-        --AstonMartin: #006F62;
-        --AlphaTauri: #2B4562;
-        --McLaren: #FF8700;
-        --AlfaRomeoRacing: #900000;
-        --Williams: #005AFF;
+        --Mercedes: #6cd3bf;
+        --Ferrari: #ed1c24;
+        --RedBullRacing: #1e5bc6;
+        --Alpine: #2293d1;
+        --Haas: #b6babd;
+        --AstonMartin: #2d826d;
+        --AlphaTauri: #4e7c9b;
+        --McLaren: #f58020;
+        --AlfaRomeoRacing: #ed1c24;
+        --Williams: #37bedd;
 
 
     /*Classification*/
@@ -85,23 +85,16 @@ body{
 
 }
 
-ol {
+ol.driver-position-list {
     list-style-type: none;
-    padding: 4px 0 0 0px;
-    overflow-x: hidden;
+    padding: 8px 0 0 0px;
+    
     width: 100%;
     height: fit-content;
+    overflow-x: hidden;
+    z-index: 0;
 }
 
-li {
-    display: flex;
-    flex-direction: row;
-
-    background-color: var(--normal-background-color);
-
-    padding-left: 20px;
-
-}
 
 
 li.row-background-color {
@@ -117,7 +110,7 @@ div.flex-container {
     flex-direction: row;
     border: 0px solid transparent;
     transition: border 0.3s ease-out;
-
+    
 }
 
 
@@ -126,53 +119,85 @@ div.flex-container {
 /* NAV */
 /*#region*/
 
-nav.nav-bar {
+.nav-bar {
     position: relative;
-    top: 0;
+    top: 0px;
     left: 0;
 
-    display: grid;
-    grid-template-columns: 40px auto;
-
-    background-color: rgb(20, 20, 20);
     height: 38px;
     width: 100%;
 
+    background-color: rgb(20, 20, 20);
+
+    transition: 0.2s ease-out;
 }
 
 .nav-button {
-    height: 100%;
-    width: 40px;
+    height: 38px;
+    width: 48px;
     border: none;
-    background-color: #fff;
+    appearance: none;
+    position: relative;
+
+    
+    background-image: url("../Images/Menu-Symbol.svg");
+    /* Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu */
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position: 17px center;
+
     transition: background-color 0.2s ease-out;
 }
 
 
 .nav-button:hover {
-    background-color: #006F62;
-    transition: background-color 0.2s ease-out;
-}
-
-.nav-button input {
-    display:none;
+    background-color: #414141;
 }
 
 .nav-button:checked {
-    background-color: #006F62;
+    background-color: #383838;
+}
+
+.nav-button:hover + .nav-button:checked {
+    background-color: #7e7d7d;
     transition: background-color 0.2s ease-out;
 }
 
 
+ul.nav_wrapper {
+    list-style-type: none;
+    
+}
+
+.nav_list {
+    opacity: 0;
+    display: none;
+    float: left;
+    padding-left: 20px;
+}
+
+.nav_list_expanded {
+    opacity: 1;
+    display: inline-block;
+    position: relative;
+    top: 32px;
+    padding-left: 20px;
+
+    
+}
 
 
-div.time-counter{
+
+.time-counter{
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
     color: white;
-    height: 40px;
+
+    height: 38px;
     width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 12px;
 }
 
 
@@ -196,13 +221,14 @@ div.time-counter{
         height: calc(28px + 6px);
         transition: 0.2s ease-out;
         width: 100%;
+        padding-left: 20px;
     }
 
     div.drivers-standing-column-wrapper:hover {
-        transform: translateX(16px);
         cursor: pointer;
         transition: 0.2s ease-out;
         height: 200px;
+        padding-left: 36px;
     }
 
     .position-order {
@@ -371,7 +397,7 @@ div.time-counter{
 
         padding-top: 10px;
         padding-left: 20px;
-        transition: 0.2s ease-out;
+        transition: all 0.2s ease-out;
     }
 
     .situation-box-expaned {
@@ -455,6 +481,7 @@ div.time-counter{
         font-size: 1.5rem;
         font-family: "F1-Bold";
         color: black;
+        opacity: 0;
 
         position: absolute;
         bottom: 10px;
@@ -469,7 +496,7 @@ div.time-counter{
 
 
 
-    .green-flag-description-text {
+    .shorten-lower-portion-description-text {
         color: black;
 
         top: 6px;

@@ -69,13 +69,20 @@ function SituationNormal() {
     Accident_Text_in_Lap_Counter.style.opacity = "0";
     Accident_Text_in_Lap_Counter.style.width = "0";
     Accident_Text_in_Lap_Counter.textContent = "";
-    Accident_Text_in_Lap_Counter.style.color = "transparent"
+    Accident_Text_in_Lap_Counter.style.color = "transparent";
 
     Lap_Text.style.color = "white";
     Lap_Count.style.color = "white";
 
     Accident_situation.style.height = "0";
     Accident_situation.style.opacity = "0";
+
+    Accident_Situation_text.style.opacity = "0";
+
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
+    }
+
     VSC_symbol.style.display = "none";
 }
 
@@ -114,12 +121,13 @@ function ChangeToYellowFlag() {
     if (Accident_Situation_text.classList.contains("accident-ending-text")) {
         Accident_Situation_text.classList.remove("accident-ending-text");
     }
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
     }
 
+    Accident_Situation_text.style.opacity = "1";
     Accident_Situation_text.style.color = "black";
-    Accident_Situation_text.classList.add("green-flag-description-text");
+    Accident_Situation_text.classList.add("shorten-lower-portion-description-text");
 
 
     /*Just to have both type of yellow flags showing*/
@@ -199,10 +207,10 @@ function ChangeToGreenFlag() {
     Accident_Situation_text.style.opacity= "1";
 
 
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
     }
-    Accident_Situation_text.classList.add("green-flag-description-text");
+    Accident_Situation_text.classList.add("shorten-lower-portion-description-text");
 
 
     if (Accident_Situation_text.classList.contains("accident-ending-text")) {
@@ -259,15 +267,12 @@ function ChangeToVSC() {
     if (Accident_Situation_text.classList.contains("accident-ending-text")) {
         Accident_Situation_text.classList.remove("accident-ending-text");
     }
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
     }
+
+    Accident_Situation_text.style.opacity = "1";
     Accident_Situation_text.style.color = "black";
-
-
-    
-
-
     Accident_Situation_text.textContent = "INCIDENT";
     Accident_Situation_text.classList.remove("accident-ending-text");
 
@@ -326,16 +331,19 @@ function ChangeToSC() {
     if (Accident_Situation_text.classList.contains("accident-ending-text")) {
         Accident_Situation_text.classList.remove("accident-ending-text");
     }
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
-    }
-    Accident_Situation_text.style.color = "black";
 
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
+    }
+
+    Accident_Situation_text.style.color = "black";
+    Accident_Situation_text.style.opacity = "1";
+    Accident_Situation_text.textContent = "INCIDENT";
 
     VSC_symbol.style.display = "none";
     Accident_Flag_Symbol.style.fill = "black";
 
-    Accident_Situation_text.textContent = "INCIDENT";
+
 
     /*Animation*/
     AstonMartinSafetyCarEnding.style.opacity = "0";
@@ -386,10 +394,11 @@ function ChangeToSCEnding() {
     Accident_Situation_text.textContent = "ENDING";
     Accident_Situation_text.classList.add("accident-ending-text");
 
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
     }
 
+    Accident_Situation_text.style.opacity = "1";
     Accident_Situation_text.style.color = "rgb(253, 211, 0)";
 
 
@@ -445,14 +454,16 @@ function ChangeToRedFlag() {
 
 
 
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
     }
     
     if (Accident_Situation_text.classList.contains("accident-ending-text")) {
         Accident_Situation_text.classList.remove("accident-ending-text");
     }
+
     Accident_Situation_text.classList.add("accident-text");
+    Accident_Situation_text.style.opacity = "1";
     Accident_Situation_text.textContent = "SESSION STOPPED";
     Accident_Situation_text.style.color = "white";
 
@@ -528,11 +539,11 @@ function ChangeToSafetyCarIN() {
     Accident_Situation_text.style.opacity= "1";
 
 
-    if (Accident_Situation_text.classList.contains("green-flag-description-text")) {
-        Accident_Situation_text.classList.remove("green-flag-description-text");
+    if (Accident_Situation_text.classList.contains("shorten-lower-portion-description-text")) {
+        Accident_Situation_text.classList.remove("shorten-lower-portion-description-text");
     }
 
-    Accident_Situation_text.classList.add("green-flag-description-text");
+    Accident_Situation_text.classList.add("shorten-lower-portion-description-text");
 
 
     if (Accident_Situation_text.classList.contains("accident-ending-text")) {

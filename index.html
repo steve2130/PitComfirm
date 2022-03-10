@@ -13,38 +13,37 @@
     <title>Should I Box Now?</title>
 </head>
 <body>
-    <nav class="nav-bar">
-        <div>
-            <label class="theme-switch" for="checkbox">
-                <input class="nav-button" type="checkbox"/>
-            </label>
-        </div>
 
 
+    
+    <nav id="navBar" class="nav-bar">
+        <ul class="nav_wrapper">
+            <li>
+                <input id="nav_button" for="checkbox" class="nav-button" type="checkbox"/>
+            </li>
 
-        <div id="Time_Counter" class="time-counter"></div>
+            <li id="navList" class="nav_list">
+                <a href="#" alt="Something">Something</a>
+            </li>
 
-        <script>
-            function GETDateandTime() {
-                let date = new Date();
-                let LocalDate = date.toLocaleTimeString();
-                let UserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-                const Time_Counter = document.getElementById("Time_Counter");
-                Time_Counter.innerHTML = LocalDate;
-            }
-
-            setInterval (GETDateandTime, 1000);
-
-
-        </script>
+            <li id="navList" class="nav_list">
+                <a href="#" alt="Something">Something</a>
+            </li>
+            
+        
+        
+        </ul>
+        <div class="time-counter">Your Time:<span style="margin-left: 12px;" id="timeCounter">00:00:00</span></div>
     </nav>
+
+
+
 
 
     
         <div id="wrapper" class="flex-container">
 
-            <ol>
+            <ol class="driver-position-list">
                 <li class="row-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box01" class="position-order">1</div>
@@ -55,7 +54,7 @@
                 <li class="another-row-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box02" class="position-order">2</div>
-                        <div class="driver-name Mercedes-color">BOT</div>
+                        <div class="driver-name Mercedes-color">RUS</div>
                     </div>
                 </li>
 
@@ -146,7 +145,7 @@
                 <li class="row-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box15" class="position-order">15</div>
-                        <div class="driver-name Williams-color">RUS</div>
+                        <div class="driver-name Williams-color">ALB</div>
                     </div>
                 </li>
 
@@ -160,14 +159,14 @@
                 <li class="row-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box17" class="position-order">17</div>
-                        <div class="driver-name AlfaRomeoRacing-color">RAI</div>
+                        <div class="driver-name AlfaRomeoRacing-color">BOT</div>
                     </div>
                 </li>
 
                 <li class="another-row-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box18" class="position-order">18</div>
-                        <div class="driver-name AlfaRomeoRacing-color">GIO</div>
+                        <div class="driver-name AlfaRomeoRacing-color">ZHO</div>
                     </div>
                 </li>
 
@@ -181,7 +180,7 @@
                 <li class="Did-Not-Finish-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box20" class="position-order"></div>
-                        <div class="driver-name Haas-color Did-Not-Finish">MAZ</div>
+                        <div class="driver-name Haas-color Did-Not-Finish">MAG</div>
                     </div>
                 </li>
             </ol>
@@ -294,5 +293,6 @@
 
     <script src="Assets/Javascript/accident.js"></script>
     <script src="Assets/Javascript/position_change.js"></script>
+    <script src="Assets/Javascript/main.js"></script>
 </body>
 </html>
