@@ -28,6 +28,7 @@
     /*Classification*/
         --Gain-place: rgb(65, 214, 69);
         --Lose-place: rgb(234, 55, 57);
+        --Not-Active: rgb(143, 143, 143);   /*Not on the track on testing / Free Practice */
         --Did-Not-Finish: rgb(20, 20, 20);
 
 
@@ -93,6 +94,7 @@ ol.driver-position-list {
     height: fit-content;
     overflow-x: hidden;
     z-index: 0;
+
 }
 
 
@@ -214,17 +216,67 @@ ul.nav_wrapper {
 /*Drivers*/
 /*#region*/
 
+    /*P, interval, BEST*/
+    div.Leaderboard-description-column-wrapper {
+        display: grid;
+
+        grid-template-columns: 30px     /*Position Box*/ 
+                               220px    /*Driver's name*/ 
+                               200px    /*Interval*/ 
+                               200px;   /*Best lap time*/ 
+
+        height: 28px;
+        width: 100%;
+        padding-left: 20px;
+    }    
+
+    div.place_text {
+        color:#646464;
+        font-size: 14px;
+        position: relative;
+        top: 0px;
+    }
+
+    div.tyreUsing_text {
+        color:#646464;
+        font-size: 14px;
+        position: relative;
+        top: 0px;
+    }
+
+    div.Interval_text {
+        color:#646464;
+        font-size: 14px;
+        position: relative;
+        top: 0px;
+    }
+
+    div.name_text {
+        opacity: 0;
+    }
 
 
-    div.drivers-standing-column-wrapper {
-        display: flex;
-        height: calc(28px + 6px);
+
+
+
+    /*Drivers standing*/
+    .drivers-standing-column-wrapper {
+        display: grid;
+                              
+        grid-template-columns: 30px     /*Position Box*/ 
+                               220px    /*Driver's name*/ 
+                               200px    /*Interval*/ 
+                               200px;   /*Best lap time*/ 
+
+
+        height: 34px;
         transition: 0.2s ease-out;
         width: 100%;
         padding-left: 20px;
+        overflow-y: hidden;
     }
 
-    div.drivers-standing-column-wrapper:hover {
+    .drivers-standing-column-wrapper:hover {
         cursor: pointer;
         transition: 0.2s ease-out;
         height: 200px;
@@ -244,14 +296,19 @@ ul.nav_wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        position: relative;
+        top: 1px;
     }
 
     .driver-name {
         display: flex;
-        align-items: center;
+
 
         position: relative;
         top: 6px;
+        width: 28vw;
+
 
         font-family: "F1-Bold";
         color: white;
@@ -265,6 +322,8 @@ ul.nav_wrapper {
         margin-left: 10px;
 
     }
+
+
 
 
 
@@ -302,6 +361,71 @@ ul.nav_wrapper {
         transition-delay: 2.9s;
         background-position: 100% 100%;
     }
+
+
+    /**/
+        /*Tyres*/
+        div.TyreUsing {
+            position: relative;
+            top: 4px;
+            left: 5px;
+            width: fit-content;
+
+        }
+
+        img.tyreImage {
+            height: 27px;
+            width: auto;
+            image-rendering: high-quality;
+
+        }
+
+
+
+        /*Interval*/
+        div.IntervalTime {
+            color: rgb(214, 214, 214);
+            position: relative;
+            top: 7px;
+            left: 0;
+            font-size: 15px;
+            width: fit-content;
+        }
+
+
+
+
+    /*Infomation to be display when hover*/
+        div.HoverExpandInformationWrapper {
+            position: relative;
+
+            height: 172px;
+            width: calc(100vw - 34px - 10px);
+
+            padding: 4px 0;
+            transition: all 0.2 ease-out;
+
+            color: rgb(214, 214, 214);
+        }
+
+        div.BestLapTime_Wrapper {
+            position: relative;
+            top: 30px;
+            left: calc(200px + 28px + 10px + 6px + 6px);
+            width: fit-content;
+
+            display: grid;
+            grid-template-columns: 60px 140px;
+
+        }
+
+        div.BestLapTime_Text {
+            color:rgb(138, 138, 138);
+        }
+
+        div.BestLapTime {
+
+        }
 
 /*#endregion*/
 
@@ -601,8 +725,6 @@ ul.nav_wrapper {
     .Did-Not-Finish {
         opacity: 0.4;
         border-left: 0;
-        margin-left: 44px;
-
     }
 
     .Did-Not-Finish-background-color {
