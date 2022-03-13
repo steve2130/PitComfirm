@@ -221,9 +221,18 @@ ul.nav_wrapper {
         display: grid;
 
         grid-template-columns: 30px     /*Position Box*/ 
-                               220px    /*Driver's name*/ 
-                               200px    /*Interval*/ 
-                               200px;   /*Best lap time*/ 
+                               minmax(100px, 200px)    /*Driver's name*/ 
+                               minmax(100px, 200px)    /*Interval*/ 
+                               minmax(30px, 50px);   /*Tyre*/ 
+
+
+
+
+                               /* 220px    Driver's name*/ 
+                               /* 200px    Interval*/ 
+                               /* 200px;   Best lap time*/  
+                              
+
 
         height: 28px;
         width: 100%;
@@ -264,16 +273,16 @@ ul.nav_wrapper {
         display: grid;
                               
         grid-template-columns: 30px     /*Position Box*/ 
-                               220px    /*Driver's name*/ 
-                               200px    /*Interval*/ 
-                               200px;   /*Best lap time*/ 
+                               minmax(100px, 200px)    /*Driver's name*/ 
+                               minmax(100px, 200px)    /*Interval*/ 
+                               minmax(30px, 50px);   /*Tyre*/ 
 
 
         height: 34px;
         transition: 0.2s ease-out;
         width: 100%;
         padding-left: 20px;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 
     .drivers-standing-column-wrapper:hover {
@@ -411,7 +420,7 @@ ul.nav_wrapper {
         div.BestLapTime_Wrapper {
             position: relative;
             top: 30px;
-            left: calc(200px + 28px + 10px + 6px + 6px);
+            left: calc(200px + 30px);
             width: fit-content;
 
             display: grid;

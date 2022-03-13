@@ -59,8 +59,10 @@
                         <div id="Position_Box01" class="position-order">1</div>
                         <div class="driver-name Mercedes-color">HAM</div>
                         <div id="interval_time_P01" class="IntervalTime">LAP 13</div>
+
                         <div id="tyre_using_P01" class="TyreUsing">
                             <img id="tyre_using_image" class="tyreImage" src="Assets/Images/Tyres/soft.png"/>
+                            <p id="tyre_used_lap_P01" class="tyreLap">53</p>
                         </div>
 
                         <div class="HoverExpandInformationWrapper">
@@ -359,65 +361,5 @@
     <script src="Assets/Javascript/accident.js"></script>
     <script src="Assets/Javascript/position_change.js"></script>
     <script src="Assets/Javascript/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.4/brython.min.js"></script>
-
-
-
-    <script type="text/python">
-        import Assets.Python.requests
-        from Assets.Python.bs4 import BeautifulSoup
-        from browser import document,html, alert
-
-        def main():
-            URL = "https://www.motorsport-total.com/formel-1/formel-1-testfahrten/live-timing"
-            page = requests.get(URL)
-            soup = BeautifulSoup(page.content, "html.parser")
-            table = soup.find_all("table", class_="f1data")
-
-
-
-            tds = []
-            for table in table:
-                rows = table.find_all("tr", style="cursor:pointer")
-
-                for row in rows:
-                    tds.append(row.findAll('td'))
-
-            for rows in range(0, 20):
-                position = str(tds[rows][0].text.strip())
-                driver_number = str(tds[rows][1].text.strip())
-                driver_name = str(tds[rows][3].text.strip())
-                lap_time = str(tds[rows][5].text.strip())
-                gap = str(tds[rows][6].text.strip())
-                laps_completed = str(tds[rows][7].text.strip())   
-
-
-                tyre_Choice =""
-
-                    #hart-c1
-                    #hart-c2 -> Prototype?
-                    #medium-c3
-                    #soft-c4
-                    #soft-c5
-
-                if (tds[rows][2].select('svg[class*="hart-c1"]')):
-                    tyre_Choice = "C1"
-                elif (tds[rows][2].select('svg[class*="hart-c2"]')):
-                    tyre_Choice = "C2"
-                elif (tds[rows][2].select('svg[class*="medium-c3"]')):
-                    tyre_Choice = "C3"
-                elif (tds[rows][2].select('svg[class*="soft-c4"]')):
-                    tyre_Choice = "C4"
-                elif (tds[rows][2].select('svg[class*="soft-c5"]')):
-                    tyre_Choice = "C5"
-                
-                else:
-                    tyre_Choice = "NA"
-
-                alert(f'{position} {driver_number}  {driver_name}    {lap_time} (+{gap} - {tyre_Choice})    | {laps_completed}')
-
-        document["say_hello"].bind("click", main)
-    </script>
-
 </body>
 </html>
