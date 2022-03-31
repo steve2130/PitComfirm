@@ -12,23 +12,23 @@
         --normal-background-color: rgba(35, 35, 35, 1);
 
 
-    /*Team Colours*/
+    /*Team Colours (2022) */
         --Mercedes: #6cd3bf;
-        --Ferrari: #ed1c24;
         --RedBullRacing: #1e5bc6;
-        --Alpine: #2293d1;
-        --Haas: #b6babd;
-        --AstonMartin: #2d826d;
-        --AlphaTauri: #4e7c9b;
+        --Ferrari: #ed1c24;
         --McLaren: #f58020;
-        --AlfaRomeoRacing: #ed1c24;
+        --Alpine: #2293d1;
+        --AlphaTauri: #4e7c9b;
+        --AstonMartin: #2d826d;
         --Williams: #37bedd;
+        --AlfaRomeoRacing: #B12039;
+        --Haas: #b6babd;
 
 
     /*Classification*/
         --Gain-place: rgb(65, 214, 69);
         --Lose-place: rgb(234, 55, 57);
-        --Not-Active: rgb(143, 143, 143);   /*Not on the track on testing / Free Practice */
+        --Not-Active: rgb(143, 143, 143);   /*Not on the track during testing / Free Practice */
         --Did-Not-Finish: rgb(20, 20, 20);
 
 
@@ -121,86 +121,84 @@ div.flex-container {
 /* NAV */
 /*#region*/
 
-.nav-bar {
-    position: relative;
-    top: 0px;
-    left: 0;
+    .nav-bar {
+        position: relative;
+        top: 0px;
+        left: 0;
 
-    height: 38px;
-    width: 100%;
+        height: 38px;
+        width: 100%;
 
-    background-color: rgb(20, 20, 20);
+        background-color: rgb(20, 20, 20);
 
-    transition: 0.2s ease-out;
-}
+        transition: 0.2s ease-out;
+    }
 
-.nav-button {
-    height: 38px;
-    width: 48px;
-    border: none;
-    appearance: none;
-    position: relative;
+    .nav-button {
+        height: 38px;
+        width: 48px;
+        border: none;
+        appearance: none;
+        position: relative;
 
-    
-    background-image: url("../Images/Menu-Symbol.svg");
-    /* Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu */
-    background-repeat: no-repeat;
-    background-size: 26px;
-    background-position: 17px center;
+        
+        background-image: url("../Images/Structure/Menu-Symbol.svg");
+        /* Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu */
+        background-repeat: no-repeat;
+        background-size: 26px;
+        background-position: 17px center;
 
-    transition: background-color 0.2s ease-out;
-}
-
-
-.nav-button:hover {
-    background-color: #414141;
-}
-
-.nav-button:checked {
-    background-color: #383838;
-}
-
-.nav-button:hover + .nav-button:checked {
-    background-color: #7e7d7d;
-    transition: background-color 0.2s ease-out;
-}
+        transition: background-color 0.2s ease-out;
+    }
 
 
-ul.nav_wrapper {
-    list-style-type: none;
-    
-}
+    .nav-button:hover {
+        background-color: #414141;
+    }
 
-.nav_list {
-    opacity: 0;
-    display: none;
-    float: left;
-    padding-left: 20px;
-}
+    .nav-button:checked {
+        background-color: #383838;
+    }
 
-.nav_list_expanded {
-    opacity: 1;
-    display: inline-block;
-    position: relative;
-    top: 32px;
-    padding-left: 20px;
+    .nav-button:hover + .nav-button:checked {
+        background-color: #7e7d7d;
+        transition: background-color 0.2s ease-out;
+    }
 
-    
-}
+
+    ul.nav_wrapper {
+        list-style-type: none;
+        
+    }
+
+    .nav_list {
+        opacity: 0;
+        display: none;
+        float: left;
+        padding-left: 20px;
+    }
+
+    .nav_list_expanded {
+        opacity: 1;
+        display: inline-block;
+        position: relative;
+        top: 32px;
+        padding-left: 20px;
+    }
 
 
 
-.time-counter{
-    position: absolute;
-    top: 12px;
-    right: 16px;
+    .time-counter{
+        position: absolute;
+        top: 12px;
+        right: 16px;
 
-    color: white;
+        color: white;
 
-    height: 38px;
-    width: fit-content;
-    font-size: 12px;
-}
+        height: 38px;
+        width: fit-content;
+        font-size: 12px;
+    }
 
 
 /*#endregion*/
@@ -217,120 +215,120 @@ ul.nav_wrapper {
 /*#region*/
 
     /*P, interval, BEST*/
-    div.Leaderboard-description-column-wrapper {
-        display: grid;
+        div.Leaderboard-description-column-wrapper {
+            display: grid;
 
-        grid-template-columns: 30px     /*Position Box*/ 
-                               minmax(100px, 200px)    /*Driver's name*/ 
-                               minmax(100px, 200px)    /*Interval*/ 
-                               minmax(30px, 50px);   /*Tyre*/ 
-
-
+            grid-template-columns: 30px     /*Position Box*/ 
+                                minmax(100px, 200px)    /*Driver's name*/ 
+                                minmax(80px, 200px)    /*Interval*/ 
+                                minmax(30px, 50px);   /*Tyre*/ 
 
 
-                               /* 220px    Driver's name*/ 
-                               /* 200px    Interval*/ 
-                               /* 200px;   Best lap time*/  
-                              
 
 
-        height: 28px;
-        width: 100%;
-        padding-left: 20px;
-    }    
+                                /* 220px    Driver's name*/ 
+                                /* 200px    Interval*/ 
+                                /* 200px;   Best lap time*/  
+                                
 
-    div.place_text {
-        color:#646464;
-        font-size: 14px;
-        position: relative;
-        top: 0px;
-    }
 
-    div.tyreUsing_text {
-        color:#646464;
-        font-size: 14px;
-        position: relative;
-        top: 0px;
-    }
+            height: 28px;
+            width: 100%;
+            padding-left: 20px;
+        }    
 
-    div.Interval_text {
-        color:#646464;
-        font-size: 14px;
-        position: relative;
-        top: 0px;
-    }
+        div.place_text {
+            color:#646464;
+            font-size: 14px;
+            position: relative;
+            top: 0px;
+        }
 
-    div.name_text {
-        opacity: 0;
-    }
+        div.tyreUsing_text {
+            color:#646464;
+            font-size: 14px;
+            position: relative;
+            top: 0px;
+        }
+
+        div.Interval_text {
+            color:#646464;
+            font-size: 14px;
+            position: relative;
+            top: 0px;
+        }
+
+        div.name_text {
+            opacity: 0;
+        }
 
 
 
 
 
     /*Drivers standing*/
-    .drivers-standing-column-wrapper {
-        display: grid;
-                              
-        grid-template-columns: 30px     /*Position Box*/ 
-                               minmax(100px, 200px)    /*Driver's name*/ 
-                               minmax(100px, 200px)    /*Interval*/ 
-                               minmax(30px, 50px);   /*Tyre*/ 
+        .drivers-standing-column-wrapper {
+            display: grid;
+                                
+            grid-template-columns: 30px     /*Position Box*/ 
+                                minmax(100px, 200px)    /*Driver's name*/ 
+                                minmax(80px, 200px)    /*Interval*/ 
+                                minmax(30px, 50px);   /*Tyre*/ 
 
 
-        height: 34px;
-        transition: 0.2s ease-out;
-        width: 100%;
-        padding-left: 20px;
-        overflow: hidden;
-    }
+            height: 34px;
+            transition: 0.2s ease-out;
+            width: 100%;
+            padding-left: 20px;
+            overflow: hidden;
+        }
 
-    .drivers-standing-column-wrapper:hover {
-        cursor: pointer;
-        transition: 0.2s ease-out;
-        height: 200px;
-        padding-left: 36px;
-    }
+        .drivers-standing-column-wrapper:hover {
+            cursor: pointer;
+            transition: 0.2s ease-out;
+            height: 200px;
+            padding-left: 36px;
+        }
 
-    .position-order {
-        width: 28px;
-        height: 28px;
+        .position-order {
+            width: 28px;
+            height: 28px;
 
-        border-bottom-right-radius: 6px;
-        line-height: 1em;
+            border-bottom-right-radius: 6px;
+            line-height: 1em;
 
-        background: white;
-        font-family: "F1-Regular";
-        
-        display: flex;
-        justify-content: center;
-        align-items: center;
+            background: white;
+            font-family: "F1-Regular";
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        position: relative;
-        top: 1px;
-    }
+            position: relative;
+            top: 1px;
+        }
 
-    .driver-name {
-        display: flex;
-
-
-        position: relative;
-        top: 6px;
-        width: 28vw;
+        .driver-name {
+            display: flex;
 
 
-        font-family: "F1-Bold";
-        color: white;
-        font-size: 1.1rem;
-        line-height: 1em;
-        height: 1.1rem;
+            position: relative;
+            top: 6px;
+            width: 28vw;
 
-        border-left: 6px solid;
-        border-color: white;
-        padding-left: 10px;
-        margin-left: 10px;
 
-    }
+            font-family: "F1-Bold";
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1em;
+            height: 1.1rem;
+
+            border-left: 6px solid;
+            border-color: white;
+            padding-left: 10px;
+            margin-left: 10px;
+
+        }
 
 
 
@@ -338,41 +336,44 @@ ul.nav_wrapper {
 
 
     /*Driver's position*/
-    .Gain-place {
-        background-color: var(--Gain-place) !important;
-        background-position: 0% 0%;
+        .Gain-place {
+            background-color: var(--Gain-place) !important;
+            background-position: 0% 0%;
 
-    }
-    
-    .Gain-place-Animation {
-        background: linear-gradient(135deg, var(--Gain-place) 50%, white 50%);
-        background-size: 200% 200%;
-        background-position: left bottom;
+        }
         
-        transition: 0.1s linear;
-        transition-delay: 2.9s;
+        .Gain-place-Animation {
+            background: linear-gradient(135deg, var(--Gain-place) 50%, white 50%);
+            background-size: 200% 200%;
+            background-position: left bottom;
+            
+            transition: 0.1s linear;
+            transition-delay: 2.9s;
 
-        background-position: 100% 100%;
-    }
-
-
-    .Lose-place {
-        background-color: var(--Lose-place) !important;
-        background-position: 0% 0%;
-    }    
-
-    .Lose-place-Animation {
-        background: linear-gradient(135deg, var(--Lose-place) 50%, white 50%);
-        background-size: 200% 200%;
-        background-position: left bottom;
-
-        transition: 0.1s linear;
-        transition-delay: 2.9s;
-        background-position: 100% 100%;
-    }
+            background-position: 100% 100%;
+        }
 
 
-    /**/
+        .Lose-place {
+            background-color: var(--Lose-place) !important;
+            background-position: 0% 0%;
+        }    
+
+        .Lose-place-Animation {
+            background: linear-gradient(135deg, var(--Lose-place) 50%, white 50%);
+            background-size: 200% 200%;
+            background-position: left bottom;
+
+            transition: 0.1s linear;
+            transition-delay: 2.9s;
+            background-position: 100% 100%;
+        }
+
+
+
+
+
+    /*Leaderboard Description*/
         /*Tyres*/
         div.TyreUsing {
             position: relative;
@@ -383,12 +384,15 @@ ul.nav_wrapper {
         }
 
         img.tyreImage {
-            height: 27px;
+            height: 25px;
             width: auto;
             image-rendering: high-quality;
 
         }
 
+        p.tyreLap {
+
+        }
 
 
         /*Interval*/
@@ -552,127 +556,120 @@ ul.nav_wrapper {
 
 
     /*Upper portion*/
-    .accident-flag-symbol {
-        width: 43px;
-        height: 20px;
-        fill: black;
-        margin-right: 8px;
+        .accident-flag-symbol {
+            width: 43px;
+            height: 20px;
+            fill: black;
+            margin-right: 8px;
+        }
 
-    }
+        .accident-safety-car-symbol {
+            width: 78px;
+            height: 21px;
+            fill: var(--Yellow-Flag);
+        }
 
-    .accident-safety-car-symbol {
-        width: 78px;
-        height: 21px;
-        fill: var(--Yellow-Flag);
-        
-    }
+        .accident-safety-car-image {
+            height: 25px;
+            width: 76px;
+            
+            opacity: 1;
+            image-rendering: high-quality;
+        }
 
-    .accident-safety-car-image {
-        height: 25px;
-        width: 76px;
-        
-        opacity: 1;
-        image-rendering: high-quality;
+        .accident-safety-car-ending-image {
+            height: 25px;
+            width: 76px;
+            position: relative;
+            left: -82px;
+            
+            opacity: 0;
+            image-rendering: high-quality;
+        }
 
+        .VSC-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    }
+            height: 27px;
+            padding: 0px 4px 0px 4px;
 
-    .accident-safety-car-ending-image {
-        height: 25px;
-        width: 76px;
-        position: relative;
-        left: -82px;
-        
-        opacity: 0;
-        image-rendering: high-quality;
-    }
+            position: absolute;
+            top: 13px; 
+            left: 80px;
+            
+            display: none;
 
-    .VSC-symbol {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        height: 27px;
-        padding: 0px 4px 0px 4px;
-
-        position: absolute;
-        top: 13px; 
-        left: 80px;
-        
-        display: none;
-
-        font-family: "F1-Bold";
-        border: 2px solid black;
-        font-size: 19px;
-    }
+            font-family: "F1-Bold";
+            border: 2px solid black;
+            font-size: 19px;
+        }
 
 
 
     /*Lower portion*/
 
-    .accident-text {
-        font-size: 1.5rem;
-        font-family: "F1-Bold";
-        color: black;
-        opacity: 0;
+        .accident-text {
+            font-size: 1.5rem;
+            font-family: "F1-Bold";
+            color: black;
+            opacity: 0;
 
-        position: absolute;
-        bottom: 10px;
-    }
+            position: absolute;
+            bottom: 10px;
+        }
 
+        .accident-ending-text {
+            color: var(--Yellow-Flag);
+            font-family: "F1-Regular";
+            font-size: 2.2rem;
+        }
 
-    .accident-ending-text {
-        color: var(--Yellow-Flag);
-        font-family: "F1-Regular";
-        font-size: 2.2rem;
-    }
+        .shorten-lower-portion-description-text {
+            color: black;
 
-
-
-    .shorten-lower-portion-description-text {
-        color: black;
-
-        top: 6px;
-        left: 76px;
-        bottom: 0;
-    }
+            top: 6px;
+            left: 76px;
+            bottom: 0;
+        }
 
 
 
     /*Animation*/
-    .Symbol_Animation {
-        animation-name: Symbol;
-        animation-duration: .4s;
-        animation-iteration-count: 1;
-    }
+        .Symbol_Animation {
+            animation-name: Symbol;
+            animation-duration: .4s;
+            animation-iteration-count: 1;
+        }
 
-    @keyframes Symbol {
-        0% {transform: translateY(50px); opacity: 0;}
-        100% {transform: translateY(0px); opacity: 1;}
-    }
+        @keyframes Symbol {
+            0% {transform: translateY(50px); opacity: 0;}
+            100% {transform: translateY(0px); opacity: 1;}
+        }
 
 
-    .Text_Animation {
-        animation-name: Text;
-        animation-duration: .4s;
-        animation-iteration-count: 1;
-    }
+        .Text_Animation {
+            animation-name: Text;
+            animation-duration: .4s;
+            animation-iteration-count: 1;
+        }
 
-    @keyframes Text {
-        0% {transform: translateY(-35px); opacity: 0;}
-        100% {transform: translateY(0px); opacity: 1;}
-    }
+        @keyframes Text {
+            0% {transform: translateY(-35px); opacity: 0;}
+            100% {transform: translateY(0px); opacity: 1;}
+        }
 
-    .Fade-In {
-        animation-name: Fade-in;
-        animation-duration: .5s;
-        animation-iteration-count: 1;
-    }
+        .Fade-In {
+            animation-name: Fade-in;
+            animation-duration: .5s;
+            animation-iteration-count: 1;
+        }
 
-    @keyframes Fade-in {
-        0% {opacity: 0;}
-        100% {opacity: 1;}
-    }
+        @keyframes Fade-in {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
 
 
 /*#endregion*/
@@ -733,7 +730,7 @@ ul.nav_wrapper {
 
     .Did-Not-Finish {
         opacity: 0.4;
-        border-left: 0;
+        border-left: 6px solid transparent;
     }
 
     .Did-Not-Finish-background-color {
