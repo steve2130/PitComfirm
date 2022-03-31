@@ -40,7 +40,7 @@ navButton.addEventListener("change", function() {
         timeCounter.innerHTML = LocalDate;
     }
 
-    setInterval (GETDateandTime, 1000);
+    setInterval(fun => GETDateandTime(), 1000);
 
 /*__________________________________________________________________________________________ */
 
