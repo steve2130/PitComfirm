@@ -132,6 +132,7 @@ div.flex-container {
         background-color: rgb(20, 20, 20);
 
         transition: 0.2s ease-out;
+        
     }
 
     .nav-button {
@@ -145,8 +146,8 @@ div.flex-container {
         background-image: url("../Images/Structure/Menu-Symbol.svg");
         /* Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu */
         background-repeat: no-repeat;
-        background-size: 26px;
-        background-position: 17px center;
+        background-size: 23px;
+        background-position: 18px center;
 
         transition: background-color 0.2s ease-out;
     }
@@ -157,7 +158,7 @@ div.flex-container {
     }
 
     .nav-button:checked {
-        background-color: #383838;
+        background-color: #242424;
     }
 
     .nav-button:hover + .nav-button:checked {
@@ -173,17 +174,50 @@ div.flex-container {
 
     .nav_list {
         opacity: 0;
-        display: none;
-        float: left;
-        padding-left: 20px;
     }
 
     .nav_list_expanded {
         opacity: 1;
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
         position: relative;
-        top: 32px;
-        padding-left: 20px;
+        top: 0;
+    }
+
+    .CircuitInformation {
+        border-left: 5px solid rgb(100, 100, 100);
+        border-bottom: 5px solid rgb(100, 100, 100);
+        border-bottom-left-radius: 13px;
+
+        height: 40px;
+        width: 100%;
+        position: relative;
+        top: 18px;
+        left: 20px;
+    }
+
+    img.circuitImage {
+        height: 20px;
+
+        transition: 0.1s height ease-out;
+
+        position: absolute;
+        left: 8px;
+        bottom: 0px;
+    }
+
+    .circuitCountryText {
+        align-items: center;
+        width: 100%;
+        display: inline;
+
+        color: white;
+        font-size: 22px;
+        font-family: "F1-Bold";
+
+        position: relative;
+        left: 72px;
+        top: 2px;
     }
 
 
@@ -235,25 +269,26 @@ div.flex-container {
             height: 28px;
             width: 100%;
             padding-left: 20px;
+            padding-top: 2px;
         }    
 
         div.place_text {
             color:#646464;
-            font-size: 14px;
+            font-size: 12px;
             position: relative;
             top: 0px;
         }
 
         div.tyreUsing_text {
             color:#646464;
-            font-size: 14px;
+            font-size: 12px;
             position: relative;
             top: 0px;
         }
 
         div.Interval_text {
             color:#646464;
-            font-size: 14px;
+            font-size: 12px;
             position: relative;
             top: 0px;
         }
@@ -787,9 +822,15 @@ div.flex-container {
         }
         
     @font-face {
-    /*Formula 1 Bold*/
+    /*Formula 1 Wide*/
         font-family: "F1-Wide";
         src: url("../Fonts/Formula1-Wide.ttf");
         }
+
+    @font-face {
+        /*Formula 1 Black*/
+            font-family: "F1-Black";
+            src: url("../Fonts/Formula1-Black.ttf");
+            }
 
 /*#endregion*/

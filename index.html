@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet"> 
 
     <!--Swup (Reserved) (Package not installed)-->
-    <script defer src="https://unpkg.com/swup@latest/dist/swup.min.js" crossorigin="anonymous"></script>  
-    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js" crossorigin="anonymous"></script>  
+    <script src="https://unpkg.com/axios/dist/axios.min.js" crossorigin="anonymous"></script>
 
     <!--Stylesheet-->
     <link href="Assets/Style/Pitconfirm_style.css" rel="stylesheet">
@@ -23,21 +23,25 @@
 </head>
 <body>
 
+<!--id: this_is_now_it_is-->
+<!--class: ThisIsNowItIs--> 
 
-    
+
     <nav id="navBar" class="nav-bar">
         <ul class="nav_wrapper">
             <li>
                 <input id="nav_button" for="checkbox" class="nav-button" type="checkbox"/>
             </li>
 
-            <li id="navList" class="nav_list">
-                <a href="#" alt="Something">Something</a>
+            <li id="navList" class="nav_list CircuitInformation">
+                <img class="circuitImage" id="circuit_image" src=""></img>
+                <p class="circuitCountryText" id="circuit_country_text"></p>
             </li>
 
-            <li id="navList" class="nav_list">
-                <a href="#" alt="Something">Something</a>
-            </li>
+
+
+
+
             
         
         
@@ -370,5 +374,7 @@
     <script src="Assets/Javascript/accident.js"></script>
     <script src="Assets/Javascript/position_change.js"></script>
     <script src="Assets/Javascript/main.js"></script>
+
+
 </body>
 </html>
