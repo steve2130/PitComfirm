@@ -94,34 +94,41 @@ ol.driver-position-list {
     height: fit-content;
     overflow-x: hidden;
     z-index: 0;
-
+    background-color: #262626;
 }
 
 
 
 li.row-background-color {
-    background-color: var(--normal-background-color);
+    background-color: #262626;
 }
 
 li.another-row-background-color {
-    background-color: rgba(50, 50, 50, 1);
+    background-color: #303030;
 }
 
 div.flex-container {
     display: flex;
     flex-direction: row;
     border: 0px solid transparent;
-    transition: border 0.3s ease-out;
+    transition: border 0.2s ease-out, margin-left 0.4s cubic-bezier(0, 0.6, 0.4, 1);
     
 }
 
+/* div.FlexContainer_Expanded {
+    margin-left: 30vw;
+}
 
+div.FlexContainer_Collapsed {
+    margin-left: 0;
+} */
 
 
 /* NAV */
 /*#region*/
 
-    .nav-bar {
+    /*Nav bar*/
+    .NavBar {
         position: relative;
         top: 0px;
         left: 0;
@@ -135,97 +142,153 @@ div.flex-container {
         
     }
 
-    .nav-button {
+    .NavButton {
         height: 38px;
         width: 48px;
         border: none;
         appearance: none;
         position: relative;
+        top: 0;
+        left: 0;
 
+        cursor: pointer;
+
+        background-color: transparent;
+        transition: background-color 0.2s ease-out;
+    }
+
+    .NavButton:hover {
+        background-color: #202020;
+    }
+
+    .NavBarHambuger {
+        fill: #8d8d8d;
+        height: 23px;
+        display: inline-block;
+        position: relative;
+        left: 6px;
+    }
+
+
+
+
+    /*Nav Side Bar*/
+    .NavSideBar {
+        position: absolute;
+        top: 0;
+        left: 0vw;
+        z-index: 13;
+
+        height: 100vh;
+        overflow: hidden;
         
-        background-image: url("../Images/Structure/Menu-Symbol.svg");
-        /* Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu */
-        background-repeat: no-repeat;
-        background-size: 23px;
-        background-position: 18px center;
+        background-color: rgba(16, 16, 16, 0.6);
+        transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
 
-        transition: background-color 0.2s ease-out;
+    }
+
+    .NavSideBar_Collapsed {
+        width: 0;
+    }
+
+    .NavSideBar_Expanded {
+        width: 100vw;
     }
 
 
-    .nav-button:hover {
-        background-color: #414141;
-    }
-
-    .nav-button:checked {
-        background-color: #242424;
-    }
-
-    .nav-button:hover + .nav-button:checked {
-        background-color: #7e7d7d;
-        transition: background-color 0.2s ease-out;
-    }
-
-
-    ul.nav_wrapper {
+    .NavSideBarWrapper {
+        position: relative;
+        left: 0vw;
+        z-index: 14;
+        background-color: rgb(10, 10, 10);
         list-style-type: none;
-        
+        height: 100vh;
+        transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
+        overflow-x: hidden;
+        display: block;
     }
+
+    .NavSideBarWrapper_Collapsed {
+        width: 0vw;
+    }
+
+    .NavSideBarWrapper_Expanded {
+        width: clamp(260px, 30vw, 450px);
+
+    }
+
+
+
 
     .nav_list {
-        opacity: 0;
-    }
-
-    .nav_list_expanded {
-        opacity: 1;
         display: flex;
         flex-direction: column;
-        position: relative;
-        top: 0;
+        width: fit-content;
+
+        margin-bottom: 16px;
     }
 
-    .CircuitInformation {
-        border-left: 5px solid rgb(100, 100, 100);
-        border-bottom: 5px solid rgb(100, 100, 100);
-        border-bottom-left-radius: 13px;
 
-        height: 40px;
+    .CircuitInformation {
+        height: 42px;
         width: 100%;
         position: relative;
-        top: 18px;
-        left: 20px;
+        top: 10px;
+        left: 10px;
+        display: inline-block;
+
     }
 
     img.circuitImage {
-        height: 20px;
+        height: 46px;
 
         transition: 0.1s height ease-out;
 
         position: absolute;
-        left: 8px;
-        bottom: 0px;
+        left: 0px;
+        top: 0px;
     }
 
     .circuitCountryText {
-        align-items: center;
-        width: 100%;
-        display: inline;
+        width: calc(30vw - 100px);
+        margin-right: 16px;
 
         color: white;
-        font-size: 22px;
+        font-size: 20px;
         font-family: "F1-Bold";
 
+
         position: relative;
-        left: 72px;
-        top: 2px;
+        left: 70px;
+        top: 0px;
     }
+
+    .EventCountdownTimerWrapper {
+
+        position: absolute;
+        top: 2px;
+        right: 40px;    /*20px for compensating .CircuitInformation*/
+
+        color: white;
+        font-size: 18px;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
     .time-counter{
-        position: absolute;
-        top: 12px;
-        right: 16px;
+        position: relative;
+        top: 0px;
+        left: 16px;
 
         color: white;
 

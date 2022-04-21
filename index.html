@@ -9,9 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet"> 
 
-    <!--Swup (Reserved) (Package not installed)-->
+    <!--Imported scripts-->
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js" crossorigin="anonymous"></script>  
     <script src="https://unpkg.com/axios/dist/axios.min.js" crossorigin="anonymous"></script>
+
+    <!--Custom Scripts-->
+    <script defer src="Assets/Javascript/accident.js"></script>
+    <script defer src="Assets/Javascript/position_change.js"></script>
+    <script defer src="Assets/Javascript/main.js"></script>
 
     <!--Stylesheet-->
     <link href="Assets/Style/Pitconfirm_style.css" rel="stylesheet">
@@ -19,43 +24,51 @@
     <link rel="apple-touch-icon" sizes="180x180" href="Assets/Images/Structure/BusStopSign-192x192.png">
     <link rel="icon" type="image/png" sizes="180x180" href="Assets/Images/Structure/BusStopSign-192x192.png">
 
-    <title>Should I Box Now?</title>
+    <title>Box Now?</title>
 </head>
 <body>
 
 <!--id: this_is_now_it_is-->
 <!--class: ThisIsNowItIs--> 
 
+    <div id="nav_bar" class="NavBar">
+        <button id="nav_button" class="NavButton">
+            <svg class="NavBarHambuger" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <!--Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu-->
+                <path d="M41,14H7a2,2,0,0,1,0-4H41A2,2,0,0,1,41,14Z"/>
+                <path d="M41,26H7a2,2,0,0,1,0-4H41A2,2,0,0,1,41,26Z"/>
+                <path d="M41,38H7a2,2,0,0,1,0-4H41A2,2,0,0,1,41,38Z"/>
+            </svg>
+        </button>
 
-    <nav id="navBar" class="nav-bar">
-        <ul class="nav_wrapper">
-            <li>
-                <input id="nav_button" for="checkbox" class="nav-button" type="checkbox"/>
-            </li>
+        
+    </div>
+
+
+    <nav id="nav_side_bar" class="NavSideBar NavSideBar_Collapsed"> <!--Background-->
+        <ul id="nav_side_bar_wrapper" class="NavSideBarWrapper NavSideBarWrapper_Collapsed">    <!--The actual nav bar-->
+
 
             <li id="navList" class="nav_list CircuitInformation">
-                <img class="circuitImage" id="circuit_image" src=""></img>
-                <p class="circuitCountryText" id="circuit_country_text"></p>
+                <img class="circuitImage" id="circuit_image" src="Assets/Images/Structure/Track_image.png"/>
+                <p class="circuitCountryText" id="circuit_country_text">What's the track?</p>
             </li>
 
+            <li class="nav_list">
+                <div id="event_countdown_timer_wrapper" class="EventCountdownTimerWrapper">
+                    <div id="event_countdown_timer_days_column" class="EventCountdownTimerDaysColumn"></div>
+                </div>
+            </li>
 
-
-
-
-            
-        
-        
+            <li class="nav_list">
+                <div class="time-counter">Your Time:<span style="margin-left: 12px;" id="timeCounter">00:00:00</span></div>
+            </li>
         </ul>
-        <div class="time-counter">Your Time:<span style="margin-left: 12px;" id="timeCounter">00:00:00</span></div>
+
     </nav>
 
 
-
-
-
-    
         <div id="wrapper" class="flex-container">
-
             <ol class="driver-position-list">
                 <li class="row-background-color">
                     <div class="Leaderboard-description-column-wrapper">
@@ -368,12 +381,10 @@
     <button id="submitButton3" type="button">Submit Both</button>
 
 
-    <button type="button" id="say_hello">TEST</button>
+    <button type="button" onclick="DecideWhatSourceToGetTiming()" id="say_hello">TEST</button>
     
 
-    <script src="Assets/Javascript/accident.js"></script>
-    <script src="Assets/Javascript/position_change.js"></script>
-    <script src="Assets/Javascript/main.js"></script>
+
 
 
 </body>
