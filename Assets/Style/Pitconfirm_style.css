@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "F1-Regular", 'Titillium Web', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -174,7 +175,7 @@ div.FlexContainer_Collapsed {
 
     /*Nav Side Bar*/
     .NavSideBar {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0vw;
         z-index: 13;
@@ -182,7 +183,7 @@ div.FlexContainer_Collapsed {
         height: 100vh;
         overflow: hidden;
         
-        background-color: rgba(16, 16, 16, 0.6);
+        background-color: rgba(22, 22, 22, 0.6);
         transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
 
     }
@@ -197,10 +198,10 @@ div.FlexContainer_Collapsed {
 
 
     .NavSideBarWrapper {
-        position: relative;
+        position: fixed;
         left: 0vw;
         z-index: 14;
-        background-color: rgb(10, 10, 10);
+        background-color: rgb(22, 22, 22); /*Bugged when using #161616*/
         list-style-type: none;
         height: 100vh;
         transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
@@ -231,11 +232,13 @@ div.FlexContainer_Collapsed {
 
     .CircuitInformation {
         height: 42px;
-        width: 100%;
+        width: fit-content;
         position: relative;
         top: 10px;
         left: 10px;
         display: inline-block;
+
+
 
     }
 
@@ -250,18 +253,37 @@ div.FlexContainer_Collapsed {
     }
 
     .circuitCountryText {
-        width: calc(30vw - 100px);
+        
         margin-right: 16px;
 
         color: white;
         font-size: 20px;
         font-family: "F1-Bold";
 
-
         position: relative;
-        left: 70px;
-        top: 0px;
     }
+
+    .circuitCountryText_OneLiner {
+        width: calc(30vw - 100px);
+        
+        top: calc(46px / 2 - 12px);
+        left: 70px;
+    }
+
+    .circuitCountryText_TwoLiner {
+        width: calc(30vw - 104px);
+        top: 0px;
+        left: 74px;
+    }
+
+    .circuitCountryText_ThreeLiner {    /*Not really needed but wfc*/
+        width: calc(30vw - 100px);
+        
+        top: 0;
+        left: 70px;
+    }
+
+
 
     .EventCountdownTimerWrapper {
 
@@ -272,15 +294,6 @@ div.FlexContainer_Collapsed {
         color: white;
         font-size: 18px;
     }
-
-
-
-
-
-
-
-
-
 
 
 
