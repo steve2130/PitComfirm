@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-family: "F1-Regular", 'Titillium Web', sans-serif;
     -webkit-tap-highlight-color: transparent;
+
 }
 
 :root {
@@ -100,11 +101,11 @@ ol.driver-position-list {
 
 
 
-li.row-background-color {
+li.row-1-background-color {
     background-color: #262626;
 }
 
-li.another-row-background-color {
+li.row-2-background-color {
     background-color: #303030;
 }
 
@@ -113,6 +114,10 @@ div.flex-container {
     flex-direction: row;
     border: 0px solid transparent;
     transition: border 0.2s ease-out, margin-left 0.4s cubic-bezier(0, 0.6, 0.4, 1);
+    position: relative;
+    top: 38px;
+
+    height: fit-content;
     
 }
 
@@ -130,8 +135,8 @@ div.FlexContainer_Collapsed {
 
     /*Nav bar*/
     .NavBar {
-        position: relative;
-        top: 0px;
+        position: fixed;
+        top: 0;
         left: 0;
 
         height: 38px;
@@ -140,6 +145,8 @@ div.FlexContainer_Collapsed {
         background-color: rgb(20, 20, 20);
 
         transition: 0.2s ease-out;
+
+        z-index: 20;
         
     }
 
@@ -148,7 +155,7 @@ div.FlexContainer_Collapsed {
         width: 48px;
         border: none;
         appearance: none;
-        position: relative;
+        position: fixed;
         top: 0;
         left: 0;
 
@@ -176,15 +183,15 @@ div.FlexContainer_Collapsed {
     /*Nav Side Bar*/
     .NavSideBar {
         position: fixed;
-        top: 0;
+        top: 38px;
         left: 0vw;
         z-index: 13;
 
-        height: 100vh;
+        height: calc(100vh - 38px);
         overflow: hidden;
         
         background-color: rgba(22, 22, 22, 0.6);
-        transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
+        transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
 
     }
 
@@ -199,12 +206,13 @@ div.FlexContainer_Collapsed {
 
     .NavSideBarWrapper {
         position: fixed;
+        bottom: 0;
         left: 0vw;
         z-index: 14;
         background-color: rgb(22, 22, 22); /*Bugged when using #161616*/
         list-style-type: none;
-        height: 100vh;
-        transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
+        height: calc(100vh - 38px);
+        transition: width 0.3s cubic-bezier(0, 0.4, 0.45, 1);   /*when nav bar closes*/
         overflow-x: hidden;
         display: block;
     }
@@ -214,7 +222,8 @@ div.FlexContainer_Collapsed {
     }
 
     .NavSideBarWrapper_Expanded {
-        width: clamp(260px, 30vw, 450px);
+        width: clamp(300px, 30vw, 360px);
+        transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
 
     }
 
@@ -222,85 +231,121 @@ div.FlexContainer_Collapsed {
 
 
     .nav_list {
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-
-        margin-bottom: 16px;
+        color: white;
     }
 
+    .CircuitInformationWrapper {
+        padding: 12px;
+
+        margin: 0 0px 10px 0;
+
+
+
+        position: relative;
+        z-index: 10;
+
+    }
 
     .CircuitInformation {
-        height: 42px;
-        width: fit-content;
+        height: auto;
+        width: 100%;
         position: relative;
-        top: 10px;
-        left: 10px;
-        display: inline-block;
+
+        display: flex;
+        flex-wrap: nowrap;
+
+        border-bottom: 1px solid rgb(53, 53, 53);
+
+        padding-bottom: 10px;
 
 
+            /* border: 1px solid white; */
 
     }
 
     img.circuitImage {
-        height: 46px;
+        height: 50px;
+        display: inline-block;
 
         transition: 0.1s height ease-out;
 
-        position: absolute;
+        position: relative;
         left: 0px;
         top: 0px;
+
+        margin-right: 10px;
+            /* border: 1px solid white; */
     }
 
     .circuitCountryText {
-        
-        margin-right: 16px;
+        height: fit-content;
+        width: fit-content;
+        position: relative;
+
+
+        display: inline-block;
+        margin-left: 6px;
+        line-height: calc(1em + 2px);
 
         color: white;
-        font-size: 20px;
+        font-size: 21px;
         font-family: "F1-Bold";
 
-        position: relative;
+
+        /* border: 1px solid white; */
+
+        padding-right: 16px;
     }
 
     .circuitCountryText_OneLiner {
-        width: calc(30vw - 100px);
-        
-        top: calc(46px / 2 - 12px);
-        left: 70px;
+        top: calc((50px - 25px) / 2);
+        left: 0px;
     }
 
     .circuitCountryText_TwoLiner {
-        width: calc(30vw - 104px);
         top: 0px;
-        left: 74px;
+        left: 0px;
     }
 
     .circuitCountryText_ThreeLiner {    /*Not really needed but wfc*/
-        width: calc(30vw - 100px);
-        
         top: 0;
-        left: 70px;
+        left: 0px;
+    } 
+    
+   
+
+
+    .temp_wrapper {
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 10px;
     }
+
 
 
 
     .EventCountdownTimerWrapper {
-
-        position: absolute;
-        top: 2px;
-        right: 40px;    /*20px for compensating .CircuitInformation*/
-
         color: white;
-        font-size: 18px;
+        margin-top: 14px;
+
+        background-color: #262626;
+        padding: 12px 16px;
+        border-bottom-right-radius: 16px;
+        
+
+    }
+
+    .EventCountdownTimerSessionColumn {
+        font-size: 15px;
+        
     }
 
 
-
-
-    .time-counter{
-        position: relative;
-        top: 0px;
+    .clock{
+        position: absolute;
+        bottom: 0px;
         left: 16px;
 
         color: white;
@@ -309,6 +354,8 @@ div.FlexContainer_Collapsed {
         width: fit-content;
         font-size: 12px;
     }
+
+
 
 
 /*#endregion*/
@@ -510,10 +557,12 @@ div.FlexContainer_Collapsed {
         div.IntervalTime {
             color: rgb(214, 214, 214);
             position: relative;
-            top: 7px;
+            top: 8px;
             left: 0;
             font-size: 15px;
             width: fit-content;
+            text-align: center;
+
         }
 
 
@@ -562,7 +611,12 @@ div.FlexContainer_Collapsed {
     .lap-count-container {
         height: 60px;
         position: relative;
-        background-color: #000;
+        top: 38px;
+        margin-bottom: 38px;
+        background: repeating-conic-gradient(#464646 0% 25%, transparent 0% 50%) 
+        50% / 20px 20px;
+        /*https://stackoverflow.com/questions/35361986/css-gradient-checkerboard-pattern*/
+        /*#000 for normal*/
         
         color: white;
     }

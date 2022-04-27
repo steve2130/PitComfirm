@@ -41,27 +41,76 @@
             </svg>
         </button>
 
-        
     </div>
 
 
     <nav id="nav_side_bar" class="NavSideBar NavSideBar_Collapsed"> <!--Background-->
         <ul id="nav_side_bar_wrapper" class="NavSideBarWrapper NavSideBarWrapper_Collapsed">    <!--The actual nav bar-->
 
-
-            <li id="navList" class="nav_list CircuitInformation">
-                <img class="circuitImage" id="circuit_image" src="Assets/Images/Structure/Track_image.png"/>
-                <p class="circuitCountryText circuitCountryText_OneLiner" id="circuit_country_text">What's the track?</p>
-            </li>
-
-            <li class="nav_list">
-                <div id="event_countdown_timer_wrapper" class="EventCountdownTimerWrapper">
-                    <div id="event_countdown_timer_days_column" class="EventCountdownTimerDaysColumn"></div>
+            <div id="circuit_information_wrapper" class="CircuitInformationWrapper">
+                <div id="circuit_information" class="CircuitInformation">
+                    <img class="circuitImage" id="circuit_image" src="Assets/Images/Structure/Track_image.png"/>
+                    <p class="circuitCountryText circuitCountryText_OneLiner" id="circuit_country_text">What's the track?</p>
                 </div>
+
+                
+                    <div id="event_countdown_timer_wrapper" class="EventCountdownTimerWrapper">
+                        <div id="event_countdown_timer_session_column" class="EventCountdownTimerSessionColumn">Session</div>
+                        
+                        <div id="event_countdown_timer_days_column" class="EventCountdownTimerDaysColumn">00</div>
+                        <div id="event_countdown_timer_hours_column" class="EventCountdownTimerHoursColumn">00</div>
+                        <div id="event_countdown_timer_minutes_column" class="EventCountdownTimerMinutesColumn">00</div>
+                        <div id="event_countdown_timer_seconds_column" class="EventCountdownTimerSecondsColumn">00</div>
+                    </div>
+
+
+                    
+                </div> 
+            </div>
+
+            <div class="temp_wrapper">
+                <div id="event_countdown_timer_column_1" class="EventCountdownTimerColumn_1">
+
+                    <div id="event_countdown_timer_column_1_content" class="EventCountdownTimerColumn_1_Content">
+                        00
+                    </div>
+
+
+                </div>
+
+                <div id="event_countdown_timer_hours_column_2" class="EventCountdownTimerColumn_2">
+
+                    <div id="event_countdown_timer_column_2_content" class="EventCountdownTimerColumn_2_Content">
+                        00
+                    </div>
+                </div>
+
+
+
+                <div id="event_countdown_timer_minutes_column_3" class="EventCountdownTimerColumn_3">
+                    <div id="event_countdown_timer_column_3_content" class="EventCountdownTimerColumn_3_Content">
+                        00
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <li class="nav_list">
+                <a href="#">
+                    Timing
+                </a>
             </li>
 
             <li class="nav_list">
-                <div class="time-counter">Your Time:<span style="margin-left: 12px;" id="timeCounter">00:00:00</span></div>
+                <a href="#">
+                    Schedule
+                </a>
+            </li>
+
+            <li class="nav_list">
+                <div class="clock">Your Time:<span style="margin-left: 12px;" id="timeCounter">00:00:00</span></div>
             </li>
         </ul>
 
@@ -70,7 +119,7 @@
 
         <div id="wrapper" class="flex-container">
             <ol class="driver-position-list">
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="Leaderboard-description-column-wrapper">
                         <div class="place_text">P</div>
                         <div class="name_text">Name</div>
@@ -80,11 +129,11 @@
                 </li>
 
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box01" class="position-order">1</div>
-                        <div class="driver-name Mercedes-color">HAM</div>
-                        <div id="interval_time_P01" class="IntervalTime">LAP 13</div>
+                        <div class="driver-name RedBullRacing-color">VER</div>
+                        <div id="interval_time_P01" class="IntervalTime">LAP 63</div>
 
                         <div id="tyre_using_P01" class="TyreUsing">
                             <img id="tyre_using_image" class="tyreImage" src="Assets/Images/Tyres/soft.png"/>
@@ -104,165 +153,165 @@
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box02" class="position-order">2</div>
-                        <div class="driver-name Mercedes-color">RUS</div>
-                        <div id="interval_time_P02" class="IntervalTime">0.479</div>
+                        <div class="driver-name RedBullRacing-color">PER</div>
+                        <div id="interval_time_P02" class="IntervalTime">16.527</div>
                         <div id="best_lap_time_P02" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box03" class="position-order">3</div>
-                        <div class="driver-name RedBullRacing-color">VER</div>
-                        <div id="interval_time_P03" class="IntervalTime">0.479</div>
+                        <div class="driver-name McLaren-color">NOR</div>
+                        <div id="interval_time_P03" class="IntervalTime">18.316</div>
                         <div id="best_lap_time_P03" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box04" class="position-order">4</div>
-                        <div class="driver-name RedBullRacing-color">PER</div>
-                        <div id="interval_time_P04" class="IntervalTime">0.479</div>
+                        <div class="driver-name Mercedes-color">RUS</div>
+                        <div id="interval_time_P04" class="IntervalTime">7.672</div>
                         <div id="best_lap_time_P04" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box05" class="position-order">5</div>
-                        <div class="driver-name Ferrari-color">LEC</div>
-                        <div id="interval_time_P05" class="IntervalTime">0.479</div>
+                        <div class="driver-name AlfaRomeoRacing-color">BOT</div>
+                        <div id="interval_time_P05" class="IntervalTime">0.675</div>
                         <div id="best_lap_time_P05" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box06" class="position-order">6</div>
-                        <div class="driver-name Ferrari-color">SAI</div>
-                        <div id="interval_time_P06" class="IntervalTime">0.479</div>
+                        <div class="driver-name Ferrari-color">LEC</div>
+                        <div id="interval_time_P06" class="IntervalTime">12.891</div>
                         <div id="best_lap_time_P06" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box07" class="position-order">7</div>
-                        <div class="driver-name McLaren-color">NOR</div>
-                        <div id="interval_time_P07" class="IntervalTime">0.479</div>
+                        <div class="driver-name AlphaTauri-color">TSU</div>
+                        <div id="interval_time_P07" class="IntervalTime">5.038</div>
                         <div id="best_lap_time_P07" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box08" class="position-order">8</div>
-                        <div class="driver-name McLaren-color">RIC</div>
-                        <div id="interval_time_P08" class="IntervalTime">0.479</div>
+                        <div class="driver-name AstonMartin-color">VET</div>
+                        <div id="interval_time_P08" class="IntervalTime">9.782</div>
                         <div id="best_lap_time_P08" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box09" class="position-order">9</div>
-                        <div class="driver-name Alpine-color">OCN</div>
-                        <div id="interval_time_P09" class="IntervalTime">0.479</div>
+                        <div class="driver-name Haas-color">MAG</div>
+                        <div id="interval_time_P09" class="IntervalTime">4.368</div>
                         <div id="best_lap_time_P09" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box10" class="position-order">10</div>
-                        <div class="driver-name Alpine-color">ALO</div>
-                        <div id="interval_time_P10" class="IntervalTime">0.479</div>
+                        <div class="driver-name AstonMartin-color">STR</div>
+                        <div id="interval_time_P10" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P10" class="BestLapTime">1:33.532</div>
                         
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box11" class="position-order">11</div>
-                        <div class="driver-name AlphaTauri-color">GAS</div>
-                        <div id="interval_time_P11" class="IntervalTime">0.479</div>
+                        <div class="driver-name Williams-color">ALB</div>
+                        <div id="interval_time_P11" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P11" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box12" class="position-order">12</div>
-                        <div class="driver-name AlphaTauri-color">TSU</div>
-                        <div id="interval_time_P12" class="IntervalTime">0.479</div>
+                        <div class="driver-name AlphaTauri-color">GAS</div>
+                        <div id="interval_time_P12" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P12" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box13" class="position-order">13</div>
-                        <div class="driver-name AstonMartin-color">VET</div>
-                        <div id="interval_time_P13" class="IntervalTime">0.479</div>
+                        <div class="driver-name Mercedes-color">HAM</div>
+                        <div id="interval_time_P13" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P13" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box14" class="position-order">14</div>
-                        <div class="driver-name AstonMartin-color">STR</div>
-                        <div id="interval_time_P14" class="IntervalTime">0.479</div>
+                        <div class="driver-name Alpine-color">OCO</div>
+                        <div id="interval_time_P14" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P14" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box15" class="position-order">15</div>
-                        <div class="driver-name Williams-color">ALB</div>
-                        <div id="interval_time_P15" class="IntervalTime">0.479</div>
+                        <div class="driver-name AlfaRomeoRacing-color">ZHO</div>
+                        <div id="interval_time_P15" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P15" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box16" class="position-order">16</div>
                         <div class="driver-name Williams-color">LAT</div>
-                        <div id="interval_time_P16" class="IntervalTime">0.479</div>
+                        <div id="interval_time_P16" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P16" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box17" class="position-order">17</div>
-                        <div class="driver-name AlfaRomeoRacing-color">BOT</div>
-                        <div id="interval_time_P17" class="IntervalTime">0.479</div>
+                        <div class="driver-name Haas-color">SCH</div>
+                        <div id="interval_time_P17" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P17" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="row-background-color">
+                <li class="row-1-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box18" class="position-order">18</div>
-                        <div class="driver-name AlfaRomeoRacing-color">ZHO</div>
-                        <div id="interval_time_P18" class="IntervalTime">0.479</div>
+                        <div class="driver-name McLaren-color">RIC</div>
+                        <div id="interval_time_P18" class="IntervalTime">1 LAP</div>
                         <div id="best_lap_time_P18" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
 
-                <li class="another-row-background-color">
+                <li class="row-2-background-color">
                     <div class="drivers-standing-column-wrapper">
-                        <div id="Position_Box19" class="position-order">19</div>
-                        <div class="driver-name Haas-color">SCH</div>
-                        <div id="interval_time_P19" class="IntervalTime">0.479</div>
+                        <div id="Position_Box19" class="position-order"></div>
+                        <div class="driver-name Did-Not-Finish">ALO</div>
+                        <div id="interval_time_P19" class="IntervalTime">DNF</div>
                         <div id="best_lap_time_P19" class="BestLapTime">1:33.532</div>
                     </div>
                 </li>
@@ -270,10 +319,9 @@
                 <li class="Did-Not-Finish-background-color">
                     <div class="drivers-standing-column-wrapper">
                         <div id="Position_Box20" class="position-order"></div>
-                        <div class="driver-name Haas-color Did-Not-Finish">MAG</div>
-                        <div id="interval_time_P20" class="IntervalTime">0.479</div>
+                        <div class="driver-name Did-Not-Finish">SAI</div>
+                        <div id="interval_time_P20" class="IntervalTime">DNF</div>
                         <div id="best_lap_time_P20" class="BestLapTime">1:33.532</div>
-                        <!--Suck my balls mate-->
                     </div>
                 </li>
             </ol>
@@ -287,7 +335,7 @@
         <p id="Accident_Text_in_Lap_Counter" class="Accident-text-in-lap-counter">SAFETY CAR</p>
         <div id="Lap_Counter_wrapper" class="LapCounterWrapper">
             <p id="Lap_Text" class="lap-text">LAP</p>
-            <p id="Lap_Count" class="lap-count"><span class="lap-completed">13</span><span class="dash">/</span>50</p>
+            <p id="Lap_Count" class="lap-count"><span class="lap-completed">63</span><span class="dash">/</span>63</p>
         </div>
     </div>
 

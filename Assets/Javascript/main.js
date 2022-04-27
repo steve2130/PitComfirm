@@ -3,7 +3,6 @@
     const NavButton = document.getElementById("nav_button");
     const NavSideBar = document.getElementById("nav_side_bar");
     const NavSideBarWrapper = document.getElementById("nav_side_bar_wrapper");
-    const NavList = document.querySelectorAll("#navList");
 
 
     NavButton.addEventListener("click", x => {
@@ -33,16 +32,22 @@
             const cr = entry.contentRect;
 
             switch (cr.height) {
-                case 48:
+                case 46:
                     CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
                     break;
 
-                case 72:
+                case 69:
                     CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
+                    break;
+
+                case 23:
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
                     break;
                     
                 default:
                     CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
                     break;
             }
 
@@ -130,30 +135,33 @@
 /*__________________________________________________________________________________________*/
     
     /*Data Processing */
-        function GetCircultImage(eventData) {
 
-            let circuit_image_title = eventData.circuitSmallImage.title;
-            let circuit_image_url = eventData.circuitSmallImage.url;
-
-            circuit_image_title = circuit_image_title.split(".")
-
-            return [circuit_image_title[0], circuit_image_url];
-        }
+    async function Deliver_event_tracker() {
+        let return_info = await GetData();
+        event_tracker_JSON = return_info;
+    }
 
 
-        async function happystuff() {
-            let return_info = await GetData();
-            event_tracker_JSON = return_info;
 
-            let circuit_info = GetCircultImage(return_info);
 
+        function GetCircultImage() {
 
             const circuit_country_text = document.getElementById("circuit_country_text");
             const circuit_image = document.getElementById("circuit_image");
+
+            let circuit_image_title = event_tracker_JSON.circuitSmallImage.title;
+            let circuit_image_url = event_tracker_JSON.circuitSmallImage.url;
+
+            circuit_image_title = circuit_image_title.split(".")
+
+
+            circuit_country_text.textContent = circuit_image_title[0].toUpperCase();
+            circuit_image.src = circuit_image_url;
             
-            circuit_country_text.textContent = circuit_info[0].toUpperCase();
-            circuit_image.src = circuit_info[1];
         }
+
+
+
 
 
         async function DecideWhatSourceToGetTiming() {
@@ -184,9 +192,9 @@
         function GETDateandTime() {
             let date = new Date();
 
-            let option = { timeZone: 'UTC', hour12: false };
+            let option = {hour12: false };
 
-            let LocalDate = date.toLocaleTimeString("en-GB", option);
+            let LocalDate = date.toLocaleTimeString("zh-TW", option);
             
             const timeCounter = document.getElementById("timeCounter");
             timeCounter.innerHTML = LocalDate;
@@ -215,10 +223,15 @@
     }
 
 
+const Session_HTML = document.getElementById("event_countdown_timer_session_column");
+const day = document.getElementById("event_countdown_timer_days_column");
+const hour = document.getElementById("event_countdown_timer_hours_column");
+const minute = document.getElementById("event_countdown_timer_minutes_column");
+const second = document.getElementById("event_countdown_timer_seconds_column");
+let SessionCountDown = "";
 
     async function SessionCountdownTimer() {
         let SessionTimeInSecondArray = await GetSessionsTimeInSecond();
- 
 
         let SecondNow;
         let CountdownTimerInSecond = [];
@@ -226,42 +239,120 @@
         let HourArray = [];
         let MinuteArray = [];
         let SecondArray = [];
+        let DescriptionArray = [];
+        let SessionArray = [];
+
+        let P1 = [];
+        let P2 = [];
+        let P3 = [];
+        let Race = [];
+        let Qualifying = [];
+        let Sprint = [];
 
 
-        setInterval(() => {
-            SecondNow = Math.round(Date.now() / 1000);
 
-            for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {
-                CountdownTimerInSecond[i] = SessionTimeInSecondArray[i] - SecondNow;
+        SessionCountDown = setInterval(() => {
 
-                DayArray[i] = Math.floor(CountdownTimerInSecond[i] / 86400);
-                HourArray[i] = Math.floor(CountdownTimerInSecond[i] % 86400 / 3600);
-                MinuteArray[i] = Math.floor(CountdownTimerInSecond[i] % 3600 / 60);
-                SecondArray[i] = Math.floor(CountdownTimerInSecond[i] % 60);
+                SecondNow = Math.round(Date.now() / 1000);
+    
+                for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {     /*God forgive me*/
+                    CountdownTimerInSecond[i] = SessionTimeInSecondArray[i] - SecondNow;
+    
+                    SessionArray[i] = event_tracker_JSON.seasonContext.timetables[i].session;
+                    DescriptionArray[i] = event_tracker_JSON.seasonContext.timetables[i].description;
+                    DayArray[i] = Math.floor(CountdownTimerInSecond[i] / 86400);
+                    HourArray[i] = Math.floor(CountdownTimerInSecond[i] % 86400 / 3600);
+                    MinuteArray[i] = Math.floor(CountdownTimerInSecond[i] % 3600 / 60);
+                    SecondArray[i] = Math.floor(CountdownTimerInSecond[i] % 60);
+                } 
 
-                console.log(`${DayArray[i]} Day    ${HourArray[i]} Hour     ${MinuteArray[i]} Minute     ${SecondArray[i]} Second`);
-            } 
+                for (j = 0; j < Object.keys(event_tracker_JSON.seasonContext.timetables).length; j++) {
+                    switch (SessionArray[j]) {
+                        case "p1":  /*Practice 1*/
+                            P1 = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
+                            DetermindWhichSessionIsHappening(P1, P1[0]);
+                            break;
 
-        }, 1000);
+                        case "p2":  /*Practice 2*/
+                            P2 = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
+                            DetermindWhichSessionIsHappening(P2, P2[0]);
+                            break;
+
+                        case "p3":  /*Practice 3*/
+                            P3 = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
+                            DetermindWhichSessionIsHappening(P3, P3[0]);
+                            break;
+                    
+                        case "q":  /*Qualifying*/
+                            Qualifying = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
+                            DetermindWhichSessionIsHappening(Qualifying, Qualifying[0]);
+                            break;
+
+                        case "r":  /*Race*/
+                            Race = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
+                            DetermindWhichSessionIsHappening(Race, Race[0]);
+                            break;
+
+                        case "s":  /*Sprint*/
+                            Sprint = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
+                            DetermindWhichSessionIsHappening(Sprint, Sprint[0]);
+                            break;
+                    }
+                }
+            }, 1000);
+
+    }
+
+
+    async function DetermindWhichSessionIsHappening(Session, Session_name) {
+        // event_tracker_JSON.seasonContext.timetables.state: "upcoming started completed"
+        // event_tracker_JSON.seasonContext.state: "COUNTDOWN-TO-SPRINT-QUALIFYING" / "SPRINT-QUALIFYING"
+        //                                         "COUNTDOWN-TO-${session}"        / "${session}"
+        
+        // event_tracker_JSON.seasonContext.timetables.endTime
+
+
+        switch (true) {
+
+            case Session[1] && Session[2] && Session[3] && Session[4] < 0 :
+                Session_HTML.textContent = Session_name;
+                day.textContent = "Started";
+                hour.textContent = "";
+                minute.textContent = "";
+                second.textContent = "";
+                clearInterval(SessionCountDown);
+                break;
+
+            case Session[1] <= 0 :
+
+                break;
+
+            default:
+                Session_HTML.textContent = Session_name;
+                day.textContent = Session[1].toString().padStart(2, '0') + "D";
+                hour.textContent = Session[2].toString().padStart(2, '0') + "H";
+                minute.textContent = Session[3].toString().padStart(2, '0') + "M";
+                second.textContent = Session[4].toString().padStart(2, '0') + "S";
+                break;
+            
+        }
     }
 
 
 
 
 
-    // let secondNow = Math.round(Date.now() / 1000);
-    // let eventTime = new Date("2022-04-24T17:00:00+02:00");
-    // console.log(eventTime);
-    // eventTime = eventTime.getTime() / 1000;
-    // eventTime = eventTime + GMToffsetInSeoncd;
-    // console.log(eventTime);
+
 /*__________________________________________________________________________________________*/
         
-
+async function LoadedAfterDOMLoaded() {
+    DecideWhatSourceToGetTiming();
+    await Deliver_event_tracker();
+    SessionCountdownTimer();
+    GetCircultImage();
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    happystuff();
-    DecideWhatSourceToGetTiming();
-    
+    LoadedAfterDOMLoaded();
+}, false);
 
-});
