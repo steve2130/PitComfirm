@@ -303,9 +303,15 @@ async function GetSessionsTimeInSecond() {
 
 
         for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) { 
-            SecondDifference = SessionEndTimeArray[i] - SecondNow;
+            SecondDifference[i] = SessionEndTimeArray[i] - SecondNow;
+
+                if (SecondDifference[i] < 0) {
+                    SecondDifference[i] = "";
+                }
             // seasonContext_timetables_state = event_tracker_JSON.seasonContext.timetables.state[i];
         }
+
+
 
         let min = Math.min(...SessionEndTimeArray);
         let smallest_index = SessionEndTimeArray.indexOf(min); 
