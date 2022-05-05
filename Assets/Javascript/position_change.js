@@ -5,41 +5,12 @@ const SubmitButton02 = document.getElementById("submitButton2");
 const SubmitButton03 = document.getElementById("submitButton3");
 
 
-class Driver {
-    constructor(data) {
-        this.Three_letter_code = data.Three_letter_code;
-        this.driver_shorten_name = data.driver_shorten_name;
-        this.driver_full_name = data.driver_full_name;
-        this.team_color = data.team_color;
-    }
-}
-
-let HAM = new Driver({Three_letter_code: "HAM",
-                      driver_shorten_name: "L. Hamiliton",
-                      driver_full_name: "Lewis Hamiliton",
-                      team_color: "#00D2BE"});
-
-let BOT = new Driver({Three_letter_code: "BOT",
-                      driver_shorten_name: "V. Bottas",
-                      driver_full_name: "Valtteri Bottas",
-                      team_color: "#00D2BE"});
-
-
-
-
-
 
 function Position_Gain() {
-    let RawPositionGain = Position_Gain_Input.value;
-    let PositionGain = ""; //It is a fucking string, stop changing it!
+    let PositionGain = "";
 
-
-    if (RawPositionGain <= 9 && RawPositionGain >= 1) {
-        PositionGain = "0" + RawPositionGain;
-    }
-    else if (RawPositionGain >= 10 && RawPositionGain <= 20) {
-        PositionGain = RawPositionGain;
-    }
+    PositionGain = Position_Gain_Input.value;
+    PositionGain = PositionGain.toString().padStart(2, '0'); //It is a fucking string, stop changing it!
 
 
     const classNames = ["Gain-place", "Lose-place"];
@@ -78,15 +49,11 @@ function Position_Gain() {
 
 function Position_Loss() {
 
-    let RawPositionLoss = Position_Loss_Input.value;
-    let PositionLoss = "";   //It is a fucking string, stop changing it!
+    let PositionLoss = "";
+    PositionLoss = Position_Loss_Input.value;
 
-    if (RawPositionLoss <= 9 && RawPositionLoss >= 1) {
-        PositionLoss = "0" + RawPositionLoss;
-    }
-    else if (RawPositionLoss >= 10 && RawPositionLoss <= 20) {
-        PositionLoss = RawPositionLoss;
-    }
+    PositionLoss = PositionLoss.toString().padStart(2, '0'); //It is a fucking string, stop changing it!
+
 
 
 
@@ -138,18 +105,19 @@ function Failed_To_Finish() {
 
 
 
-Position_Gain_Input.addEventListener('change', function() {
+Position_Gain_Input.addEventListener('change', () => {
     Position_Loss_Input.value = parseInt(Position_Gain_Input.value) + 1;
 });
+
 
 
 SubmitButton01.addEventListener("click", Position_Gain);
 SubmitButton02.addEventListener("click", Position_Loss);
 
-SubmitButton03.addEventListener("click", function() {
+SubmitButton03.addEventListener("click", () => {
     Position_Gain();
     Position_Loss();
-});
+}, false);
 
 
 

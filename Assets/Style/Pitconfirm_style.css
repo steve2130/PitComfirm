@@ -109,10 +109,9 @@ li.row-2-background-color {
     background-color: #303030;
 }
 
-div.flex-container {
+div.PageWrapper {
     display: flex;
     flex-direction: row;
-    border: 0px solid transparent;
     transition: border 0.2s ease-out, margin-left 0.4s cubic-bezier(0, 0.6, 0.4, 1);
     position: relative;
     top: 38px;
@@ -120,6 +119,18 @@ div.flex-container {
     height: fit-content;
     
 }
+        /*Incident related style*/
+        div.PageWrapper_Normal {
+            border: 0px solid transparent;
+        }
+
+
+        div.PageWrapper_Yellow_Flag {
+            border-left:    10px solid rgb(253, 211, 0);
+            border-top:     0px solid transparent;
+            border-bottom:  0px solid transparent;
+            border-right:   0px solid transparent;
+        }
 
 /* div.FlexContainer_Expanded {
     margin-left: 30vw;
@@ -134,226 +145,290 @@ div.FlexContainer_Collapsed {
 /*#region*/
 
     /*Nav bar*/
-    .NavBar {
-        position: fixed;
-        top: 0;
-        left: 0;
+        .NavBar {
+            position: fixed;
+            top: 0;
+            left: 0;
 
-        height: 38px;
-        width: 100%;
+            height: 38px;
+            width: 100%;
 
-        background-color: rgb(20, 20, 20);
+            background-color: rgb(20, 20, 20);
 
-        transition: 0.2s ease-out;
+            transition: 0.2s ease-out;
 
-        z-index: 20;
-        
-    }
+            z-index: 20;
+            
+        }
 
-    .NavButton {
-        height: 38px;
-        width: 48px;
-        border: none;
-        appearance: none;
-        position: fixed;
-        top: 0;
-        left: 0;
+        .NavButton {
+            height: 38px;
+            width: 48px;
+            border: none;
+            appearance: none;
+            position: fixed;
+            top: 0;
+            left: 0;
 
-        cursor: pointer;
+            cursor: pointer;
 
-        background-color: transparent;
-        transition: background-color 0.2s ease-out;
-    }
+            background-color: transparent;
+            transition: background-color 0.2s ease-out;
+        }
 
-    .NavButton:hover {
-        background-color: #202020;
-    }
+        .NavButton:hover {
+            background-color: #202020;
+        }
 
-    .NavBarHambuger {
-        fill: #8d8d8d;
-        height: 23px;
-        display: inline-block;
-        position: relative;
-        left: 6px;
-    }
+        .NavBarHambuger {
+            display: flex;
+
+
+            flex-direction: column;
+
+            position: relative;
+            top: -4px;
+            left: 20px;
+
+        }
+
+        .NavBarHambuger span {
+            background-color: rgb(122, 122, 122);
+            height: 2px;
+            width: 20px;
+            display: block;
+            position: relative;
+        }
+
+
+        .NavBarHambuger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .NavBarHambuger span:nth-child(2) {
+            top: 4px;
+        }
+
+        .NavBarHambuger span:nth-child(3) {
+            top: 8px;
+        }
+
+
 
 
 
 
     /*Nav Side Bar*/
-    .NavSideBar {
-        position: fixed;
-        top: 38px;
-        left: 0vw;
-        z-index: 13;
+        .NavSideBar {
+            position: fixed;
+            top: 38px;
+            left: 0vw;
+            z-index: 13;
 
-        height: calc(100vh - 38px);
-        overflow: hidden;
-        
-        background-color: rgba(22, 22, 22, 0.6);
-        transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
+            height: calc(100vh - 38px);
+            overflow: hidden;
+            
+            background-color: rgba(22, 22, 22, 0.6);
+            transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
 
-    }
+        }
 
-    .NavSideBar_Collapsed {
-        width: 0;
-    }
+        .NavSideBar_Collapsed {
+            width: 0;
+        }
 
-    .NavSideBar_Expanded {
-        width: 100vw;
-    }
-
-
-    .NavSideBarWrapper {
-        position: fixed;
-        bottom: 0;
-        left: 0vw;
-        z-index: 14;
-        background-color: rgb(22, 22, 22); /*Bugged when using #161616*/
-        list-style-type: none;
-        height: calc(100vh - 38px);
-        transition: width 0.3s cubic-bezier(0, 0.4, 0.45, 1);   /*when nav bar closes*/
-        overflow-x: hidden;
-        display: block;
-    }
-
-    .NavSideBarWrapper_Collapsed {
-        width: 0vw;
-    }
-
-    .NavSideBarWrapper_Expanded {
-        width: clamp(300px, 30vw, 360px);
-        transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
-
-    }
+        .NavSideBar_Expanded {
+            width: 100vw;
+        }
 
 
+        .NavSideBarWrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0vw;
+            z-index: 14;
+            background-color: rgb(22, 22, 22); /*Bugged when using #161616*/
+            list-style-type: none;
+            height: calc(100vh - 38px);
+            transition: width 0.3s cubic-bezier(0, 0.4, 0.45, 1);   /*when nav bar closes*/
+            overflow-x: hidden;
+            display: block;
+        }
 
+        .NavSideBarWrapper_Collapsed {
+            width: 0vw;
+        }
 
-    .nav_list {
-        color: white;
-    }
+        .NavSideBarWrapper_Expanded {
+            width: clamp(300px, 30vw, 320px);
+            transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
 
-    .CircuitInformationWrapper {
-        padding: 12px;
-
-        margin: 0 0px 10px 0;
+        }
 
 
 
-        position: relative;
-        z-index: 10;
+        /*Nav Bar Content*/
+            .nav_list {
+                color: white;
+                
+            }
 
-    }
-
-    .CircuitInformation {
-        height: auto;
-        width: 100%;
-        position: relative;
-
-        display: flex;
-        flex-wrap: nowrap;
-
-        border-bottom: 1px solid rgb(53, 53, 53);
-
-        padding-bottom: 10px;
-
-
-            /* border: 1px solid white; */
-
-    }
-
-    img.circuitImage {
-        height: 50px;
-        display: inline-block;
-
-        transition: 0.1s height ease-out;
-
-        position: relative;
-        left: 0px;
-        top: 0px;
-
-        margin-right: 10px;
-            /* border: 1px solid white; */
-    }
-
-    .circuitCountryText {
-        height: fit-content;
-        width: fit-content;
-        position: relative;
-
-
-        display: inline-block;
-        margin-left: 6px;
-        line-height: calc(1em + 2px);
-
-        color: white;
-        font-size: 21px;
-        font-family: "F1-Bold";
-
-
-        /* border: 1px solid white; */
-
-        padding-right: 16px;
-    }
-
-    .circuitCountryText_OneLiner {
-        top: calc((50px - 25px) / 2);
-        left: 0px;
-    }
-
-    .circuitCountryText_TwoLiner {
-        top: 0px;
-        left: 0px;
-    }
-
-    .circuitCountryText_ThreeLiner {    /*Not really needed but wfc*/
-        top: 0;
-        left: 0px;
-    } 
-    
-   
-
-
-    .temp_wrapper {
-        width: fit-content;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        column-gap: 10px;
-    }
-
-
-
-
-    .EventCountdownTimerWrapper {
-        color: white;
-        margin-top: 14px;
-
-        background-color: #262626;
-        padding: 12px 16px;
-        border-bottom-right-radius: 16px;
+            .nav_link {
+                text-decoration: none;
+            }
         
 
-    }
 
-    .EventCountdownTimerSessionColumn {
-        font-size: 15px;
+
+
+
+
+
+        /*Circuit Info*/
+            .CircuitInformationWrapper {
+                padding: 12px;
+                margin: 0 0px 10px 0;
+                position: relative;
+                z-index: 10;
+
+            }
+
+            .CircuitInformation {
+                height: auto;
+                width: 100%;
+                position: relative;
+
+                display: flex;
+                flex-wrap: nowrap;
+
+                border-bottom: 1px solid rgb(53, 53, 53);
+
+                padding-bottom: 10px;
+
+
+                    /* border: 1px solid white; */
+
+            }
+
+            img.circuitImage {
+                height: 50px;
+                display: inline-block;
+
+                transition: 0.1s height ease-out;
+
+                position: relative;
+                left: 0px;
+                top: 0px;
+
+                margin-right: 10px;
+                    /* border: 1px solid white; */
+            }
+
+            .circuitCountryText {
+                height: fit-content;
+                width: fit-content;
+                position: relative;
+
+
+                display: inline-block;
+                margin-left: 6px;
+                line-height: calc(1em + 2px);
+
+                color: white;
+                font-size: 21px;
+                font-family: "F1-Bold";
+
+
+                /* border: 1px solid white; */
+
+                padding-right: 16px;
+            }
+
+            .circuitCountryText_OneLiner {
+                top: calc((50px - 25px) / 2);
+                left: 0px;
+            }
+
+            .circuitCountryText_TwoLiner {
+                top: 0px;
+                left: 0px;
+            }
+
+            .circuitCountryText_ThreeLiner {    /*Not really needed but wfc*/
+                top: 0;
+                left: 0px;
+            } 
         
-    }
 
 
-    .clock{
-        position: absolute;
-        bottom: 0px;
-        left: 16px;
 
-        color: white;
 
-        height: 38px;
-        width: fit-content;
-        font-size: 12px;
-    }
+
+        /*Event Counter Timer*/
+            .EventCountdownTimerWrapper {
+                color: #c6c6c6;
+                margin-top: 14px;
+
+                background-color: #262626;
+                padding: 10px 16px 12px 16px;
+                border-bottom-right-radius: 16px;
+            }
+
+            .EventCountdownTimerColumn_Wrapper {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                column-gap: 13px;
+
+                width: fit-content;
+                color: white;
+                background-color: #262626;
+                font-size: 16px;
+                font-family: "Titillium Web";
+
+                margin-top: 10px;
+                border-radius: 10px;
+
+                padding-right: 8px;
+            }
+
+            .EventCountdownTimerSessionColumn {
+                font-size: 15px;
+            }
+
+            .EventCountdownTimerColumn {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                color: #c6c6c6;
+                
+            }
+
+            .EventCountdownTimerColumn_Content {
+                font-size: 32px;
+                margin-top: -4px;
+                font-family: "F1-Regular";
+                padding-right: 2px;
+                color: white;
+            }
+
+
+
+
+
+
+        /*Clock*/
+            .clock{
+                position: absolute;
+                bottom: 0px;
+                left: 16px;
+
+                color: white;
+
+                height: 38px;
+                width: fit-content;
+                font-size: 12px;
+            }
 
 
 
@@ -613,12 +688,16 @@ div.FlexContainer_Collapsed {
         position: relative;
         top: 38px;
         margin-bottom: 38px;
-        background: repeating-conic-gradient(#464646 0% 25%, transparent 0% 50%) 
-        50% / 20px 20px;
+        background: #000;
         /*https://stackoverflow.com/questions/35361986/css-gradient-checkerboard-pattern*/
         /*#000 for normal*/
         
         color: white;
+    }
+
+    .lap-count-container_checker_flag {
+        background: repeating-conic-gradient(#464646 0% 25%, transparent 0% 50%) 
+        50% / 20px 20px;
     }
 
     .LapCounterWrapper {
@@ -631,6 +710,12 @@ div.FlexContainer_Collapsed {
     }
 
 
+
+
+
+
+
+    
     p.lap-text {
         display: inline-block;
         position: relative;
@@ -682,6 +767,14 @@ div.FlexContainer_Collapsed {
     }
 
 
+        /* Incident related style
+
+        .Accident-text-in-lap-counter_Normal {
+            opacity: 0;
+            width: 0;
+            color: transparent;
+        } */
+
 /*#endregion*/
 
 
@@ -701,6 +794,14 @@ div.FlexContainer_Collapsed {
         padding-left: 20px;
         transition: all 0.2s ease-out;
     }
+
+            /* Accident related styles
+
+            .situation_Normal{
+                height: 0;
+                opacity: 0;
+            } */
+
 
     .situation-box-expaned {
         /*For SC / VSC / Red Flag */

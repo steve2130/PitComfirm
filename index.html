@@ -7,7 +7,7 @@
     <!--Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet"> 
 
     <!--Imported scripts-->
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js" crossorigin="anonymous"></script>  
@@ -33,12 +33,11 @@
 
     <div id="nav_bar" class="NavBar">
         <button id="nav_button" class="NavButton">
-            <svg class="NavBarHambuger" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <!--Grab from: https://www.svgrepo.com/svg/313139/hamburger-menu-->
-                <path d="M41,14H7a2,2,0,0,1,0-4H41A2,2,0,0,1,41,14Z"/>
-                <path d="M41,26H7a2,2,0,0,1,0-4H41A2,2,0,0,1,41,26Z"/>
-                <path d="M41,38H7a2,2,0,0,1,0-4H41A2,2,0,0,1,41,38Z"/>
-            </svg>
+            <div id="navbar_Hambuger_wrapper" class="NavBarHambuger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </button>
 
     </div>
@@ -54,57 +53,44 @@
                 </div>
 
                 
-                    <div id="event_countdown_timer_wrapper" class="EventCountdownTimerWrapper">
-                        <div id="event_countdown_timer_session_column" class="EventCountdownTimerSessionColumn">Session</div>
-                        
-                        <div id="event_countdown_timer_days_column" class="EventCountdownTimerDaysColumn">00</div>
-                        <div id="event_countdown_timer_hours_column" class="EventCountdownTimerHoursColumn">00</div>
-                        <div id="event_countdown_timer_minutes_column" class="EventCountdownTimerMinutesColumn">00</div>
-                        <div id="event_countdown_timer_seconds_column" class="EventCountdownTimerSecondsColumn">00</div>
-                    </div>
+                <div id="event_countdown_timer_wrapper" class="EventCountdownTimerWrapper">
+                    <div class="EventCountdownTimerSessionColumn">Session</div>
 
-
-                    
-                </div> 
-            </div>
-
-            <div class="temp_wrapper">
-                <div id="event_countdown_timer_column_1" class="EventCountdownTimerColumn_1">
-
-                    <div id="event_countdown_timer_column_1_content" class="EventCountdownTimerColumn_1_Content">
-                        00
-                    </div>
-
-
-                </div>
-
-                <div id="event_countdown_timer_hours_column_2" class="EventCountdownTimerColumn_2">
-
-                    <div id="event_countdown_timer_column_2_content" class="EventCountdownTimerColumn_2_Content">
-                        00
-                    </div>
-                </div>
-
-
-
-                <div id="event_countdown_timer_minutes_column_3" class="EventCountdownTimerColumn_3">
-                    <div id="event_countdown_timer_column_3_content" class="EventCountdownTimerColumn_3_Content">
-                        00
+                    <div class="EventCountdownTimerColumn_Wrapper">
+                        <div class="EventCountdownTimerColumn">
+                            <div class="EventCountdownTimerColumn_Content">00</div>
+                            <div class="EventCountdownTimerColumn_Unit">D</div>
+        
+                        </div>
+        
+                        <div class="EventCountdownTimerColumn">
+                            <div class="EventCountdownTimerColumn_Content">00</div>
+                            <div class="EventCountdownTimerColumn_Unit">H</div>
+                        </div>
+        
+        
+        
+                        <div class="EventCountdownTimerColumn">
+                            <div class="EventCountdownTimerColumn_Content">00</div>
+                            <div class="EventCountdownTimerColumn_Unit">M</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
 
 
 
 
             <li class="nav_list">
-                <a href="#">
+                <a class="nav_link" href="#">
                     Timing
                 </a>
             </li>
 
             <li class="nav_list">
-                <a href="#">
+                <a class="nav_link" href="#">
                     Schedule
                 </a>
             </li>
@@ -117,7 +103,7 @@
     </nav>
 
 
-        <div id="wrapper" class="flex-container">
+        <div id="page_wrapper" class="PageWrapper">
             <ol class="driver-position-list">
                 <li class="row-1-background-color">
                     <div class="Leaderboard-description-column-wrapper">

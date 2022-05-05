@@ -60,7 +60,7 @@
 /*__________________________________________________________________________________________*/
 
     /*Grab Info from event-tracker.json*/
-    var event_tracker_JSON = "";
+    var event_tracker_JSON = "";    /*Don't want to request the info from server everytime.*/
 
     async function GetData() {
         const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/";  /*should use express.js, this is just a temporary fix*/
@@ -204,36 +204,51 @@
     }
 
 
-    async function GetSessionsTimeInSecond() {
-        return new Promise ((resolve) => {
-
-            let event_tracker_JSON_timetables_length = Object.keys(event_tracker_JSON.seasonContext.timetables).length;
-            let GMTOffset = event_tracker_JSON.seasonContext.timetables[0].gmtOffset;
-            let dateArray = [];
-    
-            for (i = 0; i < event_tracker_JSON_timetables_length; i++) {
-                dateArray[i] = event_tracker_JSON.seasonContext.timetables[i].startTime + GMTOffset;
-                dateArray[i] = new Date(dateArray[i]).getTime();
-                dateArray[i] = Math.round(dateArray[i] / 1000);
-            }
-            
-            resolve(dateArray);
-        })
-
-    }
 
 
-const Session_HTML = document.getElementById("event_countdown_timer_session_column");
-const day = document.getElementById("event_countdown_timer_days_column");
-const hour = document.getElementById("event_countdown_timer_hours_column");
-const minute = document.getElementById("event_countdown_timer_minutes_column");
-const second = document.getElementById("event_countdown_timer_seconds_column");
+
+
+
+
+
 let SessionCountDown = "";
 
-    async function SessionCountdownTimer() {
-        let SessionTimeInSecondArray = await GetSessionsTimeInSecond();
 
-        let SecondNow;
+
+async function GetSessionsTimeInSecond() {
+    return new Promise ((resolve) => {
+
+        let event_tracker_JSON_timetables_length = Object.keys(event_tracker_JSON.seasonContext.timetables).length;
+        let GMTOffset = event_tracker_JSON.seasonContext.timetables[0].gmtOffset;
+        let startTimeArray = [];
+        let endTimeArray = [];
+
+        for (i = 0; i < event_tracker_JSON_timetables_length; i++) {
+            startTimeArray[i] = event_tracker_JSON.seasonContext.timetables[i].startTime + GMTOffset;
+            startTimeArray[i] = new Date(startTimeArray[i]).getTime();
+            startTimeArray[i] = Math.round(startTimeArray[i] / 1000);
+        }
+
+        for (j = 0; j < event_tracker_JSON_timetables_length; j++) {
+            endTimeArray[j] = event_tracker_JSON.seasonContext.timetables[j].endTime + GMTOffset;
+            endTimeArray[j] = new Date(endTimeArray[j]).getTime();
+            endTimeArray[j] = Math.round(endTimeArray[j] / 1000);
+        }
+        
+        resolve([startTimeArray, endTimeArray]);
+    })
+
+}
+
+
+    async function SessionCountdownTimer() {
+        const SessionTime = await GetSessionsTimeInSecond();
+        let SessionStartTimeInSecondArray = SessionTime[0];
+        let SessionEndTimeInSecondArray = SessionTime[1];
+
+        let SecondNow = 0;
+        
+
         let CountdownTimerInSecond = [];
         let DayArray = [];
         let HourArray = [];
@@ -242,21 +257,16 @@ let SessionCountDown = "";
         let DescriptionArray = [];
         let SessionArray = [];
 
-        let P1 = [];
-        let P2 = [];
-        let P3 = [];
-        let Race = [];
-        let Qualifying = [];
-        let Sprint = [];
 
-
-
-        SessionCountDown = setInterval(() => {
+        SessionCountDown = setInterval(async () => {
 
                 SecondNow = Math.round(Date.now() / 1000);
     
+                let CloestSession = await DetermindCurrentSession(SessionEndTimeInSecondArray, SecondNow);
+
+
                 for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {     /*God forgive me*/
-                    CountdownTimerInSecond[i] = SessionTimeInSecondArray[i] - SecondNow;
+                    CountdownTimerInSecond[i] = SessionStartTimeInSecondArray[i] - SecondNow;
     
                     SessionArray[i] = event_tracker_JSON.seasonContext.timetables[i].session;
                     DescriptionArray[i] = event_tracker_JSON.seasonContext.timetables[i].description;
@@ -266,51 +276,54 @@ let SessionCountDown = "";
                     SecondArray[i] = Math.floor(CountdownTimerInSecond[i] % 60);
                 } 
 
-                for (j = 0; j < Object.keys(event_tracker_JSON.seasonContext.timetables).length; j++) {
-                    switch (SessionArray[j]) {
-                        case "p1":  /*Practice 1*/
-                            P1 = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
-                            DetermindWhichSessionIsHappening(P1, P1[0]);
-                            break;
 
-                        case "p2":  /*Practice 2*/
-                            P2 = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
-                            DetermindWhichSessionIsHappening(P2, P2[0]);
-                            break;
+                    Session = [DescriptionArray[CloestSession], DayArray[CloestSession], HourArray[CloestSession], MinuteArray[CloestSession], SecondArray[CloestSession]];
+                    DisplaySession(Session, Session[0]);
 
-                        case "p3":  /*Practice 3*/
-                            P3 = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
-                            DetermindWhichSessionIsHappening(P3, P3[0]);
-                            break;
-                    
-                        case "q":  /*Qualifying*/
-                            Qualifying = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
-                            DetermindWhichSessionIsHappening(Qualifying, Qualifying[0]);
-                            break;
 
-                        case "r":  /*Race*/
-                            Race = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
-                            DetermindWhichSessionIsHappening(Race, Race[0]);
-                            break;
-
-                        case "s":  /*Sprint*/
-                            Sprint = [DescriptionArray[j], DayArray[j], HourArray[j], MinuteArray[j], SecondArray[j]];
-                            DetermindWhichSessionIsHappening(Sprint, Sprint[0]);
-                            break;
-                    }
-                }
             }, 1000);
-
     }
 
 
-    async function DetermindWhichSessionIsHappening(Session, Session_name) {
+
+    async function DetermindCurrentSession(SessionEndTimeArray, SecondNow) {
         // event_tracker_JSON.seasonContext.timetables.state: "upcoming started completed"
-        // event_tracker_JSON.seasonContext.state: "COUNTDOWN-TO-SPRINT-QUALIFYING" / "SPRINT-QUALIFYING"
+        // event_tracker_JSON.seasonContext.state: "COUNTDOWN-TO-SPRINT-QUALIFYING" / "SPRINT-QUALIFYING" 
+        //                                         "COUNTDOWN-TO-P1" / "P1" ?
         //                                         "COUNTDOWN-TO-${session}"        / "${session}"
         
         // event_tracker_JSON.seasonContext.timetables.endTime
 
+
+        let SecondDifference = [];
+        let seasonContext_timetables_state = [];
+        let seasonContext_state = event_tracker_JSON.seasonContext.state;
+        let timetables_session = event_tracker_JSON.seasonContext.timetables.session;
+
+
+
+        for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) { 
+            SecondDifference = SessionEndTimeArray[i] - SecondNow;
+            // seasonContext_timetables_state = event_tracker_JSON.seasonContext.timetables.state[i];
+        }
+
+        let min = Math.min(...SessionEndTimeArray);
+        let smallest_index = SessionEndTimeArray.indexOf(min); 
+        // Find the index of the element in the SessionEndTimeArray where it is the smallest element in the array.
+
+
+        return smallest_index;
+    }
+
+
+
+
+
+    async function DisplaySession(Session, Session_name) {
+
+        const Session_HTML = document.querySelector(".EventCountdownTimerSessionColumn");
+        const Content = document.querySelectorAll(".EventCountdownTimerColumn_Content");
+        const Unit = document.querySelectorAll(".EventCountdownTimerColumn_Unit");
 
         switch (true) {
 
@@ -323,16 +336,31 @@ let SessionCountDown = "";
                 clearInterval(SessionCountDown);
                 break;
 
-            case Session[1] <= 0 :
 
+
+            case Session[1] <= 0 :  /*0 Day*/
+                Session_HTML.textContent = Session_name;
+                Content[0].textContent = Session[2].toString().padStart(2, '0'); // H
+                Content[1].textContent = Session[3].toString().padStart(2, '0'); // M
+                Content[2].textContent = Session[4].toString().padStart(2, '0'); // S
+
+                Unit[0].textContent = "H";
+                Unit[1].textContent = "M";
+                Unit[2].textContent = "S";
                 break;
+
+
 
             default:
                 Session_HTML.textContent = Session_name;
-                day.textContent = Session[1].toString().padStart(2, '0') + "D";
-                hour.textContent = Session[2].toString().padStart(2, '0') + "H";
-                minute.textContent = Session[3].toString().padStart(2, '0') + "M";
-                second.textContent = Session[4].toString().padStart(2, '0') + "S";
+
+                Content[0].textContent = Session[1].toString().padStart(2, '0');
+                Content[1].textContent = Session[2].toString().padStart(2, '0');
+                Content[2].textContent = Session[3].toString().padStart(2, '0');
+
+                Unit[0].textContent = "D";
+                Unit[1].textContent = "H";
+                Unit[2].textContent = "M";
                 break;
             
         }

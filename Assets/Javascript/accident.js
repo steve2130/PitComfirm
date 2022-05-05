@@ -5,7 +5,7 @@
 
 
 /*Entire flex container*/
-const Wrapper = document.getElementById("wrapper");
+const Wrapper = document.getElementById("page_wrapper");
 
 /*Lap Counter */
 const Accident_Text_in_Lap_Counter = document.getElementById("Accident_Text_in_Lap_Counter");
