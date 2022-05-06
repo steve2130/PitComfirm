@@ -31,7 +31,7 @@ function Position_Gain() {
             setTimeout(function() {
                 Position_Order[PositionGain].classList.remove("Gain-place");
                 Position_Order[PositionGain].classList.remove("Gain-place-Animation");}, 3000);
-        break;
+        break;  // For the while loop
         } 
 
         else if (Position_Order[PositionGain].classList.contains(classNames)) {
