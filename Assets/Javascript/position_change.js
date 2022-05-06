@@ -3,14 +3,14 @@ const Position_Loss_Input = document.getElementById("Position_Loss_Input");
 const SubmitButton01 = document.getElementById("submitButton1");
 const SubmitButton02 = document.getElementById("submitButton2");
 const SubmitButton03 = document.getElementById("submitButton3");
+const Position_Order = document.querySelectorAll(".position-order");
 
 
 
 function Position_Gain() {
     let PositionGain = "";
 
-    PositionGain = Position_Gain_Input.value;
-    PositionGain = PositionGain.toString().padStart(2, '0'); //It is a fucking string, stop changing it!
+    PositionGain = Position_Gain_Input.value - 1;
 
 
     const classNames = ["Gain-place", "Lose-place"];
@@ -18,10 +18,10 @@ function Position_Gain() {
     
     while (CHECKSUM === 0) {    // Don't know any other way. This is slow.
 
-        if (!classNames.some(classNames => document.getElementById("Position_Box" + PositionGain).classList.contains(classNames))) {
+        if (!classNames.some(classNames => Position_Order[PositionGain].classList.contains(classNames))) {
         
-            document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place");
-            document.getElementById("Position_Box" + PositionGain).classList.add("Gain-place-Animation");
+            Position_Order[PositionGain].classList.add("Gain-place");
+            Position_Order[PositionGain].classList.add("Gain-place-Animation");
     
             
 
@@ -29,16 +29,16 @@ function Position_Gain() {
             //     document.getElementById("Position_Box" + PositionLoss).classList.add("Gain-place-Animation");}, 2600);
         
             setTimeout(function() {
-                document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place");
-                document.getElementById("Position_Box" + PositionGain).classList.remove("Gain-place-Animation");}, 3000);
+                Position_Order[PositionGain].classList.remove("Gain-place");
+                Position_Order[PositionGain].classList.remove("Gain-place-Animation");}, 3000);
 
             break;  // Is it better than CHECKSUM = 1; ?
                 
         } 
 
-        else if (classNames.some(classNames => document.getElementById("Position_Box" + PositionGain).classList.contains(classNames))) {
-            document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place");
-            document.getElementById("Position_Box" + PositionGain).classList.remove("Lose-place-Animation");
+        else if (classNames.some(classNames => Position_Order[PositionGain].classList.contains(classNames))) {
+            Position_Order[PositionGain].classList.remove("Lose-place");
+            Position_Order[PositionGain].classList.remove("Lose-place-Animation");
 
             CHECKSUM = 0;
         }
@@ -50,9 +50,8 @@ function Position_Gain() {
 function Position_Loss() {
 
     let PositionLoss = "";
-    PositionLoss = Position_Loss_Input.value;
+    PositionLoss = Position_Loss_Input.value - 1;
 
-    PositionLoss = PositionLoss.toString().padStart(2, '0'); //It is a fucking string, stop changing it!
 
 
 
@@ -62,10 +61,10 @@ function Position_Loss() {
     
     while (CHECKSUM === 0) {
 
-        if (!classNames.some(classNames => document.getElementById("Position_Box" + PositionLoss).classList.contains(classNames))) {
+        if (!classNames.some(classNames => Position_Order[PositionLoss].classList.contains(classNames))) {
         
-            document.getElementById("Position_Box" + PositionLoss).classList.add("Lose-place");
-            document.getElementById("Position_Box" + PositionLoss).classList.add("Lose-place-Animation");
+            Position_Order[PositionLoss].classList.add("Lose-place");
+            Position_Order[PositionLoss].classList.add("Lose-place-Animation");
     
             CHECKSUM = 1;
 
@@ -73,15 +72,15 @@ function Position_Loss() {
             //     document.getElementById("Position_Box" + PositionLoss).classList.add("Lose-place-Animation");}, 2600);
         
             setTimeout(function() {
-                document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place");
-                document.getElementById("Position_Box" + PositionLoss).classList.remove("Lose-place-Animation");}, 3000);
+                Position_Order[PositionLoss].classList.remove("Lose-place");
+                Position_Order[PositionLoss].classList.remove("Lose-place-Animation");}, 3000);
             
             break;
         } 
 
-        else if (classNames.some(classNames => document.getElementById("Position_Box" + PositionLoss).classList.contains(classNames))) {
-            document.getElementById("Position_Box" + PositionLoss).classList.remove("Gain-place");
-            document.getElementById("Position_Box" + PositionLoss).classList.remove("Gain-place-Animation");
+        else if (classNames.some(classNames => Position_Order[PositionLoss].classList.contains(classNames))) {
+            Position_Order[PositionLoss].classList.remove("Gain-place");
+            Position_Order[PositionLoss].classList.remove("Gain-place-Animation");
 
             CHECKSUM = 0;
         }
