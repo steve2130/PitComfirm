@@ -230,7 +230,9 @@ div.FlexContainer_Collapsed {
             background-color: rgba(22, 22, 22, 0.6);
             transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
 
-
+            
+            /*Trying to fix chrome mobile's vh problem*/
+            min-height: -webkit-fill-available;
             height: calc((var(--vh, 1vh) * 100) - 38px);
         }
 
@@ -245,6 +247,7 @@ div.FlexContainer_Collapsed {
 
         .NavSideBarWrapper {
             position: fixed;
+            top: 38px;
             bottom: 0;
             left: 0vw;
             z-index: 14;
@@ -255,7 +258,9 @@ div.FlexContainer_Collapsed {
             overflow-x: hidden;
             display: block;
 
-            height: calc((var(--vh, 1vh) * 100) - 38px);
+            /*Trying to fix chrome mobile's vh problem*/ 
+            min-height: -webkit-fill-available;
+            height: calc((var(--vh, 1vh) * 100) - 38px);     
         }
 
         .NavSideBarWrapper_Collapsed {
