@@ -225,12 +225,14 @@ div.FlexContainer_Collapsed {
             left: 0vw;
             z-index: 13;
 
-            height: calc(100% - 38px);
             overflow: hidden;
             
             background-color: rgba(22, 22, 22, 0.6);
             transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
 
+
+            height: calc(100vh - 38px);  /*Fallback*/
+            height: calc((var(--vh, 1vh) * 100) - 38px);
         }
 
         .NavSideBar_Collapsed {
@@ -249,10 +251,13 @@ div.FlexContainer_Collapsed {
             z-index: 14;
             background-color: rgb(22, 22, 22); /*Bugged when using #161616*/
             list-style-type: none;
-            height: calc(100% - 38px);
+
             transition: width 0.3s cubic-bezier(0, 0.4, 0.45, 1);   /*when nav bar closes*/
             overflow-x: hidden;
             display: block;
+
+            height: calc(100vh - 38px);  /*Fallback*/
+            height: calc((var(--vh, 1vh) * 100) - 38px);
         }
 
         .NavSideBarWrapper_Collapsed {
@@ -410,6 +415,7 @@ div.FlexContainer_Collapsed {
                 font-family: "F1-Regular";
                 padding-right: 2px;
                 color: white;
+                width: 50px;
             }
 
 

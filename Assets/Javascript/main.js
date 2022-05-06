@@ -378,7 +378,19 @@ async function GetSessionsTimeInSecond() {
 
 
 /*__________________________________________________________________________________________*/
-        
+
+// Chrome mobile's vh problem
+
+window.addEventListener('resize', () => {
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
+// https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+
+
+/*__________________________________________________________________________________________*/
 async function LoadedAfterDOMLoaded() {
     DecideWhatSourceToGetTiming();
     await Deliver_event_tracker();
