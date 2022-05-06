@@ -18,7 +18,7 @@ function Position_Gain() {
     
     while (CHECKSUM === 0) {    // Don't know any other way. This is slow.
 
-        if (!classNames.some(classNames => Position_Order[PositionGain].classList.contains(classNames))) {
+        if (!Position_Order[PositionGain].classList.contains(classNames)) {
         
             Position_Order[PositionGain].classList.add("Gain-place");
             Position_Order[PositionGain].classList.add("Gain-place-Animation");
@@ -31,12 +31,10 @@ function Position_Gain() {
             setTimeout(function() {
                 Position_Order[PositionGain].classList.remove("Gain-place");
                 Position_Order[PositionGain].classList.remove("Gain-place-Animation");}, 3000);
-
-            break;  // Is it better than CHECKSUM = 1; ?
-                
+        break;
         } 
 
-        else if (classNames.some(classNames => Position_Order[PositionGain].classList.contains(classNames))) {
+        else if (Position_Order[PositionGain].classList.contains(classNames)) {
             Position_Order[PositionGain].classList.remove("Lose-place");
             Position_Order[PositionGain].classList.remove("Lose-place-Animation");
 
@@ -61,7 +59,7 @@ function Position_Loss() {
     
     while (CHECKSUM === 0) {
 
-        if (!classNames.some(classNames => Position_Order[PositionLoss].classList.contains(classNames))) {
+        if (!Position_Order[PositionLoss].classList.contains(classNames)) {
         
             Position_Order[PositionLoss].classList.add("Lose-place");
             Position_Order[PositionLoss].classList.add("Lose-place-Animation");
@@ -75,10 +73,10 @@ function Position_Loss() {
                 Position_Order[PositionLoss].classList.remove("Lose-place");
                 Position_Order[PositionLoss].classList.remove("Lose-place-Animation");}, 3000);
             
-            break;
+        break;
         } 
 
-        else if (classNames.some(classNames => Position_Order[PositionLoss].classList.contains(classNames))) {
+        else if (Position_Order[PositionLoss].classList.contains(classNames)) {
             Position_Order[PositionLoss].classList.remove("Gain-place");
             Position_Order[PositionLoss].classList.remove("Gain-place-Animation");
 

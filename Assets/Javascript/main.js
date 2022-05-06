@@ -260,7 +260,7 @@ async function GetSessionsTimeInSecond() {
         let SessionArray = [];
 
 
-        SessionCountDown = setInterval(async () => {
+        SessionCountDown = setInterval(async() => {
 
             GETDateandTime(); // The clock, so that it is synced.
 
@@ -310,14 +310,14 @@ async function GetSessionsTimeInSecond() {
             SecondDifference[i] = SessionEndTimeArray[i] - SecondNow;
 
                 if (SecondDifference[i] < 0) {
-                    SecondDifference[i] = "";
+                    SecondDifference[i] = 999999999999999;
                 }
             // seasonContext_timetables_state = event_tracker_JSON.seasonContext.timetables.state[i];
         }
 
 
-        let min = Math.min(...SessionEndTimeArray);
-        let smallest_index = SessionEndTimeArray.indexOf(min); 
+        let min = Math.min(...SecondDifference);
+        let smallest_index = SecondDifference.indexOf(min); 
         // Find the index of the element in the SessionEndTimeArray where it is the smallest element in the array.
 
 
@@ -336,12 +336,19 @@ async function GetSessionsTimeInSecond() {
 
         switch (true) {
 
+
+
+
             case Session[1] && Session[2] && Session[3] && Session[4] < 0 :
                 Session_HTML.textContent = Session_name;
-                day.textContent = "Started";
-                hour.textContent = "";
-                minute.textContent = "";
-                second.textContent = "";
+                Content[0].textContent = "Started";
+                Content[1].textContent = "";
+                Content[2].textContent = "";
+
+                Unit[0].textContent = "";
+                Unit[1].textContent = "";
+                Unit[2].textContent = "";
+
                 clearInterval(SessionCountDown);
                 break;
 
@@ -360,6 +367,13 @@ async function GetSessionsTimeInSecond() {
                 Unit[2].textContent = "S";
                 break;
 
+
+            case Session[0] == "P1":
+            case Session[0] == "P2":
+            case Session[0] == "P3":
+
+
+                    break;
 
 
             default:

@@ -741,7 +741,7 @@ div.FlexContainer_Collapsed {
     .LapCounterWrapper {
         position: absolute;
         left: 0;
-        width: 246px;
+        width: fit-content;
         padding-right: 16px;
         transform: translateX(0px);
         transition: transform 0.2s ease-out;
@@ -779,6 +779,8 @@ div.FlexContainer_Collapsed {
 
         font-family: "F1-Regular";
         font-size: 20px;
+
+        margin-right: 6px;
 
     }
 
