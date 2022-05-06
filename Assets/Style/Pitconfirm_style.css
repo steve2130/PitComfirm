@@ -180,14 +180,17 @@ div.FlexContainer_Collapsed {
             background-color: #202020;
         }
 
-        .NavBarHambuger {
+        .NavBarHambuger { /*Please ignore the typo*/
             display: flex;
+
+            height: auto;
+            width: fit-content;
 
 
             flex-direction: column;
 
             position: relative;
-            top: -4px;
+            top: -6px;
             left: 20px;
 
         }
@@ -198,23 +201,42 @@ div.FlexContainer_Collapsed {
             width: 20px;
             display: block;
             position: relative;
+
+            transition: 0.3s all cubic-bezier(0.075, 0.82, 0.165, 1);
         }
 
 
         .NavBarHambuger span:nth-child(1) {
             top: 0px;
+            transform-origin: left center;
         }
 
         .NavBarHambuger span:nth-child(2) {
-            top: 4px;
+            top: 5px;
+            transform-origin: left center;
         }
 
         .NavBarHambuger span:nth-child(3) {
-            top: 8px;
+            top: 10px;
+            transform-origin: left center;
         }
 
 
+        .NavBarHambuger_Open span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 0px;
+            left: 0px;
+        }
 
+        .NavBarHambuger_Open span:nth-child(2) {
+            width: 0;
+        }
+
+        .NavBarHambuger_Open span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+            left: 0px;
+        }
 
 
 
@@ -226,6 +248,7 @@ div.FlexContainer_Collapsed {
             z-index: 13;
 
             overflow-x: hidden;
+            overflow-y: visible;
             
             background-color: rgba(22, 22, 22, 0.6);
             transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
@@ -233,10 +256,8 @@ div.FlexContainer_Collapsed {
 
             /*Trying to fix chrome mobile's vh problem*/
             min-height: -webkit-fill-available;
-            height: calc((var(--vh, 1vh) * 120) - 38px);
-        }
+            height: calc((var(--vh, 1vh) * 200) - 38px);
 
-        .NavSideBar_Collapsed {
             width: 0;
         }
 
@@ -256,16 +277,16 @@ div.FlexContainer_Collapsed {
 
             transition: width 0.3s cubic-bezier(0, 0.4, 0.45, 1);   /*when nav bar closes*/
             overflow-x: hidden;
+            overflow-y: visible;
             display: block;
 
             /*Trying to fix chrome mobile's vh problem*/ 
             min-height: -webkit-fill-available;
-            height: calc((var(--vh, 1vh) * 120) - 38px);     
-        }
-
-        .NavSideBarWrapper_Collapsed {
+            height: calc((var(--vh, 1vh) * 200) - 38px);  
+            
             width: 0vw;
         }
+
 
         .NavSideBarWrapper_Expanded {
             width: clamp(300px, 30vw, 320px);
@@ -402,6 +423,8 @@ div.FlexContainer_Collapsed {
 
             .EventCountdownTimerSessionColumn {
                 font-size: 15px;
+                height: 1em;
+                white-space: nowrap;
             }
 
             .EventCountdownTimerColumn {
@@ -1049,6 +1072,28 @@ div.FlexContainer_Collapsed {
         background-color: var(--Green-Flag);
     }
 /*#endregion*/
+
+
+
+
+
+
+
+/*Resonsive*/
+/*#region*/
+
+    @media screen and (max-width: 600px) {
+
+
+    }
+
+
+
+
+/*#endregion*/
+
+
+
 
 
 

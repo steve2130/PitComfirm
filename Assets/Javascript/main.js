@@ -3,19 +3,22 @@
     const NavButton = document.getElementById("nav_button");
     const NavSideBar = document.getElementById("nav_side_bar");
     const NavSideBarWrapper = document.getElementById("nav_side_bar_wrapper");
+    const NavBarHambuger = document.getElementById("navbar_Hambuger_wrapper");
 
+    NavButton.addEventListener("click", () => {
 
-    NavButton.addEventListener("click", x => {
-        NavSideBar.classList.replace("NavSideBar_Collapsed", "NavSideBar_Expanded");
-        NavSideBarWrapper.classList.replace("NavSideBarWrapper_Collapsed", "NavSideBarWrapper_Expanded");
+        NavBarHambuger.classList.toggle("NavBarHambuger_Open");
+        NavSideBar.classList.toggle("NavSideBar_Expanded");
+        NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
     }, false);
 
 
     NavSideBar.addEventListener("click", (e) => {
         /*PsiKai, https://stackoverflow.com/questions/69773505/prevent-overlay-click-for-elements-with-a-higher-z-index */
         if (e.target.classList.contains("NavSideBar")) {
-            NavSideBar.classList.replace("NavSideBar_Expanded", "NavSideBar_Collapsed");
-            NavSideBarWrapper.classList.replace("NavSideBarWrapper_Expanded", "NavSideBarWrapper_Collapsed");
+            NavBarHambuger.classList.toggle("NavBarHambuger_Open");
+            NavSideBar.classList.toggle("NavSideBar_Expanded");
+            NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
         }
 
     }, false);
@@ -311,7 +314,6 @@ async function GetSessionsTimeInSecond() {
                 }
             // seasonContext_timetables_state = event_tracker_JSON.seasonContext.timetables.state[i];
         }
-
 
 
         let min = Math.min(...SessionEndTimeArray);
