@@ -225,15 +225,15 @@ div.FlexContainer_Collapsed {
             left: 0vw;
             z-index: 13;
 
-            overflow: hidden;
+            overflow-x: hidden;
             
             background-color: rgba(22, 22, 22, 0.6);
             transition: width 0.4s cubic-bezier(0, 0.6, 0.4, 1);
 
-            
+
             /*Trying to fix chrome mobile's vh problem*/
             min-height: -webkit-fill-available;
-            height: calc((var(--vh, 1vh) * 100) - 38px);
+            height: calc((var(--vh, 1vh) * 120) - 38px);
         }
 
         .NavSideBar_Collapsed {
@@ -260,7 +260,7 @@ div.FlexContainer_Collapsed {
 
             /*Trying to fix chrome mobile's vh problem*/ 
             min-height: -webkit-fill-available;
-            height: calc((var(--vh, 1vh) * 100) - 38px);     
+            height: calc((var(--vh, 1vh) * 120) - 38px);     
         }
 
         .NavSideBarWrapper_Collapsed {
@@ -418,10 +418,17 @@ div.FlexContainer_Collapsed {
                 font-family: "F1-Regular";
                 padding-right: 2px;
                 color: white;
-                width: 50px;
+                width: auto;
+            }
+    
+            .EventCountdownTimerColumn_Second {
+                width: calc(32px * 1.5);
             }
 
-
+            .EventCountdownTimerColumn_Unit {
+                margin-left: 1px;
+                display: inline-block;
+            }
 
 
 
@@ -429,7 +436,7 @@ div.FlexContainer_Collapsed {
         /*Clock*/
             .clock{
                 position: absolute;
-                bottom: 0px;
+                bottom: 38px;
                 left: 16px;
 
                 color: white;

@@ -200,7 +200,6 @@
             timeCounter.innerHTML = LocalDate;
         }
 
-        setInterval(() => GETDateandTime(), 1000);
     }
 
 
@@ -259,6 +258,8 @@ async function GetSessionsTimeInSecond() {
 
 
         SessionCountDown = setInterval(async () => {
+
+            GETDateandTime(); // The clock, so that it is synced.
 
                 SecondNow = Math.round(Date.now() / 1000);
     
@@ -350,6 +351,8 @@ async function GetSessionsTimeInSecond() {
                 Content[1].textContent = Session[3].toString().padStart(2, '0'); // M
                 Content[2].textContent = Session[4].toString().padStart(2, '0'); // S
 
+                Content[2].classList.add("EventCountdownTimerColumn_Second");
+
                 Unit[0].textContent = "H";
                 Unit[1].textContent = "M";
                 Unit[2].textContent = "S";
@@ -367,6 +370,9 @@ async function GetSessionsTimeInSecond() {
                 Unit[0].textContent = "D";
                 Unit[1].textContent = "H";
                 Unit[2].textContent = "M";
+
+
+
                 break;
             
         }
