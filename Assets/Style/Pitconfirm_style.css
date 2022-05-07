@@ -77,7 +77,9 @@
 
 
 
-
+.display_none {
+    display: none !important;
+}
 
 
 body{
@@ -401,6 +403,9 @@ div.FlexContainer_Collapsed {
                 background-color: #262626;
                 padding: 10px 16px 12px 16px;
                 border-bottom-right-radius: 16px;
+
+                height: auto;
+                transition: 0.3s height cubic-bezier(0.075, 0.82, 0.165, 1);
             }
 
             .EventCountdownTimerColumn_Wrapper {
@@ -426,6 +431,73 @@ div.FlexContainer_Collapsed {
                 height: 1em;
                 white-space: nowrap;
             }
+
+            .EventCountdownTimerSessionColumn_LiveStatus {
+                margin-top: 6px;
+                color: #e10600;
+                white-space: nowrap;
+
+                font-size: 12px;
+                font-weight: bold;
+                font-family: 'F1-Regular';
+
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
+
+
+            .F1_live {
+                position: relative;
+                height: auto;
+                width: auto;
+            }
+
+            .F1_live::before {
+                content: '';
+                position: absolute;
+
+                top: 4px;
+                left: 7px;
+                font-size: 12px;
+
+                background-color: #e10600;
+                border-radius: 50%;
+                height: 8px;
+                width: 8px;
+            }
+
+            .F1_live::after {
+                content: '';
+                position: absolute;
+
+                background-color: #e10600;
+
+                top: 4px;
+                left: 7px;
+
+                border-radius: 50%;
+
+                height: 8px;
+                width: 8px;
+
+                animation-name: F1_Live_animation;
+                animation-duration: 0.4s;
+                animation-iteration-count: infinite;
+            }
+
+
+                @keyframes F1_Live_animation {
+                    from {
+                        opacity: 0.9;
+                        transform: scale(1);
+                    }
+                    to {
+                        opacity: 0.1;
+                        transform: scale(2.5);
+                    }
+                }
+
 
             .EventCountdownTimerColumn {
                 display: flex;

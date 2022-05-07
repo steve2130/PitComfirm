@@ -310,7 +310,7 @@ async function GetSessionsTimeInSecond() {
             SecondDifference[i] = SessionEndTimeArray[i] - SecondNow;
 
                 if (SecondDifference[i] < 0) {
-                    SecondDifference[i] = 999999999999999;
+                    SecondDifference[i] = 999999999999999;  // empty string doesn't work, so...
                 }
             // seasonContext_timetables_state = event_tracker_JSON.seasonContext.timetables.state[i];
         }
@@ -333,14 +333,17 @@ async function GetSessionsTimeInSecond() {
         const Session_HTML = document.querySelector(".EventCountdownTimerSessionColumn");
         const Content = document.querySelectorAll(".EventCountdownTimerColumn_Content");
         const Unit = document.querySelectorAll(".EventCountdownTimerColumn_Unit");
+        const Live_Status = document.querySelector(".EventCountdownTimerSessionColumn_LiveStatus");
 
         switch (true) {
 
-
-
-
             case Session[1] && Session[2] && Session[3] && Session[4] < 0 :
-                Session_HTML.textContent = Session_name;
+
+                if (Session[0] == "P1" || "P2" || "P3") {
+                    Session_HTML.textContent = Session_name;
+                    Live_Status.classList.toggle("display_none");
+                }
+
                 Content[0].textContent = "Started";
                 Content[1].textContent = "";
                 Content[2].textContent = "";
@@ -349,7 +352,7 @@ async function GetSessionsTimeInSecond() {
                 Unit[1].textContent = "";
                 Unit[2].textContent = "";
 
-                clearInterval(SessionCountDown);
+
                 break;
 
 
@@ -365,20 +368,18 @@ async function GetSessionsTimeInSecond() {
                 Unit[0].textContent = "H";
                 Unit[1].textContent = "M";
                 Unit[2].textContent = "S";
+
+                if (!Live_Status.classList.contains("display_none")) {
+                    Live_Status.classList.toggle("display_none");
+                }
+
                 break;
 
 
-            case Session[0] == "P1":
-            case Session[0] == "P2":
-            case Session[0] == "P3":
-
-
-                    break;
 
 
             default:
                 Session_HTML.textContent = Session_name;
-
                 Content[0].textContent = Session[1].toString().padStart(2, '0');
                 Content[1].textContent = Session[2].toString().padStart(2, '0');
                 Content[2].textContent = Session[3].toString().padStart(2, '0');
@@ -387,7 +388,10 @@ async function GetSessionsTimeInSecond() {
                 Unit[1].textContent = "H";
                 Unit[2].textContent = "M";
 
-
+                if (!Live_Status.classList.contains("display_none")) {
+                    Live_Status.classList.toggle("display_none");
+                }
+                    
 
                 break;
             
