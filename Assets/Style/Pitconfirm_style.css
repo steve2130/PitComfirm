@@ -300,14 +300,26 @@ div.FlexContainer_Collapsed {
 
         /*Nav Bar Content*/
             .nav_list {
-                color: white;
                 
             }
 
             .nav_link {
+                display: block;
+                background-color: #161616;
                 text-decoration: none;
+                color: white;
+
+                font-size: 15px;
+                padding: 8px 0 8px 16px;
+
+                margin-left: 12px;
             }
         
+            .nav_link:hover {
+                margin-left: 8px;
+                background-color: #2c2c2c;
+                border-left: 4px solid #4589FF;
+            }
 
 
 
@@ -369,6 +381,7 @@ div.FlexContainer_Collapsed {
                 font-size: 21px;
                 font-family: "F1-Bold";
 
+                font-variant-ligatures: normal;
 
                 /* border: 1px solid white; */
 
@@ -378,16 +391,22 @@ div.FlexContainer_Collapsed {
             .circuitCountryText_OneLiner {
                 top: calc((50px - 25px) / 2);
                 left: 0px;
+
+                font-size: 24px;
             }
 
             .circuitCountryText_TwoLiner {
                 top: 0px;
                 left: 0px;
+
+                font-size: 21px;
             }
 
             .circuitCountryText_ThreeLiner {    /*Not really needed but wfc*/
-                top: 0;
+                top: -8px;
                 left: 0px;
+
+                font-size: 21px;
             } 
         
 
@@ -406,6 +425,9 @@ div.FlexContainer_Collapsed {
 
                 height: auto;
                 transition: 0.3s height cubic-bezier(0.075, 0.82, 0.165, 1);
+
+                overflow: hidden;
+
             }
 
             .EventCountdownTimerColumn_Wrapper {
@@ -424,6 +446,8 @@ div.FlexContainer_Collapsed {
                 border-radius: 10px;
 
                 padding-right: 8px;
+
+                cursor: pointer;
             }
 
             .EventCountdownTimerSessionColumn {
@@ -621,7 +645,7 @@ div.FlexContainer_Collapsed {
 
 
             height: 34px;
-            transition: 0.2s ease-out;
+            transition: 0.2s padding-left ease-out;
             width: 100%;
             padding-left: 20px;
             overflow: hidden;
@@ -629,8 +653,8 @@ div.FlexContainer_Collapsed {
 
         .drivers-standing-column-wrapper:hover {
             cursor: pointer;
-            transition: 0.2s ease-out;
-            padding-left: 36px;
+            transition: 0.2s padding-left ease-out;
+            padding-left: 30px;
         }
 
         .position-order {

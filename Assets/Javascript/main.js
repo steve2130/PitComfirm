@@ -22,6 +22,15 @@
         }
 
     }, false);
+
+
+    
+
+    // Changed 
+    const Event_Countdown_Timer_Clock = document.querySelector(".EventCountdownTimerColumn_Wrapper");
+    Event_Countdown_Timer_Clock.addEventListener('click', () => {
+
+    })
 }
 
 /*__________________________________________________________________________________________ */
@@ -37,10 +46,33 @@
             switch (cr.height) {
                 case 46:
                     CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_TwoLiner");
                     break;
+
+                case 52:
+                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_TwoLiner");
+                    break;
+
+
+
 
                 case 69:
                     CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_ThreeLiner");
+                    break;
+
+                case 78:
+                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_ThreeLiner");
+                    break;
+
+
+
+
+                case 26:
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
                     break;
 
                 case 23:
@@ -48,6 +80,8 @@
                     CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
                     break;
                     
+
+
                 default:
                     CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
                     CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
@@ -62,21 +96,17 @@
 
 /*__________________________________________________________________________________________*/
 
-    /*Grab Info from event-tracker.json*/
-    var event_tracker_JSON = "";    /*Don't want to request the info from server everytime.*/
+    /*Grab Info from the different JSON*/
 
-    async function GetData() {
+    async function GetData(url, method, headers) {
         const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/";  /*should use express.js, this is just a temporary fix*/
                              /*Please deploy your own.*/
         
         try {
             let res = await axios
-                .get(cors_bypass + 'https://api.formula1.com/v1/event-tracker', {
-                    method: 'GET',
-                    headers: {
-                        'apikey': 'qPgPPRJyGCIPxFT3el4MF7thXHyJCzAP',   /*Sniff your own*/
-                        'locale': 'en'  /*Essential?*/
-                    }
+                .get(cors_bypass + url, {
+                    method: method,
+                    headers: headers
                 })
                 return res.data;
             }
@@ -86,63 +116,105 @@
         }
     }
 
+    /*Don't want to request the info from server everytime.*/
+
+        // To get the info for current or next race info.
+        var event_tracker_JSON = "";    
+
+        /*To check whether livetiming is available or not.*/
+        var Streaming_Status_JSON = "";
 
 
-    /*To check whether livetiming is available or not.*/
-    var Streaming_Status_JSON = "";
+        /*To grab the details of previous race.*/
+        var Session_Info_JSON = "";
 
-    async function CheckWebsocketOpen() {
         
-        const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/"; 
-        try {
-            let res = await axios
-                .get(cors_bypass + 'https://livetiming.formula1.com/static/StreamingStatus.json', {
-                    method: 'GET',
-                    headers: {
-                        /*Seems like nothing needed.*/
-                    }
-                })
-                return res.data;
-        }
-
-        catch (error) {
-            console.log(error);
-        }
-    }
-
-
-
-    /*To get the SPFeed.json when websocket is closed.*/
-    var SPFeed_JSON = "";
-
-    async function GetRaceResult() {
-        
-        const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/"; 
-        try {
-            let res = await axios
-                .get(cors_bypass + `https://livetiming.formula1.com/static/2022/2022-04-10_Australian_Grand_Prix/2022-04-10_Race/SPFeed.json`, {
-                    method: 'GET',
-                    headers: {
-                        /*Seems like nothing needed.*/
-                    }
-                })
-                return res.data;
-        }
-
-        catch (error) {
-            console.log(error);
-        }
-    }
-
+        /*To get the SPFeed.json when websocket is closed.*/
+        var SPFeed_JSON = "";
 
 /*__________________________________________________________________________________________*/
     
     /*Data Processing */
 
     async function Deliver_event_tracker() {
-        let return_info = await GetData();
-        event_tracker_JSON = return_info;
+        event_tracker_JSON = await GetData("https://api.formula1.com/v1/event-tracker", 
+                                           "GET", 
+                                          {'apikey': 'qPgPPRJyGCIPxFT3el4MF7thXHyJCzAP',   /*Sniff your own*/
+                                           'locale': 'en'  /*Essential?*/});
     }
+
+        // 
+        // https://livetiming.formula1.com/static/2022/2022-04-10_Australian_Grand_Prix/2022-04-10_Race/SPFeed.json
+
+
+        async function DecideWhatSourceToGetTiming() {
+
+            let LatestSessionReplayPath = "";
+            let SessionInProcess = false;
+        
+                    // The url from SessionInfo changes when the session starts
+                    // And SPFeed.json cannot be accessed during the session (?)
+                    // This is an alternative method from getting the SPFeed.json of previous session
+
+                    for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {
+                        // Detect whether a session is ongoing or not 
+                        switch(event_tracker_JSON.seasonContext.timetables[i].state) {
+                            case "started":
+                                SessionInProcess = true;
+                                break;
+
+                            default:
+                                SessionInProcess = false;
+                                break;
+                        }
+                    }
+
+                    if (SessionInProcess === true) {  // Event-tracker
+                        let LastArrayElement = Object.keys(event_tracker_JSON.sessionLinkSets.replayLinks).length() - 1;
+                        LatestSessionReplayPath = event_tracker_JSON.sessionLinkSets.replayLinks[LastArrayElement].url;
+                        SPFeed_JSON = await GetData( LatestSessionReplayPath + "SPFeed.json", 
+                                                    "GET",
+                                                    {});
+
+                        const Processed_Data = ProcessingSPFeedData(SPFeed_JSON);
+                        DisplaySPFeed(Processed_Data);
+                    }
+
+                    else {  // SessionInfo
+                        let PreviousSessionPath = await GetData( "https://livetiming.formula1.com/static/SessionInfo.json", 
+                                                                "GET",
+                                                                {});
+
+                        SPFeed_JSON = await GetData( "https://livetiming.formula1.com/static/" + PreviousSessionPath.Path + "SPFeed.json", 
+                                                    "GET",
+                                                    {});
+
+                        const Processed_Data = ProcessingSPFeedData(SPFeed_JSON);
+                        DisplaySPFeed(Processed_Data);
+                    }
+
+
+
+
+            let WebsocketStatus = await GetData( "https://livetiming.formula1.com/static/StreamingStatus.json",
+                                                 "GET",
+                                                {});
+
+
+            switch (WebsocketStatus.Status) {
+                case "Offline":
+                    console.log("Websocket closed.");
+                    break;
+                
+                case "Available":
+                    console.log("Livetiming available.");
+                    break;
+                
+                default:
+                    console.log("Something is wrong with StreamingStatus.json!");
+                    break;
+            }
+        }
 
 
 
@@ -165,26 +237,59 @@
 
 
 
-
-
-        async function DecideWhatSourceToGetTiming() {
-            let WebsocketStatus = await CheckWebsocketOpen();
-
-            switch (WebsocketStatus.Status) {
-                case "Offline":
-                    GetRaceResult();
-                    console.log("Websocket closed.");
-                    break;
-                
-                case "Available":
-                    console.log("Livetiming available.");
-                    break;
-                
-                default:
-                    console.log("Something is wrong with StreamingStatus.json!");
-                    break;
+        function ProcessingSPFeedData(SPFeed) {
+            let Drivers_Name = [];  let Drivers_Initials = [];  let Drivers_Color = [];  let Drivers_Team = [];
+            let FreeData_Initials = [];  let FreeData_BestLapTime = [];  let FreeData_Position = []; let FreeData_Gap = [];
+    
+    
+            const Drivers = SPFeed.init.data.Drivers;
+            
+            for (i = 0; i < Drivers.length; i++) {
+                Drivers_Name[i] = Drivers[i].Name;
+                Drivers_Initials[i] = Drivers[i].Initials;
+                Drivers_Color[i] = Drivers[i].Color;
+                Drivers_Team[i] = Drivers[i].Team;
             }
+    
+             
+            const FreeData = SPFeed.free.data.DR;
+    
+            for (j = 0; j < FreeData.length; j++) {
+                FreeData_Initials[j] = FreeData[j].F[0];
+                FreeData_BestLapTime[j] = FreeData[j].F[1];
+                FreeData_Position[j] = FreeData[j].F[3];
+                FreeData_Gap[j] = FreeData[j].F[4];
+            }
+    
+            return [Drivers_Name, FreeData_Initials, Drivers_Team, Drivers_Color, FreeData_Position, FreeData_BestLapTime, FreeData_Gap];
         }
+
+
+
+        function DisplaySPFeed(SPFeed_ProcessedData) {
+            const Drivers_Name = SPFeed_ProcessedData[0];  const FreeData_Initials = SPFeed_ProcessedData[1];  const Drivers_Team = SPFeed_ProcessedData[2];
+            const Drivers_Color = SPFeed_ProcessedData[3];  let FreeData_Position = SPFeed_ProcessedData[4];  const FreeData_BestLapTime = SPFeed_ProcessedData[5];  const FreeData_Gap = SPFeed_ProcessedData[6];
+
+            
+
+            const LeaderboardRow_DriverColumn = document.querySelectorAll(".driver-name");
+
+            for (i = 0; i < LeaderboardRow_DriverColumn.length; i++) {
+                FreeData_Position[i] = FreeData_Position[i] - 1;
+
+                LeaderboardRow_DriverColumn[FreeData_Position[i]].textContent = FreeData_Initials[i];
+                LeaderboardRow_DriverColumn[FreeData_Position[i]].style.borderColor = "#" + Drivers_Color[i];
+            }
+            
+
+
+
+
+        }
+
+
+
+
 
 /*__________________________________________________________________________________________*/
 /*Event Counterdown Timer*/
@@ -216,7 +321,6 @@
 let SessionCountDown = "";
 
 
-
 async function GetSessionsTimeInSecond() {
     return new Promise ((resolve) => {
 
@@ -239,7 +343,6 @@ async function GetSessionsTimeInSecond() {
         
         resolve([startTimeArray, endTimeArray]);
     })
-
 }
 
 
@@ -341,7 +444,7 @@ async function GetSessionsTimeInSecond() {
 
                 if (Session[0] == "P1" || "P2" || "P3") {
                     Session_HTML.textContent = Session_name;
-                    Live_Status.classList.toggle("display_none");
+                    Live_Status.classList.remove("display_none");
                 }
 
                 Content[0].textContent = "Started";
@@ -363,15 +466,18 @@ async function GetSessionsTimeInSecond() {
                 Content[1].textContent = Session[3].toString().padStart(2, '0'); // M
                 Content[2].textContent = Session[4].toString().padStart(2, '0'); // S
 
-                Content[2].classList.add("EventCountdownTimerColumn_Second");
+
+                // if (Session[4] >= 10 && Session[4] <= 19) {
+                    // Content[2].classList.remove("EventCountdownTimerColumn_Second");
+                // }
+                // else {
+                    Content[2].classList.add("EventCountdownTimerColumn_Second");
+                // }
+                Live_Status.classList.add("display_none");
 
                 Unit[0].textContent = "H";
                 Unit[1].textContent = "M";
                 Unit[2].textContent = "S";
-
-                if (!Live_Status.classList.contains("display_none")) {
-                    Live_Status.classList.toggle("display_none");
-                }
 
                 break;
 
@@ -379,6 +485,7 @@ async function GetSessionsTimeInSecond() {
 
 
             default:
+
                 Session_HTML.textContent = Session_name;
                 Content[0].textContent = Session[1].toString().padStart(2, '0');
                 Content[1].textContent = Session[2].toString().padStart(2, '0');
@@ -388,18 +495,35 @@ async function GetSessionsTimeInSecond() {
                 Unit[1].textContent = "H";
                 Unit[2].textContent = "M";
 
-                if (!Live_Status.classList.contains("display_none")) {
-                    Live_Status.classList.toggle("display_none");
-                }
+                Live_Status.classList.add("display_none");
                     
 
                 break;
-            
         }
     }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
@@ -417,14 +541,15 @@ window.addEventListener('resize', () => {
 
 
 /*__________________________________________________________________________________________*/
-async function LoadedAfterDOMLoaded() {
-    DecideWhatSourceToGetTiming();
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+}, false);
+
+window.onload = async () => {
     await Deliver_event_tracker();
+    DecideWhatSourceToGetTiming();
     SessionCountdownTimer();
     GetCircultImage();
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    LoadedAfterDOMLoaded();
-}, false);
 
