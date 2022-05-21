@@ -515,22 +515,22 @@ async function GetSessionsTimeInSecond() {
         let Displayed = false;
     
         setTimeout(() => {
-            Group[0].classList.toggle("red");
-            Group[1].classList.toggle("red");
-            Group[2].classList.toggle("red");
-            Group[3].classList.toggle("red");
-            Group[4].classList.toggle("red");
-            Group[5].classList.toggle("red");
+            Group[0].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[1].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[2].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[3].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[4].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[5].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
         }, 0);
 
         setTimeout(() => {
-            Group[6].classList.toggle("red");
-            Group[7].classList.toggle("red");
+            Group[6].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[7].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
         }, 400);
 
         setTimeout(() => {
-            Group[8].classList.toggle("red");
-            Group[9].classList.toggle("red");
+            Group[8].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+            Group[9].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Displayed = true;
 
 
@@ -539,7 +539,7 @@ async function GetSessionsTimeInSecond() {
                 if (SPFeed_JSON && Displayed === true) {
                     setTimeout(() => {
                         for (i = 0; i < 10; i++) {
-                            Group[i].classList.remove("red");
+                            Group[i].classList.remove("Loading_Overlay_Starting_Lights_Actived");
                         }
                     }, 600);   
                     
@@ -560,7 +560,7 @@ async function GetSessionsTimeInSecond() {
                         // So one of the conditions will be matched.
                     setTimeout(() => {
                         for (i = 0; i < 10; i++) {
-                            Group[i].classList.remove("red");
+                            Group[i].classList.remove("Loading_Overlay_Starting_Lights_Actived");
                         }
                     }, 5000);
 
