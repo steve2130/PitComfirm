@@ -507,16 +507,51 @@ async function GetSessionsTimeInSecond() {
 
 
 
+    function test() {
+        const Group = document.querySelectorAll(".StartingLight_Group");
+        const Overlay = document.querySelector(".Loading_Overlay");
 
 
+        let Displayed = false;
+    
+        setTimeout(() => {
+            Group[0].classList.toggle("red");
+            Group[1].classList.toggle("red");
+            Group[2].classList.toggle("red");
+            Group[3].classList.toggle("red");
+            Group[4].classList.toggle("red");
+            Group[5].classList.toggle("red");
+        }, 0);
 
+        setTimeout(() => {
+            Group[6].classList.toggle("red");
+            Group[7].classList.toggle("red");
+        }, 400);
 
+        setTimeout(() => {
+            Group[8].classList.toggle("red");
+            Group[9].classList.toggle("red");
+            Displayed = true;
+        }, 800);
 
+        // Very Anti pattern
+        const Timer = setInterval(() => {
+                        if (SPFeed_JSON && Displayed === true) {
+                            setTimeout(() => {
+                                for (i = 0; i < 10; i++) {
+                                    Group[i].classList.remove("red");
+                                }
 
+                                setTimeout(() => {
+                                    Overlay.classList.add("display_none");
+                                    clearInterval(Timer);
+                                }, 400);
+                            }, 700);    
+                        }
+        }, 400);
 
-
-
-
+        
+    }
 
 
 
@@ -542,8 +577,9 @@ window.addEventListener('resize', () => {
 
 /*__________________________________________________________________________________________*/
 
-document.addEventListener('DOMContentLoaded', async () => {
-
+document.addEventListener('DOMContentLoaded', () => {
+    
+    test();
 }, false);
 
 window.onload = async () => {

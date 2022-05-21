@@ -576,6 +576,84 @@ div.FlexContainer_Collapsed {
 
 
 
+/*Loading Overlay*/
+/*#region*/
+
+    .Loading_Overlay {
+        position: fixed;
+        top: 38px;
+        left: 0;
+
+        height: calc((var(--vh, 1vh) * 100) - 38px);
+        width: 100vw;
+
+        z-index: 10;
+
+        background-color: hsla(0, 0%, 4%, 0.99);
+    }
+
+        .Loading_Overlay_Starting_Lights_Wrapper {
+            position: absolute;
+            top: calc((var(--vh, 1vh) * 50) - 38px - 40px);
+            left: calc(50vw - 139px / 2);
+
+            z-index: 12;
+
+            display: flex;
+            column-gap: 6px;
+
+            height: fit-content;
+            width: fit-content;
+        }
+
+        .Loading_Overlay_Starting_Lights_Shell {
+            height: 80px;
+            width: 23px;
+
+            border-radius: 4px;
+
+            position: relative;
+
+            background-color: #101010;
+            z-index: 12;
+            padding: 6px 5px;
+        }
+
+        .Loading_Overlay_Starting_Lights_Bar {
+            position: relative;
+            top: calc(80px / 2 - 4px);
+            left: -145px;
+            z-index: 11;
+
+            background-color: #101010;
+            height: 8px;
+            width: 139px;
+
+            
+
+        }
+
+        .Loading_Overlay_Starting_Lights {
+            display: flex;
+            margin-bottom: 5px;
+            
+            height: 13px;
+            width: 13px;
+            background-color: #181818;
+            border-radius: 50%;
+
+            z-index: 12;
+        }
+
+        .red {
+            background-color: hsl(5, 90%, 38%);
+        }
+/*#endregion*/
+
+
+
+
+
 
 
 /*Drivers*/
