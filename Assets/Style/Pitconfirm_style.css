@@ -590,6 +590,13 @@ div.FlexContainer_Collapsed {
         z-index: 10;
 
         background-color: hsla(0, 0%, 4%, 0.99);
+
+        opacity: 1;
+        transition: 0.3s opacity linear;
+    }
+
+    .Loading_Overlay_Hidden {
+        opacity: 0;
     }
 
         .Loading_Overlay_Starting_Lights_Wrapper {
@@ -614,7 +621,7 @@ div.FlexContainer_Collapsed {
 
             position: relative;
 
-            background-color: #101010;
+            background-color: #181818;
             z-index: 12;
             padding: 6px 5px;
         }
@@ -625,7 +632,7 @@ div.FlexContainer_Collapsed {
             left: -145px;
             z-index: 11;
 
-            background-color: #101010;
+            background-color: #181818;
             height: 8px;
             width: 139px;
 
@@ -639,7 +646,7 @@ div.FlexContainer_Collapsed {
             
             height: 13px;
             width: 13px;
-            background-color: #181818;
+            background-color: #323232;
             border-radius: 50%;
 
             z-index: 12;

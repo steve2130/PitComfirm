@@ -507,7 +507,7 @@ async function GetSessionsTimeInSecond() {
 
 
 
-    function test() {
+    function DataLoading_PageOverlay_Animation() {
         const Group = document.querySelectorAll(".StartingLight_Group");
         const Overlay = document.querySelector(".Loading_Overlay");
 
@@ -532,25 +532,50 @@ async function GetSessionsTimeInSecond() {
             Group[8].classList.toggle("red");
             Group[9].classList.toggle("red");
             Displayed = true;
-        }, 800);
+
 
         // Very Anti pattern
-        const Timer = setInterval(() => {
-                        if (SPFeed_JSON && Displayed === true) {
-                            setTimeout(() => {
-                                for (i = 0; i < 10; i++) {
-                                    Group[i].classList.remove("red");
-                                }
-
-                                setTimeout(() => {
-                                    Overlay.classList.add("display_none");
-                                    clearInterval(Timer);
-                                }, 400);
-                            }, 700);    
+            const Timer = setInterval(() => {
+                if (SPFeed_JSON && Displayed === true) {
+                    setTimeout(() => {
+                        for (i = 0; i < 10; i++) {
+                            Group[i].classList.remove("red");
                         }
-        }, 400);
+                    }, 600);   
+                    
+                    setTimeout(() => {
+                        Overlay.classList.add("Loading_Overlay_Hidden");
+                        clearInterval(Timer);
+                    }, 1200);
 
-        
+                    setTimeout(() => {
+                        Overlay.classList.add("display_none");
+                    }, 1700);
+                }
+
+
+                else {
+                        // It will active no matter the condition above, 
+                        // as the function will active every 200ms. 
+                        // So one of the conditions will be matched.
+                    setTimeout(() => {
+                        for (i = 0; i < 10; i++) {
+                            Group[i].classList.remove("red");
+                        }
+                    }, 5000);
+
+                    setTimeout(() => {
+                        Overlay.classList.add("Loading_Overlay_Hidden");
+                        // console.log("Oh no! Something is wrong with loading the data!");
+                        clearInterval(Timer);
+                    }, 5600);
+
+                    setTimeout(() => {
+                        Overlay.classList.add("display_none");
+                    }, 6100);
+                }
+            }, 200);
+        }, 800);
     }
 
 
@@ -578,8 +603,7 @@ window.addEventListener('resize', () => {
 /*__________________________________________________________________________________________*/
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    test();
+    DataLoading_PageOverlay_Animation();
 }, false);
 
 window.onload = async () => {
