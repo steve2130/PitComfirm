@@ -282,9 +282,16 @@
             }
             
 
+            const Leaderboard_Column_1 = document.querySelectorAll(".Leaderboard_Column_1");
+            const Leaderboard_Column_2 = document.querySelectorAll(".Leaderboard_Column_2");
+            const Leaderboard_Column_1_text = document.querySelector(".Leaderboard_Column_1_text");
 
+            Leaderboard_Column_1_text.textContent = "Best";
 
-
+            for (i = 0; i < LeaderboardRow_DriverColumn.length; i++) {
+                Leaderboard_Column_1[FreeData_Position[i]].textContent = FreeData_BestLapTime[i];
+                // Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_Gap[i];
+            }
         }
 
 
@@ -519,14 +526,19 @@ async function GetSessionsTimeInSecond() {
             Group[1].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[2].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[3].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+        }, 0);
+
+        setTimeout(() => {
             Group[4].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[5].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
-        }, 0);
+        }, 400);
+
+
 
         setTimeout(() => {
             Group[6].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[7].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
-        }, 400);
+        }, 800);
 
         setTimeout(() => {
             Group[8].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
@@ -546,7 +558,7 @@ async function GetSessionsTimeInSecond() {
                     setTimeout(() => {
                         Overlay.classList.add("Loading_Overlay_Hidden");
                         clearInterval(Timer);
-                    }, 1200);
+                    }, 1000);
 
                     setTimeout(() => {
                         Overlay.classList.add("display_none");
@@ -575,7 +587,14 @@ async function GetSessionsTimeInSecond() {
                     }, 6100);
                 }
             }, 200);
-        }, 800);
+        }, 1200);
+
+        setTimeout(() => {
+            if (!SPFeed_JSON) {
+                console.log("Oh no! Something is wrong with loading the data!");
+            }
+            
+        }, 6800);
     }
 
 

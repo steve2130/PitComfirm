@@ -615,15 +615,15 @@ div.FlexContainer_Collapsed {
 
         .Loading_Overlay_Starting_Lights_Shell {
             height: 80px;
-            width: 23px;
+            width: 26px;
 
-            border-radius: 4px;
+            border-radius: 6px;
 
             position: relative;
 
-            background-color: #181818;
+            background-color: hsl(0, 0%, 10%);
             z-index: 12;
-            padding: 6px 5px;
+            padding: 6px 7px;
         }
 
         .Loading_Overlay_Starting_Lights_Bar {
@@ -632,7 +632,7 @@ div.FlexContainer_Collapsed {
             left: -145px;
             z-index: 11;
 
-            background-color: #181818;
+            background-color: hsl(0, 0%, 10%);
             height: 8px;
             width: 139px;
 
@@ -646,7 +646,7 @@ div.FlexContainer_Collapsed {
             
             height: 13px;
             width: 13px;
-            background-color: #323232;
+            background-color: hsl(0, 0%, 14%);
             border-radius: 50%;
 
             z-index: 12;
@@ -697,23 +697,27 @@ div.FlexContainer_Collapsed {
             top: 0px;
         }
 
-        div.tyreUsing_text {
-            color:#646464;
-            font-size: 12px;
-            position: relative;
-            top: 0px;
-        }
-
-        div.Interval_text {
-            color:#646464;
-            font-size: 12px;
-            position: relative;
-            top: 0px;
-        }
-
         div.name_text {
             opacity: 0;
         }
+
+        div.Leaderboard_Column_1_text {
+            color:#646464;
+            font-size: 12px;
+            position: relative;
+            top: 0px;
+        }
+
+        div.Leaderboard_Column_2_text {
+            color:#646464;
+            font-size: 12px;
+            position: relative;
+            top: 0px;
+        }
+
+
+
+
 
 
 
@@ -848,12 +852,12 @@ div.FlexContainer_Collapsed {
 
 
         /*Interval*/
-        div.IntervalTime {
-            color: rgb(214, 214, 214);
+        .Leaderboard_Column_1 {
+            color: hsl(0, 0%, 75%);
             position: relative;
-            top: 8px;
+            top: calc(32px / 2 - 14px / 2);
             left: 0;
-            font-size: 15px;
+            font-size: 14px;
             width: fit-content;
             text-align: center;
 
