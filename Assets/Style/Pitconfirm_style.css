@@ -185,14 +185,14 @@ div.FlexContainer_Collapsed {
         .NavBarHambuger { /*Please ignore the typo*/
             display: flex;
 
-            height: 100%;
+            height: fit-content;
             width: fit-content;
 
 
             flex-direction: column;
 
             position: relative;
-            top: 11px;
+            top: -5px;
             left: 20px;
 
         }
@@ -277,7 +277,7 @@ div.FlexContainer_Collapsed {
             background-color: rgb(22, 22, 22); /*Bugged when using #161616*/
             list-style-type: none;
 
-            transition: width 0.3s cubic-bezier(0, 0.4, 0.45, 1);   /*when nav bar closes*/
+            transition: width 0.3s cubic-bezier(0, 0.4, 0.65, 1);   /*when nav bar closes*/
             overflow-x: hidden;
             overflow-y: visible;
             display: block;
@@ -291,7 +291,7 @@ div.FlexContainer_Collapsed {
 
 
         .NavSideBarWrapper_Expanded {
-            width: clamp(300px, 30vw, 320px);
+            width: 300px;
             transition: width 0.5s cubic-bezier(0, 0.6, 0.4, 1);
 
         }
@@ -382,6 +382,7 @@ div.FlexContainer_Collapsed {
                 font-family: "F1-Bold";
 
                 font-variant-ligatures: normal;
+                overflow: hidden;
 
                 /* border: 1px solid white; */
 
@@ -635,9 +636,6 @@ div.FlexContainer_Collapsed {
             background-color: hsl(0, 0%, 10%);
             height: 8px;
             width: 139px;
-
-            
-
         }
 
         .Loading_Overlay_Starting_Lights {
@@ -655,6 +653,10 @@ div.FlexContainer_Collapsed {
         .Loading_Overlay_Starting_Lights_Actived {
             background-color: hsl(5, 90%, 38%);
         }
+
+        .Loading_Overlay_Aborted_Start_Lights_Actived {
+            background-color: hsl(39, 100%, 50%);
+        }
 /*#endregion*/
 
 
@@ -667,7 +669,7 @@ div.FlexContainer_Collapsed {
 /*#region*/
 
     /*P, interval, BEST*/
-        div.Leaderboard-description-column-wrapper {
+        .Leaderboard-description-column-wrapper {
             display: grid;
 
             grid-template-columns: 30px     /*Position Box*/ 
@@ -687,14 +689,16 @@ div.FlexContainer_Collapsed {
             height: 28px;
             width: 100%;
             padding-left: 20px;
-            padding-top: 2px;
         }    
 
         div.place_text {
             color:#646464;
             font-size: 12px;
             position: relative;
-            top: 0px;
+            top: 2px;
+
+            height: fit-content;
+            width: fit-content;
         }
 
         div.name_text {
@@ -705,14 +709,20 @@ div.FlexContainer_Collapsed {
             color:#646464;
             font-size: 12px;
             position: relative;
-            top: 0px;
+            top: 2px;
+
+            height: fit-content;
+            width: fit-content;
         }
 
         div.Leaderboard_Column_2_text {
             color:#646464;
             font-size: 12px;
             position: relative;
-            top: 0px;
+            top: 2px;
+
+            height: fit-content;
+            width: fit-content;
         }
 
 
@@ -1270,6 +1280,13 @@ div.FlexContainer_Collapsed {
 
     @media screen and (max-width: 600px) {
 
+        .Leaderboard-description-column-wrapper {
+            padding-left: 10px;
+        }
+        
+        .drivers-standing-column-wrapper {
+            padding-left: 10px;
+        }
 
     }
 

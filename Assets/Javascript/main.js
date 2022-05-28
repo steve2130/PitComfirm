@@ -42,55 +42,24 @@
 
         for (let entry of entries) {
             const cr = entry.contentRect;
+            
+                if (cr.height >= 23 && cr.height <= 26) {
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
+                }
 
-            switch (cr.height) {
-                case 46:
+                else if (cr.height >= 46 && cr.height <= 52) {
                     CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
                     CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_TwoLiner");
-                    break;
+                }
 
-                case 52:
-                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
-                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_TwoLiner");
-                    break;
-
-
-
-
-                case 69:
+                else if (cr.height >= 69 && cr.height <= 78) {
                     CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
                     CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_ThreeLiner");
-                    break;
-
-                case 78:
-                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
-                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_ThreeLiner");
-                    break;
-
-
-
-
-                case 26:
-                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
-                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
-                    break;
-
-                case 23:
-                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
-                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
-                    break;
-                    
-
-
-                default:
-                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
-                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
-                    break;
+                }
             }
 
-        }
-    })
-
+        })
     heightObserver.observe(CountriesText);
 }
 
@@ -158,19 +127,21 @@
 
                     for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {
                         // Detect whether a session is ongoing or not 
-                        switch(event_tracker_JSON.seasonContext.timetables[i].state) {
-                            case "started":
+                            if (event_tracker_JSON.seasonContext.timetables[i].state == "started") {
                                 SessionInProcess = true;
                                 break;
+                            }
 
-                            default:
+                            else {
                                 SessionInProcess = false;
-                                break;
-                        }
+                            }   
                     }
+                    
+
+                    
 
                     if (SessionInProcess === true) {  // Event-tracker
-                        let LastArrayElement = Object.keys(event_tracker_JSON.sessionLinkSets.replayLinks).length() - 1;
+                        let LastArrayElement = Object.keys(event_tracker_JSON.sessionLinkSets.replayLinks).length - 1;
                         LatestSessionReplayPath = event_tracker_JSON.sessionLinkSets.replayLinks[LastArrayElement].url;
                         SPFeed_JSON = await GetData( LatestSessionReplayPath + "SPFeed.json", 
                                                     "GET",
@@ -186,8 +157,8 @@
                                                                 {});
 
                         SPFeed_JSON = await GetData( "https://livetiming.formula1.com/static/" + PreviousSessionPath.Path + "SPFeed.json", 
-                                                    "GET",
-                                                    {});
+                                                     "GET",
+                                                     {});
 
                         const Processed_Data = ProcessingSPFeedData(SPFeed_JSON);
                         DisplaySPFeed(Processed_Data);
@@ -214,6 +185,7 @@
                     console.log("Something is wrong with StreamingStatus.json!");
                     break;
             }
+        
         }
 
 
@@ -515,7 +487,9 @@ async function GetSessionsTimeInSecond() {
 
 
     function DataLoading_PageOverlay_Animation() {
+        const Wrapper = document.querySelector(".Loading_Overlay_Starting_Lights_Wrapper");
         const Group = document.querySelectorAll(".StartingLight_Group");
+        const Aborted_Start_Group = document.querySelectorAll(".Aborted_Start_Group");
         const Overlay = document.querySelector(".Loading_Overlay");
 
 
@@ -524,29 +498,32 @@ async function GetSessionsTimeInSecond() {
         setTimeout(() => {
             Group[0].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[1].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
+        }, 100);
+
+        setTimeout(() => {
             Group[2].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[3].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
-        }, 0);
+        }, 400);
 
         setTimeout(() => {
             Group[4].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[5].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
-        }, 400);
-
-
+        }, 700);
 
         setTimeout(() => {
             Group[6].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[7].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
-        }, 800);
+        }, 1000);
 
         setTimeout(() => {
             Group[8].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Group[9].classList.toggle("Loading_Overlay_Starting_Lights_Actived");
             Displayed = true;
+        }, 1300);
 
 
         // Very Anti pattern
+        setTimeout(() => {
             const Timer = setInterval(() => {
                 if (SPFeed_JSON && Displayed === true) {
                     setTimeout(() => {
@@ -559,43 +536,54 @@ async function GetSessionsTimeInSecond() {
                         Overlay.classList.add("Loading_Overlay_Hidden");
                         clearInterval(Timer);
                     }, 1000);
-
+    
                     setTimeout(() => {
                         Overlay.classList.add("display_none");
                     }, 1700);
                 }
-
-
-                else {
-                        // It will active no matter the condition above, 
-                        // as the function will active every 200ms. 
-                        // So one of the conditions will be matched.
-                    setTimeout(() => {
-                        for (i = 0; i < 10; i++) {
-                            Group[i].classList.remove("Loading_Overlay_Starting_Lights_Actived");
-                        }
-                    }, 5000);
-
-                    setTimeout(() => {
-                        Overlay.classList.add("Loading_Overlay_Hidden");
-                        // console.log("Oh no! Something is wrong with loading the data!");
-                        clearInterval(Timer);
-                    }, 5600);
-
-                    setTimeout(() => {
-                        Overlay.classList.add("display_none");
-                    }, 6100);
-                }
             }, 200);
-        }, 1200);
+        }, 1300);
 
+
+        // If failed to load
         setTimeout(() => {
+            setInterval(() => {
+                for (i = 0; i < 3; i++) {
+                    Aborted_Start_Group[i].classList.toggle("Loading_Overlay_Aborted_Start_Lights_Actived");
+                }
+            }, 1000);
+
+            
+            Wrapper.addEventListener("click", () => {
+                setTimeout(() => {
+                    Overlay.classList.add("Loading_Overlay_Hidden");
+                    // console.log("Oh no! Something is wrong with loading the data!");
+                    clearInterval(Timer);
+                }, 0);
+        
+                setTimeout(() => {
+                    Overlay.classList.add("display_none");
+                }, 500);
+            }, false);
+
+            Wrapper.style.cursor = "pointer";
+            
+
+
             if (!SPFeed_JSON) {
                 console.log("Oh no! Something is wrong with loading the data!");
             }
-            
-        }, 6800);
+        }, 4000);
+
+
+
+
+
+
+
     }
+
+
 
 
 
