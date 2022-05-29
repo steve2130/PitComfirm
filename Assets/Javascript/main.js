@@ -523,6 +523,8 @@ async function GetSessionsTimeInSecond() {
 
 
         // Very Anti pattern
+        let Aborted_Start_Interval= "";
+
         setTimeout(() => {
             const Timer = setInterval(() => {
                 if (SPFeed_JSON && Displayed === true) {
@@ -535,6 +537,7 @@ async function GetSessionsTimeInSecond() {
                     setTimeout(() => {
                         Overlay.classList.add("Loading_Overlay_Hidden");
                         clearInterval(Timer);
+                        clearInterval(Aborted_Start_Interval);
                     }, 1000);
     
                     setTimeout(() => {
@@ -547,7 +550,7 @@ async function GetSessionsTimeInSecond() {
 
         // If failed to load
         setTimeout(() => {
-            setInterval(() => {
+            Aborted_Start_Interval = setInterval(() => {
                 for (i = 0; i < 3; i++) {
                     Aborted_Start_Group[i].classList.toggle("Loading_Overlay_Aborted_Start_Lights_Actived");
                 }
@@ -559,6 +562,7 @@ async function GetSessionsTimeInSecond() {
                     Overlay.classList.add("Loading_Overlay_Hidden");
                     // console.log("Oh no! Something is wrong with loading the data!");
                     clearInterval(Timer);
+                    clearInterval(Aborted_Start_Interval);
                 }, 0);
         
                 setTimeout(() => {
