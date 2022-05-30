@@ -125,7 +125,11 @@
                     // And SPFeed.json cannot be accessed during the session (?)
                     // This is an alternative method from getting the SPFeed.json of previous session
 
-                    for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {
+                    for (i = 0, r = Object.keys(event_tracker_JSON.seasonContext.timetables).length; i < r; i++) {  
+                        // r = whatever var name
+                        // https://stackoverflow.com/questions/43031988/javascript-efficiency-for-vs-foreach
+
+
                         // Detect whether a session is ongoing or not 
                             if (event_tracker_JSON.seasonContext.timetables[i].state == "started") {
                                 SessionInProcess = true;
@@ -212,11 +216,12 @@
         function ProcessingSPFeedData(SPFeed) {
             let Drivers_Name = [];  let Drivers_Initials = [];  let Drivers_Color = [];  let Drivers_Team = [];
             let FreeData_Initials = [];  let FreeData_BestLapTime = [];  let FreeData_Position = []; let FreeData_Gap = [];
+            let EachLap_LastLapTime = []; let EachLap_Sector1Time = []; let EachLap_Sector2Time = []; let EachLap_Sector3Time = []; let EachLap_GapToLeader = []; let EachLap_GapInFront = [];
     
     
             const Drivers = SPFeed.init.data.Drivers;
             
-            for (i = 0; i < Drivers.length; i++) {
+            for (let i = 0, r = Drivers.length; i < r; i++) {
                 Drivers_Name[i] = Drivers[i].Name;
                 Drivers_Initials[i] = Drivers[i].Initials;
                 Drivers_Color[i] = Drivers[i].Color;
@@ -226,12 +231,22 @@
              
             const FreeData = SPFeed.free.data.DR;
     
-            for (j = 0; j < FreeData.length; j++) {
+            for (j = 0, r = FreeData.length; j < r; j++) {
                 FreeData_Initials[j] = FreeData[j].F[0];
                 FreeData_BestLapTime[j] = FreeData[j].F[1];
                 FreeData_Position[j] = FreeData[j].F[3];
                 FreeData_Gap[j] = FreeData[j].F[4];
             }
+
+            const EachLap = SPFeed.opt.data.DR;
+
+            for (let k = 0, r = EachLap.length; k < r; k++) {
+                EachLap_LastLapTime[k] = EachLap[k].O[1];
+                EachLap_Sector1Time[k] = EachLap[k].O[5];
+                EachLap_Sector2Time[k] = EachLap[k].O[6];
+                EachLap_Sector3Time[k] = EachLap[k].O[7];
+            }
+
     
             return [Drivers_Name, FreeData_Initials, Drivers_Team, Drivers_Color, FreeData_Position, FreeData_BestLapTime, FreeData_Gap];
         }
@@ -246,7 +261,7 @@
 
             const LeaderboardRow_DriverColumn = document.querySelectorAll(".driver-name");
 
-            for (i = 0; i < LeaderboardRow_DriverColumn.length; i++) {
+            for (let i = 0, r = LeaderboardRow_DriverColumn.length; i < r; i++) {
                 FreeData_Position[i] = FreeData_Position[i] - 1;
 
                 LeaderboardRow_DriverColumn[FreeData_Position[i]].textContent = FreeData_Initials[i];
@@ -260,7 +275,7 @@
 
             Leaderboard_Column_1_text.textContent = "Best";
 
-            for (i = 0; i < LeaderboardRow_DriverColumn.length; i++) {
+            for (i = 0, r = LeaderboardRow_DriverColumn.length; i < r; i++) {
                 Leaderboard_Column_1[FreeData_Position[i]].textContent = FreeData_BestLapTime[i];
                 // Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_Gap[i];
             }
@@ -316,13 +331,13 @@ async function GetSessionsTimeInSecond() {
         let startTimeArray = [];
         let endTimeArray = [];
 
-        for (i = 0; i < event_tracker_JSON_timetables_length; i++) {
+        for (i = 0, r = event_tracker_JSON_timetables_length; i < r; i++) {
             startTimeArray[i] = event_tracker_JSON.seasonContext.timetables[i].startTime + GMTOffset;
             startTimeArray[i] = new Date(startTimeArray[i]).getTime();
             startTimeArray[i] = Math.round(startTimeArray[i] / 1000);
         }
 
-        for (j = 0; j < event_tracker_JSON_timetables_length; j++) {
+        for (j = 0, r = event_tracker_JSON_timetables_length; j < r; j++) {
             endTimeArray[j] = event_tracker_JSON.seasonContext.timetables[j].endTime + GMTOffset;
             endTimeArray[j] = new Date(endTimeArray[j]).getTime();
             endTimeArray[j] = Math.round(endTimeArray[j] / 1000);
@@ -359,7 +374,7 @@ async function GetSessionsTimeInSecond() {
                 let CloestSession = await DetermindCurrentSession(SessionEndTimeInSecondArray, SecondNow);
 
 
-                for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) {     /*God forgive me*/
+                for (i = 0, r = Object.keys(event_tracker_JSON.seasonContext.timetables).length; i < r; i++) {     /*God forgive me*/
                     CountdownTimerInSecond[i] = SessionStartTimeInSecondArray[i] - SecondNow;
     
                     SessionArray[i] = event_tracker_JSON.seasonContext.timetables[i].session;
@@ -396,7 +411,7 @@ async function GetSessionsTimeInSecond() {
 
 
 
-        for (i = 0; i < Object.keys(event_tracker_JSON.seasonContext.timetables).length; i++) { 
+        for (i = 0, r = Object.keys(event_tracker_JSON.seasonContext.timetables).length; i < r; i++) { 
             SecondDifference[i] = SessionEndTimeArray[i] - SecondNow;
 
                 if (SecondDifference[i] < 0) {
@@ -639,3 +654,7 @@ window.onload = async () => {
     GetCircultImage();
 }
 
+
+/*__________________________________________________________________________________________*/
+/*swup*/
+const swup = new Swup();
