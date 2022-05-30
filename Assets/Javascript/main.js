@@ -265,9 +265,6 @@
                 // Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_Gap[i];
             }
 
-            if(SPFeed_JSON.raceResults) {
-
-            }
 
 
             const Lap_Completed = document.querySelector(".lap-completed");
@@ -430,14 +427,20 @@ async function GetSessionsTimeInSecond() {
 
         switch (true) {
 
-            case Session[1] && Session[2] && Session[3] && Session[4] < 0 :
+            case Session[1] && Session[2] && Session[3] && Session[4] <= 0 :
 
-                if (Session[0] == "P1" || "P2" || "P3") {
-                    Session_HTML.textContent = Session_name;
-                    Live_Status.classList.remove("display_none");
+                if (SPFeed_JSON.raceResults != [] || SPFeed_JSON.raceResults != {} || SPFeed_JSON.raceResults.length != 0) {
+                    Content[0].textContent = "Completed";
                 }
 
-                Content[0].textContent = "Started";
+                else {
+                    Live_Status.classList.remove("display_none");
+                    Content[0].textContent = "Started";
+                }
+
+                Session_HTML.textContent = Session_name;
+
+                
                 Content[1].textContent = "";
                 Content[2].textContent = "";
 
@@ -470,6 +473,7 @@ async function GetSessionsTimeInSecond() {
                 Unit[2].textContent = "S";
 
                 break;
+
 
 
 
