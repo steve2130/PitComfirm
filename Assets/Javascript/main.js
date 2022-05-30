@@ -265,6 +265,10 @@
                 // Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_Gap[i];
             }
 
+            if(SPFeed_JSON.raceResults) {
+
+            }
+
 
             const Lap_Completed = document.querySelector(".lap-completed");
             const Total_Race_lap = document.querySelector(".Total_Race_lap");
