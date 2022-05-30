@@ -264,6 +264,13 @@
                 Leaderboard_Column_1[FreeData_Position[i]].textContent = FreeData_BestLapTime[i];
                 // Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_Gap[i];
             }
+
+
+            const Lap_Completed = document.querySelector(".lap-completed");
+            const Total_Race_lap = document.querySelector(".Total_Race_lap");
+            
+            Lap_Completed.textContent = SPFeed_JSON.free.data.L;
+            Total_Race_lap.textContent = SPFeed_JSON.free.data.TL;
         }
 
 
