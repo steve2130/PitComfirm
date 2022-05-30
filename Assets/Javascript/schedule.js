@@ -1,6 +1,12 @@
+// Was going to use data from motorsportstat.com
+// But their JSONs have an api key that cannot be found in HTTP header
+
+// Here is an alternative source for calendar: https://github.com/sportstimes/f1/tree/main/_db
+// The downside of this source is that it could be updated manually. 
+
+async function Get_Calendar_Data() {
 
 
-async function a() {
     // https://github.com/sportstimes/f1/blob/main/_db/f1/2022.json
     let Formula1_Calendar = await GetData("https://raw.githubusercontent.com/sportstimes/f1/main/_db/f1/2022.json",
                                           "GET",
@@ -16,9 +22,12 @@ async function a() {
                                           "GET",
                                           {"apikey":"uwwf2TIPm5aMRFIAUfjwF5HQBMWAGSeE"});
 
-    console.log(Formula1_Calendar.races);
-    console.log(Formula2_Calendar);
-    console.log(Formula3_Calendar);
+    // https://github.com/sportstimes/f1/blob/main/_db/fe/2022.json                                          
+    let FormulaE_Calendar = await GetData("https://raw.githubusercontent.com/sportstimes/f1/main/_db/fe/2022.json",
+                                          "GET",
+                                          {});
+       
+
+    return [Formula1_Calendar, Formula2_Calendar, Formula3_Calendar, FormulaE_Calendar];
 }
 
-                                    
