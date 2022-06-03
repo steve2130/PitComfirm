@@ -873,6 +873,16 @@ div.FlexContainer_Collapsed {
 
         }
 
+        .Leaderboard_Column_2 {
+            color: hsl(0, 0%, 75%);
+            position: relative;
+            top: calc(32px / 2 - 14px / 2);
+            left: 0;
+            font-size: 14px;
+            width: fit-content;
+            text-align: center;
+        }
+
 
 
 
