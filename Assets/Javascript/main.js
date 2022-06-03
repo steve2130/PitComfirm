@@ -270,34 +270,42 @@
                 LeaderboardRow_DriverColumn[FreeData_Position[i]].textContent = FreeData_Initials[i];
                 LeaderboardRow_DriverColumn[FreeData_Position[i]].style.borderColor = "#" + Drivers_Color[i];
 
-
-
+                // Check DNF
                 if (FreeData_DNF_Status[i] === 1) {
                     LeaderboardRow_DriverColumn[FreeData_Position[i]].style.borderColor = "transparent";
                     LeaderboardRow_DriverColumn[FreeData_Position[i]].classList.add("Did-Not-Finish");
                     Position_order_box[FreeData_Position[i]].style.visibility = "hidden";
-    
                 }
             }
 
 
             
 
-            // Tag on the leaderboard
+            // Tags and data on the leaderboard 
             const Leaderboard_Column_1 = document.querySelectorAll(".Leaderboard_Column_1");
             const Leaderboard_Column_2 = document.querySelectorAll(".Leaderboard_Column_2");
             const Leaderboard_Column_1_text = document.querySelector(".Leaderboard_Column_1_text");
+            const Leaderboard_Column_2_text = document.querySelector(".Leaderboard_Column_2_text");
 
-            Leaderboard_Column_1_text.textContent = "Best";
 
+            Leaderboard_Column_1_text.textContent = "Interval";
+            // Interval 
             for (i = 0, r = LeaderboardRow_DriverColumn.length; i < r; i++) {
-                Leaderboard_Column_1[FreeData_Position[i]].textContent = FreeData_BestLapTime[i];
-                // Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_Gap[i];
+                Leaderboard_Column_1[FreeData_Position[i]].textContent = FreeData_Gap[i];
+
+                if (FreeData_Gap[i] == "") {
+                    Leaderboard_Column_1[FreeData_Position[i]].textContent = `LAP ${SPFeed_JSON.free.data.L}`;
+                }
             }
 
+            Leaderboard_Column_2_text.textContent = "Best";
+            // Best lap time
+            for (i = 0, r = LeaderboardRow_DriverColumn.length; i < r; i++) {
+                Leaderboard_Column_2[FreeData_Position[i]].textContent = FreeData_BestLapTime[i];
+                
+            }
 
-
-
+            
 
 
 
