@@ -76,11 +76,11 @@
     row-gap: 26px;
     grid-template-rows: 120px 120px 120px 120px;
     height: calc((var(--vh, 1vh) * 100));
-    width: 100%;
-    padding: 32px;
+    width: 40vw;
+    padding-left: 32px;
 
     color: white;
-
+    font-size-adjust: 0.5;
 }
 
 .F1_Calendar_Wrapper {
@@ -137,7 +137,7 @@
 .Calendar_Row_Cell_Bottom_Wrapper {
     display: flex;
     position: relative;
-    top: 60px;
+    top: 0;
     left: 0;
 
     height: calc(120px / 2);
