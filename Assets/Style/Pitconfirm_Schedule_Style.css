@@ -22,6 +22,12 @@
             --Grey_30: #c6c6c6;
             --Grey_20: #e0e0e0;
             --Grey_10: #f4f4f4;
+
+        /*Theme colour*/
+            --Formula-1-Color: #e10600;
+            --Formula-2-Color: #0090D0;
+            --Formula-3-Color: #E90300;
+            --Formula-E-Color: #14B7ED;
     }
 
     body {
@@ -67,39 +73,78 @@
 
 .Page_Wrapper {
     display: grid;
-    row-gap: 8px;
+    row-gap: 26px;
     grid-template-rows: 120px 120px 120px 120px;
     height: calc((var(--vh, 1vh) * 100));
     width: 100%;
-    padding: 20px;
+    padding: 32px;
 
     color: white;
 
-    font-size: 1rem;
 }
 
 .F1_Calendar_Wrapper {
-    border: 2px solid #e10600;
     font-family: "F1-Bold";
-    
 }
+
+        .F1_Calendar_Top_Wrapper {
+            background-color: var(--Formula-1-Color);
+        }
+
+
 
 .F2_Calendar_Wrapper {
-    border: 2px solid #0090D0;
     font-family: "bebas_neue_bold";
-    font-stretch: 200%;
 }
+
+        .F2_Calendar_Top_Wrapper {
+            background-color: var(--Formula-2-Color);
+        }
+
+
 
 .F3_Calendar_Wrapper {
-    border: 2px solid #E90300;
     font-family: "bebas_neue_bold";
 }
 
+        .F3_Calendar_Top_Wrapper {
+            background-color: var(--Formula-3-Color);
+        }
+
+
+
 .FE_Calendar_Wrapper {
-    border: 2px solid #14B7ED;
     font-family: "Formula_E-Title-Font";
 }
 
+        .FE_Calendar_Top_Wrapper {
+            background-color: var(--Formula-E-Color);
+        }
+
+
+.Calendar_Row_Cell_Top_Wrapper {
+    display: flex;
+    position: relative;
+    top: 0;  left: 0;
+
+    height: calc(120px / 2);
+
+    font-size: 24px;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.Calendar_Row_Cell_Bottom_Wrapper {
+    display: flex;
+    position: relative;
+    top: 60px;
+    left: 0;
+
+    height: calc(120px / 2);
+    background-color: var(--Grey_90);
+
+
+}
 
 /* font-family: 'Formula_E-Title-Font'; 
 color: transparent; 
