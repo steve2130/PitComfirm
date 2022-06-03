@@ -1186,7 +1186,7 @@ div.FlexContainer_Collapsed {
 /*#endregion*/
 
 
-/**/
+/*Swup*/
 
     .transition-fade {
     transition: 0.4s;
@@ -1206,6 +1206,17 @@ div.FlexContainer_Collapsed {
 
 
 
+/*Schedule*/
+/*#region*/
+
+    .Page_Wrapper {
+        
+    }
+
+
+
+/*#endregion*/
+/**/
 
 
 

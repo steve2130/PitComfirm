@@ -6,7 +6,6 @@
     const NavBarHambuger = document.getElementById("navbar_Hambuger_wrapper");
 
     NavButton.addEventListener("click", () => {
-
         NavBarHambuger.classList.toggle("NavBarHambuger_Open");
         NavSideBar.classList.toggle("NavSideBar_Expanded");
         NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
