@@ -215,7 +215,7 @@
 
         function ProcessingSPFeedData(SPFeed) {
             let Drivers_Name = [];  let Drivers_Initials = [];  let Drivers_Color = [];  let Drivers_Team = [];
-            let FreeData_Initials = [];  let FreeData_BestLapTime = [];  let FreeData_Position = []; let FreeData_Gap = [];
+            let FreeData_Initials = [];  let FreeData_BestLapTime = [];  let FreeData_Position = []; let FreeData_Gap = []; let FreeData_DNF_Status = [];
             let EachLap_LastLapTime = []; let EachLap_Sector1Time = []; let EachLap_Sector2Time = []; let EachLap_Sector3Time = []; let EachLap_GapToLeader = []; let EachLap_GapInFront = [];
     
     
@@ -236,7 +236,9 @@
                 FreeData_BestLapTime[j] = FreeData[j].F[1];
                 FreeData_Position[j] = FreeData[j].F[3];
                 FreeData_Gap[j] = FreeData[j].F[4];
+                FreeData_DNF_Status[j] = FreeData[j].F[5];
             }
+
 
             const EachLap = SPFeed.opt.data.DR;
 
@@ -247,8 +249,7 @@
                 EachLap_Sector3Time[k] = EachLap[k].O[7];
             }
 
-    
-            return [Drivers_Name, FreeData_Initials, Drivers_Team, Drivers_Color, FreeData_Position, FreeData_BestLapTime, FreeData_Gap];
+            return [Drivers_Name, FreeData_Initials, Drivers_Team, Drivers_Color, FreeData_Position, FreeData_BestLapTime, FreeData_Gap, FreeData_DNF_Status];
         }
 
 
@@ -256,19 +257,33 @@
         function DisplaySPFeed(SPFeed_ProcessedData) {
             const Drivers_Name = SPFeed_ProcessedData[0];  const FreeData_Initials = SPFeed_ProcessedData[1];  const Drivers_Team = SPFeed_ProcessedData[2];
             const Drivers_Color = SPFeed_ProcessedData[3];  let FreeData_Position = SPFeed_ProcessedData[4];  const FreeData_BestLapTime = SPFeed_ProcessedData[5];  const FreeData_Gap = SPFeed_ProcessedData[6];
-
+            const FreeData_DNF_Status = SPFeed_ProcessedData[7];
             
 
+            // Info on leaderboard
             const LeaderboardRow_DriverColumn = document.querySelectorAll(".driver-name");
+            const Position_order_box = document.querySelectorAll(".position-order");
 
             for (let i = 0, r = LeaderboardRow_DriverColumn.length; i < r; i++) {
                 FreeData_Position[i] = FreeData_Position[i] - 1;
 
                 LeaderboardRow_DriverColumn[FreeData_Position[i]].textContent = FreeData_Initials[i];
                 LeaderboardRow_DriverColumn[FreeData_Position[i]].style.borderColor = "#" + Drivers_Color[i];
+
+
+
+                if (FreeData_DNF_Status[i] === 1) {
+                    LeaderboardRow_DriverColumn[FreeData_Position[i]].style.borderColor = "transparent";
+                    LeaderboardRow_DriverColumn[FreeData_Position[i]].classList.add("Did-Not-Finish");
+                    Position_order_box[FreeData_Position[i]].style.visibility = "hidden";
+    
+                }
             }
+
+
             
 
+            // Tag on the leaderboard
             const Leaderboard_Column_1 = document.querySelectorAll(".Leaderboard_Column_1");
             const Leaderboard_Column_2 = document.querySelectorAll(".Leaderboard_Column_2");
             const Leaderboard_Column_1_text = document.querySelector(".Leaderboard_Column_1_text");
@@ -282,11 +297,20 @@
 
 
 
+
+
+
+
+            // Lap counter
             const Lap_Completed = document.querySelector(".lap-completed");
             const Total_Race_lap = document.querySelector(".Total_Race_lap");
             
             Lap_Completed.textContent = SPFeed_JSON.free.data.L;
             Total_Race_lap.textContent = SPFeed_JSON.free.data.TL;
+
+
+
+
         }
 
 
