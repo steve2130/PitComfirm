@@ -296,6 +296,10 @@
                 if (FreeData_Gap[i] == "") {
                     Leaderboard_Column_1[FreeData_Position[i]].textContent = `LAP ${SPFeed_JSON.free.data.L}`;
                 }
+
+                else if (FreeData_Gap[i].search(/[+]\w/g) == -1) {
+                    Leaderboard_Column_1[FreeData_Position[i]].textContent = "DNF";
+                }
             }
 
             Leaderboard_Column_2_text.textContent = "Best";
