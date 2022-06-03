@@ -74,22 +74,25 @@
     padding: 20px;
 
     color: white;
+
+    font-size: 1rem;
 }
 
 .F1_Calendar_Wrapper {
     border: 2px solid #e10600;
-    font-family: "F1-Regular";
+    font-family: "F1-Bold";
     
 }
 
 .F2_Calendar_Wrapper {
     border: 2px solid #0090D0;
-    font-family: "bebas_neuebold";
+    font-family: "bebas_neue_bold";
+    font-stretch: 200%;
 }
 
 .F3_Calendar_Wrapper {
     border: 2px solid #E90300;
-    font-family: "bebas_neuebold";
+    font-family: "bebas_neue_bold";
 }
 
 .FE_Calendar_Wrapper {
@@ -137,13 +140,20 @@ font-size: 40px; */
             src: url("../Fonts/Formula1-Black.ttf");
             }
 
+
+
+
     @font-face {
         /*Formula 2 & Formula 3 Font*/
-        font-family: "bebas_neuebold";
-        font-style: normal;
-        font-weight: normal;
+        font-family: "bebas_neue_regular";
         src: url("../Fonts/bebasneue_regular.woff2");
-        }
+    }
+
+    @font-face {
+        /*Formula 2 & Formula 3 Bold*/
+        font-family: "bebas_neue_bold";
+        src: url("../Fonts/bebasneue_bold.woff2");
+    }
 
 
 
@@ -153,6 +163,6 @@ font-size: 40px; */
         font-family: "Formula_E-Title-Font";
         font-style: normal;
         font-weight: normal;
-        src: url("https://assets-prd.formulae.cloud/_styles/fonts/formula-e-title/FormulaETitle.woff2");
+        src: url("../Fonts/FormulaETitle.woff2");
     }
 /*#endregion*/
