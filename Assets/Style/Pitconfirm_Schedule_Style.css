@@ -9,9 +9,30 @@
         user-select: none;
     }
 
+    
+    :root {
+        /*Grey*/
+            --Grey_100: #161616;
+            --Grey_90: #262626;
+            --Grey_80: #393939;
+            --Grey_70: #525252;
+            --Grey_60: #6f6f6f;
+            --Grey_50: #8d8d8d;
+            --Grey_40: #a8a8a8;
+            --Grey_30: #c6c6c6;
+            --Grey_20: #e0e0e0;
+            --Grey_10: #f4f4f4;
+    }
+
+    body {
+        background-color: var(--Grey_100);
+
+    }
+
     ol, ul, li {
         list-style-type: none;
     }
+
 
 /*Scroll bar*/
     /*#region*/
@@ -33,7 +54,7 @@
     }
     /*#endregion*/
 
-    
+
 /*#endregion*/
 
 
@@ -46,26 +67,34 @@
 
 .Page_Wrapper {
     display: grid;
-    column-gap: 8px;
-    grid-template-columns: auto auto auto auto;
+    row-gap: 8px;
+    grid-template-rows: 120px 120px 120px 120px;
     height: calc((var(--vh, 1vh) * 100));
+    width: 100%;
+    padding: 20px;
+
+    color: white;
 }
 
 .F1_Calendar_Wrapper {
     border: 2px solid #e10600;
+    font-family: "F1-Regular";
     
 }
 
 .F2_Calendar_Wrapper {
     border: 2px solid #0090D0;
+    font-family: "bebas_neuebold";
 }
 
 .F3_Calendar_Wrapper {
     border: 2px solid #E90300;
+    font-family: "bebas_neuebold";
 }
 
 .FE_Calendar_Wrapper {
     border: 2px solid #14B7ED;
+    font-family: "Formula_E-Title-Font";
 }
 
 
@@ -76,3 +105,54 @@ font-size: 40px; */
 
 /*#endregion*/
 /**/
+
+
+
+
+
+
+/*Fonts*/
+/*#region*/
+    @font-face {
+        /*Formula 1 Regular*/
+            font-family: "F1-Regular";
+            src: url("../Fonts/Formula1-Regular.ttf");
+        }
+
+    @font-face {
+    /*Formula 1 Bold*/
+        font-family: "F1-Bold";
+        src: url("../Fonts/Formula1-Bold.ttf");
+        }
+        
+    @font-face {
+    /*Formula 1 Wide*/
+        font-family: "F1-Wide";
+        src: url("../Fonts/Formula1-Wide.ttf");
+        }
+
+    @font-face {
+        /*Formula 1 Black*/
+            font-family: "F1-Black";
+            src: url("../Fonts/Formula1-Black.ttf");
+            }
+
+    @font-face {
+        /*Formula 2 & Formula 3 Font*/
+        font-family: "bebas_neuebold";
+        font-style: normal;
+        font-weight: normal;
+        src: url("../Fonts/bebasneue_regular.woff2");
+        }
+
+
+
+
+    @font-face {
+        /*Formula E Font*/
+        font-family: "Formula_E-Title-Font";
+        font-style: normal;
+        font-weight: normal;
+        src: url("https://assets-prd.formulae.cloud/_styles/fonts/formula-e-title/FormulaETitle.woff2");
+    }
+/*#endregion*/
