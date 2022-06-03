@@ -1,0 +1,78 @@
+/*Default stuff*/
+    /*#region*/
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        font-variant-ligatures: none;
+        user-select: none;
+    }
+
+    ol, ul, li {
+        list-style-type: none;
+    }
+
+/*Scroll bar*/
+    /*#region*/
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #444444;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #666666;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #575757;
+    }
+    /*#endregion*/
+
+    
+/*#endregion*/
+
+
+
+
+
+
+/*Schedule*/
+/*#region*/
+
+.Page_Wrapper {
+    display: grid;
+    column-gap: 8px;
+    grid-template-columns: auto auto auto auto;
+    height: calc((var(--vh, 1vh) * 100));
+}
+
+.F1_Calendar_Wrapper {
+    border: 2px solid #e10600;
+    
+}
+
+.F2_Calendar_Wrapper {
+    border: 2px solid #0090D0;
+}
+
+.F3_Calendar_Wrapper {
+    border: 2px solid #E90300;
+}
+
+.FE_Calendar_Wrapper {
+    border: 2px solid #14B7ED;
+}
+
+
+/* font-family: 'Formula_E-Title-Font'; 
+color: transparent; 
+-webkit-text-stroke: 1px #ffffff; 
+font-size: 40px; */
+
+/*#endregion*/
+/**/

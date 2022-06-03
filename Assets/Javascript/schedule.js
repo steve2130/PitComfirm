@@ -5,6 +5,9 @@
 // The downside of this source is that it could be updated manually. 
 
 
+/* Contain some functions that are the same as in main.js */
+/* Just to let the error logs from the unused eventlistener not to be shown in console. */
+
 async function GetData(url, method, headers) {
     const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/";  /*should use express.js, this is just a temporary fix*/
                          /*Please deploy your own.*/
@@ -49,11 +52,34 @@ async function GetCalendarData() {
     return [Formula1_Calendar, Formula2_Calendar, Formula3_Calendar, FormulaE_Calendar];
 }
 
+
+
+/*__________________________________________________________________________________________*/
+
+
+
 async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
+    let GP_Name = [];  let = GP_round = [];  let 
+
+    for (let i = 0; r = Formula1_Calendar_Raw_Data.length, r < i; i++) {
+
+    }
 
 
+}
 
-    console.log(Formula1_Calendar_Raw_Data);
+async function ProcessF2CalendarData(Formula2_Calendar_RawData) {
+    let GP_Round = [];  let CountryName = [];  let CircuitShortName = [];  let GP_Sessions = [];
+    let Calendar_length = Formula2_Calendar_RawData.length;
+
+    for (let i = 0; Calendar_length < i; i++) {
+        GP_Round = Formula2_Calendar_RawData.Races[i].RoundNumber;
+        CountryName = Formula2_Calendar_RawData.Races[i].CountryName;
+        CircuitShortName = Formula2_Calendar_RawData.Races[i].CircuitShortName;
+        GP_Sessions = Formula2_Calendar_RawData.Races[i].Sessions;
+    }
+
+
 }
 
 
@@ -61,10 +87,26 @@ async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
 
 
 
-
+/*__________________________________________________________________________________________*/
 
 window.onload = async() => {
    let Calendar_RawData = await GetCalendarData();
 
    ProcessF1Calendar_Data(Calendar_RawData[0]);
+   ProcessF2CalendarData(Calendar_RawData[1])
 }
+
+/*__________________________________________________________________________________________*/
+
+// Chrome mobile's vh problem
+
+window.addEventListener('resize', () => {
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
+// https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+
+
+/*__________________________________________________________________________________________*/

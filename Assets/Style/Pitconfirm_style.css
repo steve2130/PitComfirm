@@ -90,6 +90,11 @@ body{
 
 }
 
+ol, ul, li {
+    list-style-type: none;
+}
+
+
 ol.driver-position-list {
     list-style-type: none;
     padding: 8px 0 0 0px;
@@ -1205,24 +1210,6 @@ div.FlexContainer_Collapsed {
 
 
 
-
-/*Schedule*/
-/*#region*/
-
-    .Page_Wrapper {
-        
-    }
-
-
-
-/*#endregion*/
-/**/
-
-
-
-
-
-
 /*#Colours*/
 /*#region*/
 
@@ -1372,5 +1359,14 @@ div.FlexContainer_Collapsed {
             font-family: "F1-Black";
             src: url("../Fonts/Formula1-Black.ttf");
             }
+
+
+    @font-face {
+        /*Formula E Font*/
+        font-family: "Formula_E-Title-Font";
+        font-style: normal;
+        font-weight: normal;
+        src: url("https://assets-prd.formulae.cloud/_styles/fonts/formula-e-title/FormulaETitle.woff2");
+    }
 
 /*#endregion*/
