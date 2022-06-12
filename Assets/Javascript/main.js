@@ -120,6 +120,11 @@
             let LatestSessionReplayPath = "";
             let SessionInProcess = false;
         
+            let PreviousSession = await GetData("https://livetiming.formula1.com/static/SessionInfo.json", 
+                                                "GET",
+                                                {});
+
+
                     // The url from SessionInfo changes when the session starts
                     // And SPFeed.json cannot be accessed during the session (?)
                     // This is an alternative method from getting the SPFeed.json of previous session
@@ -141,6 +146,11 @@
                     }
                     
 
+                    if (PreviousSession.ArchiveStatus.Status == "Generating") {
+                        SessionInProcess = true;
+                    }
+
+
                     
 
                     if (SessionInProcess === true) {  // Event-tracker
@@ -155,11 +165,7 @@
                     }
 
                     else {  // SessionInfo
-                        let PreviousSessionPath = await GetData( "https://livetiming.formula1.com/static/SessionInfo.json", 
-                                                                "GET",
-                                                                {});
-
-                        SPFeed_JSON = await GetData( "https://livetiming.formula1.com/static/" + PreviousSessionPath.Path + "SPFeed.json", 
+                        SPFeed_JSON = await GetData( "https://livetiming.formula1.com/static/" + PreviousSession.Path + "SPFeed.json", 
                                                      "GET",
                                                      {});
 
@@ -591,7 +597,7 @@ async function GetSessionsTimeInSecond() {
         let Aborted_Start_Interval= "";
 
         setTimeout(() => {
-            const Timer = setInterval(() => {
+            var Timer = setInterval(() => {
                 if (SPFeed_JSON && Displayed === true) {
                     setTimeout(() => {
                         for (i = 0; i < 10; i++) {
@@ -601,8 +607,8 @@ async function GetSessionsTimeInSecond() {
                     
                     setTimeout(() => {
                         Overlay.classList.add("Loading_Overlay_Hidden");
-                        clearInterval(Timer);
-                        clearInterval(Aborted_Start_Interval);
+                        // clearInterval(Timer);
+                        // clearInterval(Aborted_Start_Interval);
                     }, 1000);
     
                     setTimeout(() => {
