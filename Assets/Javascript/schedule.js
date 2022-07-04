@@ -70,9 +70,10 @@ async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
     }
 
     // For getting the starting time of each session
-    let a = [];
+    let SessionsTime = [];
     for (let i = 0; r = GP_sessions.length, r < i; i++) {
-        GP_sessions[i];
+        SessionsTime[i] = Object.values(GP_sessions[i]);  // The result should be [{Time 1}, {Time 2}, {Time 3}, ...] for each event.
+        new Date(endTimeArray[j]).getTime();
     }
 
 }
@@ -80,7 +81,7 @@ async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
 async function ProcessF2CalendarData(Formula2_Calendar_RawData) {
     let GP_Round = [];  let CountryName = [];  let CircuitShortName = [];  let GP_Sessions = [];
 
-    for (let i = 0; r = Formula2_Calendar_RawData.length; r < i; i++) {
+    for (let i = 0; r = Formula2_Calendar_RawData.length, r < i; i++) {
         GP_Round = Formula2_Calendar_RawData.Races[i].RoundNumber;
         CountryName = Formula2_Calendar_RawData.Races[i].CountryName;
         CircuitShortName = Formula2_Calendar_RawData.Races[i].CircuitShortName;
