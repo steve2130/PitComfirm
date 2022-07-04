@@ -59,20 +59,28 @@ async function GetCalendarData() {
 
 
 async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
-    let GP_Name = [];  let = GP_round = [];  let 
-
+    let GP_Name = [];  let GP_round = [];  let GP_location = [];  let GP_sessions = [];
+    
+    // For sorting different keys
     for (let i = 0; r = Formula1_Calendar_Raw_Data.length, r < i; i++) {
-
+        GP_Name = Formula1_Calendar_Raw_Data[i].name;
+        GP_round = Formula1_Calendar_Raw_Data[i].round;
+        GP_location = Formula1_Calendar_Raw_Data[i].location;
+        GP_sessions = Formula1_Calendar_Raw_Data[i].sessions;
     }
 
+    // For getting the starting time of each session
+    let a = [];
+    for (let i = 0; r = GP_sessions.length, r < i; i++) {
+        GP_sessions[i];
+    }
 
 }
 
 async function ProcessF2CalendarData(Formula2_Calendar_RawData) {
     let GP_Round = [];  let CountryName = [];  let CircuitShortName = [];  let GP_Sessions = [];
-    let Calendar_length = Formula2_Calendar_RawData.length;
 
-    for (let i = 0; Calendar_length < i; i++) {
+    for (let i = 0; r = Formula2_Calendar_RawData.length; r < i; i++) {
         GP_Round = Formula2_Calendar_RawData.Races[i].RoundNumber;
         CountryName = Formula2_Calendar_RawData.Races[i].CountryName;
         CircuitShortName = Formula2_Calendar_RawData.Races[i].CircuitShortName;
