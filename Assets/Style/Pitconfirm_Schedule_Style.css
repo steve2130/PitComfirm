@@ -75,9 +75,13 @@
     display: grid;
     row-gap: 26px;
     grid-template-rows: 120px 120px 120px 120px;
-    height: calc((var(--vh, 1vh) * 100));
-    width: 40vw;
-    padding-left: 32px;
+    height: auto;
+    width: 80vw;
+    margin-top: 12px;
+
+    overflow-y: hidden;
+    position: absolute;
+    left: 10vw;
 
     color: white;
     font-size-adjust: 0.5;
@@ -91,6 +95,14 @@
             background-color: var(--Formula-1-Color);
         }
 
+            .F1_logo_svg {
+                height: 24px;
+                width: auto;
+
+                padding-left: 0px;
+            }
+
+
 
 
 .F2_Calendar_Wrapper {
@@ -99,7 +111,14 @@
 
         .F2_Calendar_Top_Wrapper {
             background-color: var(--Formula-2-Color);
+
         }
+
+            .F2_logo_svg {
+                height: 32px;
+                width: auto;
+            }
+
 
 
 
@@ -111,6 +130,14 @@
             background-color: var(--Formula-3-Color);
         }
 
+            .F3_logo_svg {
+                height: 32px;
+                width: auto;
+            }
+
+
+
+
 
 
 .FE_Calendar_Wrapper {
@@ -121,6 +148,10 @@
             background-color: var(--Formula-E-Color);
         }
 
+
+
+
+        
 
 .Calendar_Row_Cell_Top_Wrapper {
     display: flex;

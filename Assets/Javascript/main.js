@@ -303,7 +303,7 @@
                 }
 
                 else if (FreeData_Gap[i].search(/[+]\w/g) == -1) {
-                    Leaderboard_Column_1[FreeData_Position[i]].textContent = "DNF";
+                    Leaderboard_Column_1[FreeData_Position[i]].textContent = "DNF";  // Does not work when there are lapped cars
                 }
             }
 

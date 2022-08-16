@@ -58,8 +58,9 @@ async function GetCalendarData() {
 
 
 
-async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
+async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data, Time_Now) {
     let GP_Name = [];  let GP_round = [];  let GP_location = [];  let GP_sessions = [];
+    let GrandPrix_Time = [];
     
     // For sorting different keys
     for (let i = 0; r = Formula1_Calendar_Raw_Data.length, r < i; i++) {
@@ -67,13 +68,22 @@ async function ProcessF1Calendar_Data(Formula1_Calendar_Raw_Data) {
         GP_round = Formula1_Calendar_Raw_Data[i].round;
         GP_location = Formula1_Calendar_Raw_Data[i].location;
         GP_sessions = Formula1_Calendar_Raw_Data[i].sessions;
+        GrandPrix_Time = Formula1_Calendar_Raw_Data[i].sessions.gp;  // To get the time of the Grand Prix
     }
+
 
     // For getting the starting time of each session
     let SessionsTime = [];
     for (let i = 0; r = GP_sessions.length, r < i; i++) {
         SessionsTime[i] = Object.values(GP_sessions[i]);  // The result should be [{Time 1}, {Time 2}, {Time 3}, ...] for each event.
+        
+        
         new Date(endTimeArray[j]).getTime();
+    }
+
+    // For determine which race is the nearest race
+    for (let i = 0; r = GrandPrix_Time.length, r < i; i++) {
+        GrandPrix_Time
     }
 
 }
@@ -99,10 +109,17 @@ async function ProcessF2CalendarData(Formula2_Calendar_RawData) {
 /*__________________________________________________________________________________________*/
 
 window.onload = async() => {
-   let Calendar_RawData = await GetCalendarData();
 
-   ProcessF1Calendar_Data(Calendar_RawData[0]);
-   ProcessF2CalendarData(Calendar_RawData[1])
+    const Time_Now = Date.now() / 1000;  // To get current time in second
+
+    let Calendar_RawData = await GetCalendarData();
+
+    ProcessF1Calendar_Data(Calendar_RawData[0], Time_Now);
+    ProcessF2CalendarData(Calendar_RawData[1])
+
+
+
+
 }
 
 /*__________________________________________________________________________________________*/
