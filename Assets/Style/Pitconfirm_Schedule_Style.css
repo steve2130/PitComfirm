@@ -7,6 +7,7 @@
         -webkit-tap-highlight-color: transparent;
         font-variant-ligatures: none;
         user-select: none;
+        image-rendering: auto;  /*webkit only?*/
     }
 
     
@@ -73,19 +74,20 @@
 
 .Page_Wrapper {
     display: grid;
-    row-gap: 26px;
-    grid-template-rows: 120px 120px 120px 120px;
+    row-gap: 20px;
+    grid-template-rows: calc(60px + 180px);  /*Upper column + Bottom column*/
     height: auto;
     width: 80vw;
     margin-top: 12px;
 
-    overflow-y: hidden;
     position: absolute;
     left: 10vw;
 
     color: white;
     font-size-adjust: 0.5;
 }
+
+
 
 .F1_Calendar_Wrapper {
     font-family: "F1-Bold";
@@ -99,9 +101,7 @@
                 height: 24px;
                 width: auto;
 
-                padding-left: 0px;
             }
-
 
 
 
@@ -170,12 +170,76 @@
     position: relative;
     top: 0;
     left: 0;
-
-    height: calc(120px / 2);
+    height: 180px;
     background-color: var(--Grey_90);
-
-
+    overflow: hidden;
 }
+
+        .Calendar_Row_Cell_Bottom_Wrapper_Left_Column {
+            width: 40%;
+            margin: 4px 18px 4px 12px;
+        }
+
+                .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_CountryCell {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: nowrap;
+                }
+
+                        .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_CountryText {
+                            font-size: 2rem;
+                            
+                        }
+
+                        .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_CountryImage {
+                            height: 24px;
+                            border-radius: 5px;
+                        }
+
+                .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_DateCell {
+
+                }
+
+                        .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_DateText {
+
+                        }
+
+                        .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_MonthText {
+
+                        }
+
+
+                .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_RoundText {
+                    display: inline;
+                    font-size: 0.8rem;
+                    color: var(--Formula-1-Color);
+                    margin-bottom: 2px;
+                }
+
+                .Calendar_Row_Cell_Bottom_Wrapper_Left_Column_RoundNumber {
+                    padding-left: 6px;
+                }
+        
+
+
+
+
+        .Calendar_Row_Cell_Bottom_Wrapper_Right_Column {
+            display: inline-block;
+            width: 60%;
+        }
+
+                .Calendar_Row_Cell_Bottom_Track_Image {
+                    
+                    align-items: right;
+                    width: 80%;
+                    object-fit: cover;
+
+
+                    min-height: 180px;
+                    min-width: 100%;
+                }
 
 /* font-family: 'Formula_E-Title-Font'; 
 color: transparent; 
