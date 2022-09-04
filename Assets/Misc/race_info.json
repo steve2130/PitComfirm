@@ -1,0 +1,137 @@
+{
+    "races" : [
+        {
+            "country" : "Bahrain",
+            "city" : "Sakhir",
+            "venue" : "Bahrain International Circuit",
+            "shortened_name" : "Bahrain Grand Prix"
+        },
+
+        {
+            "country" : "Saudi Arabia",
+            "city" : "Jeddah",
+            "venue" : "Jeddah Corniche Circuit"
+        },
+
+        {
+            "country" : "Australia",
+            "city" : "Melbourne",
+            "venue" : "Albert Park Circuit"
+        },
+
+        {
+            "country" : "Italy",
+            "city" : "Imola",
+            "venue" : "Autodromo Enzo e Dino Ferrari"
+        },
+
+        {
+            "country" : "United States",
+            "city" : "Miami",
+            "venue" : "Miami International Autodrome"
+        },
+
+        {
+            "country" : "Spain",
+            "city" : "Barcelona",
+            "venue" : "Circuit de Barcelona-Catalunya"
+        },
+
+        {
+            "country" : "Monaco",
+            "city" : "Monte Carlo",
+            "venue" : "Circuit de Monaco"
+        },
+
+        {
+            "country" : "Azerbaijan",
+            "city" : "Baku",
+            "venue" : "Baku City Circuit"
+        },
+
+        {
+            "country" : "Canada",
+            "city" : "Montreal",
+            "venue" : "Circuit Gilles-Villeneuve"
+        },
+
+        {
+            "country" : "Britain",
+            "city" : "Silverstone",
+            "venue" : "Silverstone Circuit"
+        },
+
+        {
+            "country" : "Austria",
+            "city" : "Spielberg",
+            "venue" : "Red Bull Ring"
+        },
+
+        {
+            "country" : "France",
+            "city" : "Le Castellet",
+            "venue" : "Circuit Paul Ricard"
+        },
+
+        {
+            "country" : "Hungary",
+            "city" : "Budapest",
+            "venue" : "Hungaroring"
+        },
+
+        {
+            "country" : "Belgium",
+            "city" : "Stavelot",
+            "venue" : "Circuit de Spa-Francorchamps"
+        },
+
+        {
+            "country" : "Netherlands",
+            "city" : "Zandvoort",
+            "venue" : "Circuit Zandvoort"
+        },
+
+        {
+            "country" : "Italy",
+            "city" : "Monza",
+            "venue" : "Autodromo Nazionale Monza"
+        },
+
+        {
+            "country" : "Singapore",
+            "city" : "Marina Bay",
+            "venue" : "Marina Bay Street Circuit"
+        },
+
+        {
+            "country" : "Japan",
+            "city" : "Suzuka",
+            "venue" : "Suzuka International Racing Course"
+        },
+
+        {
+            "country" : "United States",
+            "city" : "Austin",
+            "venue" : "Circuit of The Americas"
+        },
+
+        {
+            "country" : "Mexico",
+            "city" : "Mexico City",
+            "venue" : "Autódromo Hermanos Rodríguez"
+        },
+
+        {
+            "country" : "Brazil",
+            "city" : "São Paulo",
+            "venue" : [ "Interlagos",
+                        "Autódromo José Carlos Pace"]
+        },
+
+        {
+            "country" : "Abu Dhabi",
+            "city" : "Yas Island",
+            "venue" : "Yas Marina Circuit"
+        }
+    ]
+}

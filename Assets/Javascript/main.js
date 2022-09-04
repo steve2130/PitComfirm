@@ -684,17 +684,14 @@ window.addEventListener('resize', () => {
 
 /*__________________________________________________________________________________________*/
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     DataLoading_PageOverlay_Animation();
-}, false);
 
-window.onload = async () => {
     await Deliver_event_tracker();
     DecideWhatSourceToGetTiming();
     SessionCountdownTimer();
     GetCircultImage();
-}
-
+}, false);
 
 /*__________________________________________________________________________________________*/
 /*swup*/
