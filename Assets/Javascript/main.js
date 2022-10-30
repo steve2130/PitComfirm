@@ -1,81 +1,23 @@
-/*For nav toggle expand / retract*/
-{
-    const NavButton = document.getElementById("nav_button");
-    const NavSideBar = document.getElementById("nav_side_bar");
-    const NavSideBarWrapper = document.getElementById("nav_side_bar_wrapper");
-    const NavBarHambuger = document.getElementById("navbar_Hambuger_wrapper");
-
-    NavButton.addEventListener("click", () => {
-        NavBarHambuger.classList.toggle("NavBarHambuger_Open");
-        NavSideBar.classList.toggle("NavSideBar_Expanded");
-        NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
-    }, false);
+// This is the main JS file for PitComfirm
 
 
-    NavSideBar.addEventListener("click", (e) => {
-        /*PsiKai, https://stackoverflow.com/questions/69773505/prevent-overlay-click-for-elements-with-a-higher-z-index */
-        if (e.target.classList.contains("NavSideBar")) {
-            NavBarHambuger.classList.toggle("NavBarHambuger_Open");
-            NavSideBar.classList.toggle("NavSideBar_Expanded");
-            NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
-        }
-
-    }, false);
 
 
+
+
+
+
+//________________________________________________________________________________________________________________
+//________________________________________________________________________________________________________________
+// GetData
+    /*Prototype for getting data*/
     
-
-    // Changed 
-    const Event_Countdown_Timer_Clock = document.querySelector(".EventCountdownTimerColumn_Wrapper");
-    Event_Countdown_Timer_Clock.addEventListener('click', () => {
-
-    })
-}
-
-/*__________________________________________________________________________________________ */
-/*Detect height changes on the country text*/
-{
-    const CountriesText = document.getElementById("circuit_country_text");
-    const heightObserver = new ResizeObserver (entries => {
-        
-
-        for (let entry of entries) {
-            const cr = entry.contentRect;
-            
-                if (cr.height >= 23 && cr.height <= 26) {
-                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
-                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
-                }
-
-                else if (cr.height >= 46 && cr.height <= 52) {
-                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
-                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_TwoLiner");
-                }
-
-                else if (cr.height >= 69 && cr.height <= 78) {
-                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
-                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_ThreeLiner");
-                }
-            }
-
-        })
-    heightObserver.observe(CountriesText);
-}
-
-/*__________________________________________________________________________________________*/
-
-    /*Grab Info from the different JSON*/
-
     async function GetData(url, method, headers) {
         const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/";  /*should use express.js, this is just a temporary fix*/
                              /*Please deploy your own.*/
         
         try {
-            let res = await axios
-                .get(cors_bypass + url, {
-                    method: method,
-                    headers: headers
-                })
+            let res = await axios.get(cors_bypass + url, {method: method, headers: headers})
                 return res.data;
             }
 
@@ -84,35 +26,75 @@
         }
     }
 
-    /*Don't want to request the info from server everytime.*/
+            // Data Gathering
+            async function GetData_EventTracker() {
+                // To get the info for current or next race info.
+                let EventTracker_JSON = await GetData("https://api.formula1.com/v1/event-tracker", "GET", {'apikey': 'qPgPPRJyGCIPxFT3el4MF7thXHyJCzAP', 'locale': 'en'  });
+                                                                                                        /*Sniff your own*/                           /*Essential?*/
+                sessionStorage.setItem("event_tracker", JSON.stringify(EventTracker_JSON));                                        
+            }
 
-        // To get the info for current or next race info.
-        var event_tracker_JSON = "";    
+            async function GetData_SessionInfo() {
+                //To grab the details of previous race.
+                let SessionInfo_JSON = await GetData("https://livetiming.formula1.com/static/SessionInfo.json", "GET", {});
 
-        /*To check whether livetiming is available or not.*/
-        var Streaming_Status_JSON = "";
+                sessionStorage.setItem("SessionInfo", JSON.stringify(SessionInfo_JSON));
+            }
 
+            async function GetData_StreamingStatus() {
+                // To check whether livetiming is available or not.
+                // Although the url said it is reporting the status of the stream, it actually reports status of the web socket for the live timeing.  
+                let WebsocketStatus = await GetData( "https://livetiming.formula1.com/static/StreamingStatus.json", "GET", {});
 
-        /*To grab the details of previous race.*/
-        var Session_Info_JSON = "";
+                sessionStorage.setItem("StreamingStatus", JSON.stringify(WebsocketStatus));
+            }
 
-        
-        /*To get the SPFeed.json when websocket is closed.*/
-        var SPFeed_JSON = "";
+            async function GetData_SPFeed() {
+                // Proper method to get SPFeed for previous session
+                // Example of SPFeed: https://livetiming.formula1.com/static/2022/2022-04-10_Australian_Grand_Prix/2022-04-10_Race/SPFeed.json
+                let SPFeed = await GetData( "https://livetiming.formula1.com/static/" + PreviousSession.Path + "SPFeed.json", "GET", {});
 
-/*__________________________________________________________________________________________*/
+                sessionStorage.setItem("SPFeed", JSON.stringify(SPFeed));
+            }
+
+            async function GetData_SPFeed_when_live() {
+                // The url from SessionInfo changes when the session starts
+                // And SPFeed.json cannot be accessed during the session (?)
+                // This is an alternative method from getting the SPFeed.json of previous session
+                EventTracker_JSON = sessionStorage.getItem("StreamingStatus");
+                EventTracker_JSON = JSON.parse(EventTracker_JSON);       
+
+                let LastArrayElement = Object.keys(EventTracker_JSON.sessionLinkSets.replayLinks).length - 1;
+                let SPFeed_PreviousSession = await GetData( EventTracker_JSON.sessionLinkSets.replayLinks[LastArrayElement].url + "SPFeed.json", "GET", {});
     
-    /*Data Processing */
+                sessionStorage.setItem("StreamingStatus", JSON.stringify(SPFeed_PreviousSession));
+            }
 
-    async function Deliver_event_tracker() {
-        event_tracker_JSON = await GetData("https://api.formula1.com/v1/event-tracker", 
-                                           "GET", 
-                                          {'apikey': 'qPgPPRJyGCIPxFT3el4MF7thXHyJCzAP',   /*Sniff your own*/
-                                           'locale': 'en'  /*Essential?*/});
-    }
 
-        // 
-        // https://livetiming.formula1.com/static/2022/2022-04-10_Australian_Grand_Prix/2022-04-10_Race/SPFeed.json
+
+
+//________________________________________________________________________________________________________________
+//________________________________________________________________________________________________________________
+// Display
+
+        function Display_Websocket_Status() {
+            WebsocketStatus = sessionStorage.getItem("StreamingStatus");
+            WebsocketStatus = JSON.parse(WebsocketStatus);
+
+            switch (WebsocketStatus.Status) {
+                case "Offline":
+                    console.log("Websocket closed.");
+                    break;
+                
+                case "Available":
+                    console.log("Livetiming available.");
+                    break;
+                
+                default:
+                    console.log("Something is wrong with StreamingStatus.json!");
+                    break;
+            }
+        }
 
 
         async function DecideWhatSourceToGetTiming() {
@@ -120,14 +102,10 @@
             let LatestSessionReplayPath = "";
             let SessionInProcess = false;
         
-            let PreviousSession = await GetData("https://livetiming.formula1.com/static/SessionInfo.json", 
-                                                "GET",
-                                                {});
 
 
-                    // The url from SessionInfo changes when the session starts
-                    // And SPFeed.json cannot be accessed during the session (?)
-                    // This is an alternative method from getting the SPFeed.json of previous session
+
+
 
                     for (i = 0, r = Object.keys(event_tracker_JSON.seasonContext.timetables).length; i < r; i++) {  
                         // r = whatever var name
@@ -154,47 +132,18 @@
                     
 
                     if (SessionInProcess === true) {  // Event-tracker
-                        let LastArrayElement = Object.keys(event_tracker_JSON.sessionLinkSets.replayLinks).length - 1;
-                        LatestSessionReplayPath = event_tracker_JSON.sessionLinkSets.replayLinks[LastArrayElement].url;
-                        SPFeed_JSON = await GetData( LatestSessionReplayPath + "SPFeed.json", 
-                                                    "GET",
-                                                    {});
+
 
                         const Processed_Data = ProcessingSPFeedData(SPFeed_JSON);
                         DisplaySPFeed(Processed_Data);
                     }
 
                     else {  // SessionInfo
-                        SPFeed_JSON = await GetData( "https://livetiming.formula1.com/static/" + PreviousSession.Path + "SPFeed.json", 
-                                                     "GET",
-                                                     {});
+
 
                         const Processed_Data = ProcessingSPFeedData(SPFeed_JSON);
                         DisplaySPFeed(Processed_Data);
                     }
-
-
-
-
-            let WebsocketStatus = await GetData( "https://livetiming.formula1.com/static/StreamingStatus.json",
-                                                 "GET",
-                                                {});
-
-
-            switch (WebsocketStatus.Status) {
-                case "Offline":
-                    console.log("Websocket closed.");
-                    break;
-                
-                case "Available":
-                    console.log("Livetiming available.");
-                    break;
-                
-                default:
-                    console.log("Something is wrong with StreamingStatus.json!");
-                    break;
-            }
-        
         }
 
 
@@ -315,9 +264,6 @@
             }
 
             
-
-
-
             // Lap counter
             const Lap_Completed = document.querySelector(".lap-completed");
             const Total_Race_lap = document.querySelector(".Total_Race_lap");
@@ -338,30 +284,23 @@
 /*Event Counterdown Timer*/
 
 
-    /*For the clock in nav bar*/
-    {
-        function GETDateandTime() {
-            let date = new Date();
+    // /*For the clock in nav bar*/
+    // {
+    //     function GETDateandTime() {
+    //         let date = new Date();
 
-            let option = {hour12: false };
+    //         let option = {hour12: false };
 
-            let LocalDate = date.toLocaleTimeString("zh-TW", option);
+    //         let LocalDate = date.toLocaleTimeString("zh-TW", option);
             
-            const timeCounter = document.getElementById("timeCounter");
-            timeCounter.innerHTML = LocalDate;
-        }
+    //         const timeCounter = document.getElementById("timeCounter");
+    //         timeCounter.innerHTML = LocalDate;
+    //     }
 
-    }
-
-
+    // }
 
 
 
-
-
-
-
-let SessionCountDown = "";
 
 
 async function GetSessionsTimeInSecond() {
@@ -408,7 +347,7 @@ async function GetSessionsTimeInSecond() {
 
         SessionCountDown = setInterval(async() => {
 
-            GETDateandTime(); // The clock, so that it is synced.
+            // GETDateandTime(); // The clock, so that it is synced.
 
                 SecondNow = Math.round(Date.now() / 1000);
     
@@ -557,6 +496,79 @@ async function GetSessionsTimeInSecond() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+//________________________________________________________________________________________________________________
+//________________________________________________________________________________________________________________
+
+// For DOM manipulation on the appearance of the website 
+
+/*For nav toggle expand / retract*/
+{
+    const NavButton = document.getElementById("nav_button");
+    const NavSideBar = document.getElementById("nav_side_bar");
+    const NavSideBarWrapper = document.getElementById("nav_side_bar_wrapper");
+    const NavBarHambuger = document.getElementById("navbar_Hambuger_wrapper");
+
+    NavButton.addEventListener("click", () => {
+        NavBarHambuger.classList.toggle("NavBarHambuger_Open");
+        NavSideBar.classList.toggle("NavSideBar_Expanded");
+        NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
+    }, false);
+
+
+    NavSideBar.addEventListener("click", (e) => {
+        /*PsiKai, https://stackoverflow.com/questions/69773505/prevent-overlay-click-for-elements-with-a-higher-z-index */
+        if (e.target.classList.contains("NavSideBar")) {
+            NavBarHambuger.classList.toggle("NavBarHambuger_Open");
+            NavSideBar.classList.toggle("NavSideBar_Expanded");
+            NavSideBarWrapper.classList.toggle("NavSideBarWrapper_Expanded");
+        }
+
+    }, false);
+}
+
+//__________________________________________________________________________________________
+/*Detect height changes on the country text*/
+{
+    const CountriesText = document.getElementById("circuit_country_text");
+    const heightObserver = new ResizeObserver (entries => {
+        
+
+        for (let entry of entries) {
+            const cr = entry.contentRect;
+            
+                if (cr.height >= 23 && cr.height <= 26) {
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_OneLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_OneLiner");
+                }
+
+                else if (cr.height >= 46 && cr.height <= 52) {
+                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_TwoLiner");
+                    CountriesText.classList.replace("circuitCountryText_ThreeLiner", "circuitCountryText_TwoLiner");
+                }
+
+                else if (cr.height >= 69 && cr.height <= 78) {
+                    CountriesText.classList.replace("circuitCountryText_OneLiner", "circuitCountryText_ThreeLiner");
+                    CountriesText.classList.replace("circuitCountryText_TwoLiner", "circuitCountryText_ThreeLiner");
+                }
+            }
+
+        })
+    heightObserver.observe(CountriesText);
+}
+
+//__________________________________________________________________________________________
+
+
     function DataLoading_PageOverlay_Animation() {
         const Wrapper = document.querySelector(".Loading_Overlay_Starting_Lights_Wrapper");
         const Group = document.querySelectorAll(".StartingLight_Group");
@@ -649,13 +661,6 @@ async function GetSessionsTimeInSecond() {
                 console.log("Oh no! Something is wrong with loading the data!");
             }
         }, 4000);
-
-
-
-
-
-
-
     }
 
 
@@ -694,5 +699,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 }, false);
 
 /*__________________________________________________________________________________________*/
-/*swup*/
-const swup = new Swup();
