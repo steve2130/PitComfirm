@@ -31,7 +31,7 @@
                 // To get the info for current or next race info.
                 let EventTracker_JSON = await GetData("https://api.formula1.com/v1/event-tracker", "GET", {'apikey': 'qPgPPRJyGCIPxFT3el4MF7thXHyJCzAP', 'locale': 'en'  });
                                                                                                         /*Sniff your own*/                           /*Essential?*/
-                sessionStorage.setItem("event_tracker", JSON.stringify(EventTracker_JSON));                                        
+                sessionStorage.setItem("EventTracker", JSON.stringify(EventTracker_JSON));                                        
             }
 
             async function GetData_SessionInfo() {
@@ -44,30 +44,52 @@
             async function GetData_StreamingStatus() {
                 // To check whether livetiming is available or not.
                 // Although the url said it is reporting the status of the stream, it actually reports status of the web socket for the live timeing.  
-                let WebsocketStatus = await GetData( "https://livetiming.formula1.com/static/StreamingStatus.json", "GET", {});
+                let StreamingStatus = await GetData( "https://livetiming.formula1.com/static/StreamingStatus.json", "GET", {});
 
-                sessionStorage.setItem("StreamingStatus", JSON.stringify(WebsocketStatus));
+                sessionStorage.setItem("StreamingStatus", JSON.stringify(StreamingStatus));
             }
 
             async function GetData_SPFeed() {
                 // Proper method to get SPFeed for previous session
-                // Example of SPFeed: https://livetiming.formula1.com/static/2022/2022-04-10_Australian_Grand_Prix/2022-04-10_Race/SPFeed.json
-                let SPFeed = await GetData( "https://livetiming.formula1.com/static/" + PreviousSession.Path + "SPFeed.json", "GET", {});
+                // Example of SPFeed: https://livetiming.formula1.com/static/2022/2022-04-10_Australian_Grand_Prix/2022-04-10_Race/SPFeed.
+                let SessionInfo_JSON = sessionStorage.getItem("SessionInfo");
+                SessionInfo_JSON = JSON.parse(SessionInfo_JSON)
 
+                let SPFeed = await GetData( "https://livetiming.formula1.com/static/" + SessionInfo_JSON.Path + "SPFeed.json", "GET", {});
                 sessionStorage.setItem("SPFeed", JSON.stringify(SPFeed));
             }
 
-            async function GetData_SPFeed_when_live() {
+            async function GetData_SPFeed_PreviousSession() {
                 // The url from SessionInfo changes when the session starts
                 // And SPFeed.json cannot be accessed during the session (?)
                 // This is an alternative method from getting the SPFeed.json of previous session
-                EventTracker_JSON = sessionStorage.getItem("StreamingStatus");
+                let EventTracker_JSON = sessionStorage.getItem("EventTracker");
                 EventTracker_JSON = JSON.parse(EventTracker_JSON);       
 
                 let LastArrayElement = Object.keys(EventTracker_JSON.sessionLinkSets.replayLinks).length - 1;
                 let SPFeed_PreviousSession = await GetData( EventTracker_JSON.sessionLinkSets.replayLinks[LastArrayElement].url + "SPFeed.json", "GET", {});
     
-                sessionStorage.setItem("StreamingStatus", JSON.stringify(SPFeed_PreviousSession));
+                sessionStorage.setItem("SPFeed_PreviousSession", JSON.stringify(SPFeed_PreviousSession));
+            }
+
+
+
+            async function Data_Fetching() {
+                GetData_EventTracker();
+                GetData_SessionInfo();
+                await GetData_StreamingStatus();
+                
+                let StreamingStatus = sessionStorage.getItem("StreamingStatus");
+                    StreamingStatus = JSON.parse(StreamingStatus);
+                    
+                    if (StreamingStatus.Status == "Offline") {
+                        GetData_SPFeed();
+                    }
+
+                    else {
+                        GetData_SPFeed_PreviousSession();
+                    }
+                    
             }
 
 
@@ -690,9 +712,9 @@ window.addEventListener('resize', () => {
 /*__________________________________________________________________________________________*/
 
 document.addEventListener('DOMContentLoaded', async () => {
-    DataLoading_PageOverlay_Animation();
+    // DataLoading_PageOverlay_Animation();
 
-    await Deliver_event_tracker();
+    await Data_Fetching();
     DecideWhatSourceToGetTiming();
     SessionCountdownTimer();
     GetCircultImage();
