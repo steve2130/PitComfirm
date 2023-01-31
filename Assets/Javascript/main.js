@@ -67,7 +67,7 @@
     /*Grab Info from the different JSON*/
 
     async function GetData(url, method, headers) {
-        const cors_bypass = "https://cors-anywhere-proxy-fork.herokuapp.com/";  /*should use express.js, this is just a temporary fix*/
+        const cors_bypass = "https://avoi-cors.jensoncheung2.workers.dev/?";  /*should use express.js, this is just a temporary fix*/
                              /*Please deploy your own.*/
         
         try {
